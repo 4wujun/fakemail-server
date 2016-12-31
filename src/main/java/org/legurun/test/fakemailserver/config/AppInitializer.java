@@ -10,7 +10,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { RootConfig.class };
+		return new Class<?>[] { RootConfig.class, SubEthaSMTPConfig.class };
 	}
 
 	@Override

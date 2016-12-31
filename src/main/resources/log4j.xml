@@ -12,6 +12,14 @@
 		<level value="info" />
 	</logger>
 
+	<logger name="com.icegreen.greenmail">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.subethamail.smtp">
+		<level value="info" />
+	</logger>
+
 	<root>
 		<priority value="warn" />
 		<appender-ref ref="console" />
