@@ -4,7 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages="org.legurun.test.fakemail.service")
+@ComponentScan(basePackages="org.legurun.test.fakemailserver.service")
 public class RootConfig {
 
 }

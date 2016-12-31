@@ -21,7 +21,7 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "org.legurun.test.fakemail.controller")
+@ComponentScan(basePackages = "org.legurun.test.fakemailserver.controller")
 public class WebMvcConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 	private ApplicationContext applicationContext;
 
