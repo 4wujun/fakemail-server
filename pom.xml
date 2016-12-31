@@ -125,25 +125,12 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.4.0.v20161208</version>
-				<configuration>
-					<webApp>
-						<contextPath>/${project.artifactId}</contextPath>
-					</webApp>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
 	<profiles>
 		<profile>
 			<id>h2</id>
-			<activation>
-				<activeByDefault />
-			</activation>
 			<dependencies>
 				<dependency>
 					<groupId>com.h2database</groupId>
@@ -151,6 +138,26 @@
 					<version>${h2.version}</version>
 				</dependency>
 			</dependencies>
+		</profile>
+		<profile>
+			<id>jetty</id>
+			<activation>
+				<activeByDefault />
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-maven-plugin</artifactId>
+						<version>9.4.0.v20161208</version>
+						<configuration>
+							<webApp>
+								<contextPath>/${project.artifactId}</contextPath>
+							</webApp>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 </project>
