@@ -1,8 +1,7 @@
 package org.legurun.test.fakemailserver.config;
 
-import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,13 +21,9 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "org.legurun.test.fakemailserver.controller")
-public class WebMvcConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
+	@Autowired
 	private ApplicationContext applicationContext;
-
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
-	}
 
 	@Bean
 	public ViewResolver viewResolver() {
