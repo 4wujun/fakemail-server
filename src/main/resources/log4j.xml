@@ -8,11 +8,19 @@
 		</layout>
 	</appender>
 
+	<logger name="org.legurun.test.fakemailserver">
+		<level value="trace" />
+	</logger>
+
 	<logger name="org.springframework">
 		<level value="info" />
 	</logger>
 
 	<logger name="org.hibernate">
+		<level value="info" />
+	</logger>
+
+	<logger name="net.bull.javamelody">
 		<level value="info" />
 	</logger>
 

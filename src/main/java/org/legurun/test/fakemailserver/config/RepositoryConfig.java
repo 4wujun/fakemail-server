@@ -5,6 +5,8 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,11 +24,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:application.properties")
 @ComponentScan(basePackages="org.legurun.test.fakemailserver.dao")
 public class RepositoryConfig {
+	private static final Logger LOG = LoggerFactory.getLogger(RepositoryConfig.class);
+
 	@Autowired
 	private Environment environment;
 
 	@Bean
-	public DataSource getDataSource() {
+	public DataSource dataSource() {
+		LOG.trace("Initialisation dataSource");
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
 		ds.setUrl(environment.getRequiredProperty("jdbc.url"));
@@ -38,6 +43,7 @@ public class RepositoryConfig {
 	@Bean
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+		LOG.trace("Initialisation sessionFactory");
 		HibernateTransactionManager htm = new HibernateTransactionManager();
 		htm.setSessionFactory(sessionFactory);
 		return htm;
@@ -46,14 +52,16 @@ public class RepositoryConfig {
 	@Bean
 	@Autowired
 	public HibernateTemplate hibernateTemplate(SessionFactory sessionFactory) {
+		LOG.trace("Initialisation hibernateTemplate");
 		HibernateTemplate hibernateTemplate = new HibernateTemplate(sessionFactory);
 		return hibernateTemplate;
 	}
 
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
+		LOG.trace("Initialisation sessionFactory");
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(getDataSource());
+		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		sessionFactory.setPackagesToScan("org.legurun.test.fakemailserver.model");
 		return sessionFactory;
@@ -61,6 +69,7 @@ public class RepositoryConfig {
 
 	@Bean
 	public Properties hibernateProperties() {
+		LOG.trace("Initialisation hibernateProperties");
 		Properties properties = new Properties();
 		properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
 		properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));

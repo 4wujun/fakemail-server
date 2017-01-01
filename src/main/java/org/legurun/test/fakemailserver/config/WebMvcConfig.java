@@ -1,5 +1,10 @@
 package org.legurun.test.fakemailserver.config;
 
+import javax.servlet.Filter;
+import javax.servlet.http.HttpSessionListener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -22,11 +27,14 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 @EnableWebMvc
 @ComponentScan(basePackages = "org.legurun.test.fakemailserver.controller")
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
+	private static final Logger LOG = LoggerFactory.getLogger(WebMvcConfig.class);
+
 	@Autowired
 	private ApplicationContext applicationContext;
 
 	@Bean
 	public ViewResolver viewResolver() {
+		LOG.trace("Initialisation viewResolver");
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine());
 		viewResolver.setCharacterEncoding("UTF-8");
@@ -35,6 +43,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public TemplateEngine templateEngine() {
+		LOG.trace("Initialisation templateEngine");
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.setEnableSpringELCompiler(true);
 		templateEngine.addTemplateResolver(templateResolver());
@@ -44,6 +53,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public ITemplateResolver templateResolver() {
+		LOG.trace("Initialisation templateResolver");
 		SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
 		templateResolver.setApplicationContext(applicationContext);
 		templateResolver.setPrefix("/WEB-INF/templates/");
@@ -58,5 +68,17 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+	}
+
+	@Bean
+	public HttpSessionListener javaMelodyListener() {
+		LOG.trace("Initialisation javaMelodyListener");
+		return new net.bull.javamelody.SessionListener();
+	}
+
+	@Bean
+	public Filter javaMelodyFilter() {
+		LOG.trace("Initialisation javaMelodyFilter");
+		return new net.bull.javamelody.MonitoringFilter();
 	}
 }
