@@ -2,52 +2,32 @@ package org.legurun.test.fakemailserver.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-
-import net.bull.javamelody.MonitoringSpringAdvisor;
-import net.bull.javamelody.SpringDataSourceBeanPostProcessor;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@EnableCaching
+@PropertySource("classpath:application.properties")
 @ComponentScan(basePackages="org.legurun.test.fakemailserver.service")
 public class RootConfig {
 	private static final Logger LOG = LoggerFactory.getLogger(RootConfig.class);
 
 	@Bean
-	public SpringDataSourceBeanPostProcessor monitoringDataSourceBeanPostProcessor() {
-		LOG.trace("Initialisation monitoringDataSourceBeanPostProcessor");
-		final SpringDataSourceBeanPostProcessor processor = new SpringDataSourceBeanPostProcessor();
-		processor.setExcludedDatasources(null);
-		return processor;
+	public CacheManager cacheManager() {
+		LOG.trace("Initialisation cacheManager");
+		return new EhCacheCacheManager(ehCacheCacheManager().getObject());
 	}
 
 	@Bean
-	public MonitoringSpringAdvisor springServiceMonitoringAdvisor() {
-		LOG.trace("Initialisation springServiceMonitoringAdvisor");
-		final MonitoringSpringAdvisor advisor = new MonitoringSpringAdvisor();
-		advisor.setPointcut(new AnnotationMatchingPointcut(Service.class));
-		return advisor;
+	public EhCacheManagerFactoryBean ehCacheCacheManager() {
+		LOG.trace("Initialisation ehCacheCacheManager");
+		EhCacheManagerFactoryBean cacheManagerFactory = new EhCacheManagerFactoryBean();
+		return cacheManagerFactory;
 	}
-
-	@Bean
-	public MonitoringSpringAdvisor springRepositoryMonitoringAdvisor() {
-		LOG.trace("Initialisation springRepositoryMonitoringAdvisor");
-		final MonitoringSpringAdvisor advisor = new MonitoringSpringAdvisor();
-		advisor.setPointcut(new AnnotationMatchingPointcut(Repository.class));
-		return advisor;
-	}
-
-	@Bean
-	public MonitoringSpringAdvisor springControllerMonitoringAdvisor() {
-		LOG.trace("Initialisation springControllerMonitoringAdvisor");
-		final MonitoringSpringAdvisor advisor = new MonitoringSpringAdvisor();
-		advisor.setPointcut(new AnnotationMatchingPointcut(Controller.class));
-		return advisor;
-	}
-
 }

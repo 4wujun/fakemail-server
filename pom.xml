@@ -58,6 +58,11 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
@@ -168,6 +173,11 @@
 			<artifactId>commons-dbcp2</artifactId>
 			<version>${dbcp2.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.10</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -240,6 +250,12 @@
 						<artifactId>jetty-maven-plugin</artifactId>
 						<version>9.2.20.v20161216</version>
 						<configuration>
+							<systemProperties>
+								<systemProperty>
+									<key>spring.profiles.active</key>
+									<value>${spring.profiles.active}</value>
+								</systemProperty>
+							</systemProperties>
 							<scanIntervalSeconds>10</scanIntervalSeconds>
 							<webApp>
 								<contextPath>/${project.artifactId}</contextPath>
@@ -248,6 +264,21 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault />
+			</activation>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
 		</profile>
 	</profiles>
 </project>
