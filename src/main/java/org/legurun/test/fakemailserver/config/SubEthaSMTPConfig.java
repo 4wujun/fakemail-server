@@ -2,7 +2,7 @@ package org.legurun.test.fakemailserver.config;
 
 import java.net.InetAddress;
 
-import org.legurun.test.fakemailserver.service.MailService;
+import org.legurun.test.fakemailserver.service.IEmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class SubEthaSMTPConfig {
 
 	@Autowired
 	@Bean(initMethod="start", destroyMethod="stop")
-	public SMTPServer smtpServer(MailService mailService) {
+	public SMTPServer smtpServer(IEmailService mailService) {
 		LOG.trace("Initialisation smtpServer");
 		MessageHandlerFactory factory = new SimpleMessageListenerAdapter(mailService);
 		SMTPServer server = new SMTPServer(factory);
