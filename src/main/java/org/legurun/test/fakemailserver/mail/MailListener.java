@@ -3,7 +3,7 @@ package org.legurun.test.fakemailserver.mail;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.legurun.test.fakemailserver.service.MailService;
+import org.legurun.test.fakemailserver.service.IEmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class MailListener implements SimpleMessageListener {
 	private static final Logger LOG = LoggerFactory.getLogger(MailListener.class);
 
 	@Autowired
-	private MailService mailService;
+	private IEmailService mailService;
 
 	@Override
 	public boolean accept(String from, String recipient) {
