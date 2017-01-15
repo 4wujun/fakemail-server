@@ -1,5 +1,8 @@
 package org.legurun.test.fakemailserver.config;
 
+import javax.servlet.Filter;
+import javax.servlet.http.HttpSessionListener;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
@@ -47,4 +50,17 @@ public class MelodyConfig {
 		advisor.setPointcut(new AnnotationMatchingPointcut(Controller.class));
 		return advisor;
 	}
+
+	@Bean
+	public HttpSessionListener javaMelodyListener() {
+		LOG.trace("Initialisation javaMelodyListener");
+		return new net.bull.javamelody.SessionListener();
+	}
+
+	@Bean
+	public Filter javaMelodyFilter() {
+		LOG.trace("Initialisation javaMelodyFilter");
+		return new net.bull.javamelody.MonitoringFilter();
+	}
+
 }

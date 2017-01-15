@@ -1,8 +1,5 @@
 package org.legurun.test.fakemailserver.config;
 
-import javax.servlet.Filter;
-import javax.servlet.http.HttpSessionListener;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -70,15 +68,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
 	}
 
-	@Bean
-	public HttpSessionListener javaMelodyListener() {
-		LOG.trace("Initialisation javaMelodyListener");
-		return new net.bull.javamelody.SessionListener();
-	}
-
-	@Bean
-	public Filter javaMelodyFilter() {
-		LOG.trace("Initialisation javaMelodyFilter");
-		return new net.bull.javamelody.MonitoringFilter();
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
 	}
 }
