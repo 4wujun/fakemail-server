@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Lob;
@@ -33,6 +34,7 @@ public class Email implements Serializable {
 
 	@Id
 	@Column(name="id")
+	@GeneratedValue
 	public Long getId() {
 		return id;
 	}
