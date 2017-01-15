@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -79,10 +78,5 @@ public class RepositoryConfig {
 				environment.getRequiredProperty("hibernate.generate_statistics"));
 		properties.put(AvailableSettings.HBM2DDL_AUTO, environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		return properties;
-	}
-
-	@Bean
-	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-		return new PersistenceExceptionTranslationPostProcessor();
 	}
 }
