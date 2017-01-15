@@ -16,7 +16,7 @@ import org.springframework.context.annotation.PropertySources;
 @EnableCaching
 @PropertySources({
 	@PropertySource(value="classpath:application.properties"),
-	@PropertySource(value="file:${externalConfigurationLocation}"/*, ignoreResourceNotFound=true*/)
+	@PropertySource(value="file:${externalConfigurationLocation}", ignoreResourceNotFound=true)
 })
 @ComponentScan(basePackages="org.legurun.test.fakemailserver.service")
 public class RootConfig {
