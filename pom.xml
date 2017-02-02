@@ -8,7 +8,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.3.5.RELEASE</spring.version>
+		<spring.version>4.3.6.RELEASE</spring.version>
 		<hibernate.version>5.1.3.Final</hibernate.version>
 		<thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
 		<h2.version>1.4.193</h2.version>
@@ -259,6 +259,7 @@
 							<scanIntervalSeconds>10</scanIntervalSeconds>
 							<webApp>
 								<contextPath>/${project.artifactId}</contextPath>
+								<overrideDescriptor>src/main/config/h2-servlet.xml</overrideDescriptor>
 							</webApp>
 						</configuration>
 					</plugin>
