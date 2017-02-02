@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/mail")
+@RequestMapping("/mail")
 public class MailController {
 
 	@Autowired
 	private IEmailService emailService;
 
-	@GetMapping(value = { "", "/" })
+	@GetMapping()
 	public String index() {
 		return "redirect:/mail/list";
 	}
 
-	@GetMapping(value = "list")
+	@GetMapping("/list")
 	public String list(Model model) throws MessagingException {
 		// MimeMessage[] receivedMessages = greenMail.getReceivedMessages();
 		// for (MimeMessage message : receivedMessages) {
