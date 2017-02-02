@@ -19,7 +19,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="message", indexes={
+@Table(name="email", indexes={
 	@Index(name="message_sender_idx", columnList="sender"),
 	@Index(name="message_recipient_idx", columnList="recipient")
 })
