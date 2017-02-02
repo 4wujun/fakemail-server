@@ -77,6 +77,7 @@ public class RepositoryConfig {
 		properties.put(AvailableSettings.GENERATE_STATISTICS,
 				environment.getRequiredProperty("hibernate.generate_statistics"));
 		properties.put(AvailableSettings.HBM2DDL_AUTO, environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+		properties.put(AvailableSettings.HBM2DDL_LOAD_SCRIPT_SOURCE, environment.getProperty("hibernate.hbm2ddl.import_files"));
 		return properties;
 	}
 }
