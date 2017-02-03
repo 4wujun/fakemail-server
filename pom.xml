@@ -19,6 +19,7 @@
 		<servlet.version>3.0.1</servlet.version>
 		<jsp.version>2.3.1</jsp.version>
 		<jstl.version>1.2</jstl.version>
+		<liquibase.version>3.5.3</liquibase.version>
 	</properties>
 
 	<prerequisites>
@@ -148,12 +149,6 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-tools</artifactId>
-			<version>5.1.1.Final</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>net.bull.javamelody</groupId>
 			<artifactId>javamelody-core</artifactId>
 			<version>1.62.0</version>
@@ -162,11 +157,13 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -178,10 +175,26 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.10</version>
 		</dependency>
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>${liquibase.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.liquibase.ext</groupId>
+			<artifactId>liquibase-javalogger</artifactId>
+			<version>3.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -207,32 +220,26 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-						<id>hbm2ddl</id>
-						<phase>none</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.5.3</version>
 				<configuration>
-					<target>
-						<echo message="Start hbm2ddl"/>
-						<property name="maven_compile_classpath" refid="maven.compile.classpath" />
-						<!--<echo message="maven_compile_classpath: ${maven_compile_classpath}" />-->
-						<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="maven.test.classpath" />
-						<delete file="${project.build.directory}/ddl.sql" />
-						<hibernatetool destdir="${project.build.directory}">
-							<annotationconfiguration configurationfile="${basedir}/src/test/resources/hibernate.cfg.xml" />
-							<hbm2ddl export="false" create="true" drop="true" format="true" outputfilename="ddl.sql" />
-						</hibernatetool>
-						<echo message="End hbm2ddl"/>
-					</target>
-					<detail>true</detail>
+					<propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
+					<outputChangeLogFile>src/main/resources/liquibase/changelog-${project.version}.xml</outputChangeLogFile>
+					<tag>${project.version}</tag>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.liquibase.ext</groupId>
+						<artifactId>liquibase-hibernate5</artifactId>
+						<version>3.6</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-context</artifactId>
+						<version>${spring.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

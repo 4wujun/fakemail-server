@@ -1,0 +1,46 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="patrice (generated)" id="1486116615513-1">
+        <createTable tableName="email">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_updated" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="LONGBLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="recipient" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sender" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486116615513-2">
+        <createTable tableName="hibernate_sequence">
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486116615513-3">
+        <addPrimaryKey columnNames="id" constraintName="PRIMARY" tableName="email"/>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486116615513-4">
+        <createIndex indexName="message_recipient_idx" tableName="email">
+            <column name="recipient"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486116615513-5">
+        <createIndex indexName="message_sender_idx" tableName="email">
+            <column name="sender"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
