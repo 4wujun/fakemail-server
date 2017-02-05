@@ -43,4 +43,8 @@
             <column name="sender"/>
         </createIndex>
     </changeSet>
+
+	<changeSet author="patrice" id="1486116615513-6">
+		<tagDatabase tag="version-0.0.1"/>
+	</changeSet>
 </databaseChangeLog>
