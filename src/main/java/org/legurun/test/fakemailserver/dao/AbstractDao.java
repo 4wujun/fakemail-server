@@ -47,7 +47,7 @@ public abstract class AbstractDao<T extends Serializable> implements IDao<T> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<T> list() {
-		return getSession().createCriteria(persistentClass).list();
+		return createCriteria().list();
 	}
 
 	protected Criteria createCriteria() {

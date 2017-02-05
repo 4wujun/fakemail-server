@@ -2,15 +2,14 @@ package org.legurun.test.fakemailserver.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,19 +20,15 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "email", indexes = {
-	@Index(name = "message_recipient_idx", columnList = "recipient") 
-})
-public class Email implements Serializable {
+@Table(name = "sender")
+public class Sender implements Serializable {
 	private Long id;
 	private Long version;
 	private Date dateCreated;
 	private Date lastUpdated;
-	private Sender sender;
-	private String recipient;
-	private Date dateSent;
-	private String subject;
-	private byte[] message;
+	private String address;
+
+	private Set<Email> emails = new HashSet<Email>();
 
 	@Id
 	@Column(name = "id")
@@ -78,56 +73,36 @@ public class Email implements Serializable {
 		this.lastUpdated = lastUpdated;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "sender_id")
-	public Sender getSender() {
-		return sender;
+	@Column(name = "address", nullable = false, unique = true)
+	public String getAddress() {
+		return address;
 	}
 
-	public void setSender(Sender sender) {
-		this.sender = sender;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	@Column(name = "recipient", nullable = false, length = 250)
-	public String getRecipient() {
-		return recipient;
+	@OneToMany(mappedBy = "sender")
+	public Set<Email> getEmails() {
+		return emails;
 	}
 
-	public void setRecipient(String recipient) {
-		this.recipient = recipient;
+	public void setEmails(Set<Email> emails) {
+		this.emails = emails;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_sent", nullable = false)
-	public Date getDateSent() {
-		return dateSent;
+	public void addEmail(Email email) {
+		this.emails.add(email);
+		email.setSender(this);
 	}
 
-	public void setDateSent(Date dateSent) {
-		this.dateSent = dateSent;
-	}
-
-	@Column(name = "subject", nullable = false, length = 250)
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	@Lob
-	@Column(name = "message", nullable = false)
-	public byte[] getMessage() {
-		return message;
-	}
-
-	public void setMessage(byte[] message) {
-		this.message = message;
+	public void removeEmail(Email email) {
+		this.emails.remove(email);
+		email.setSender(null);
 	}
 
 	@Override
 	public String toString() {
-		return "Email [id=" + id + "]";
+		return "Sender [id=" + id + ", address=" + address + "]";
 	}
 }
