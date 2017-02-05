@@ -7,7 +7,9 @@
 		<dbms type="mysql" />
 	</preConditions>
 
-	<include file="changelog-0.0.1-SNAPSHOT.xml"
+	<include file="changelog-0.0.1.xml"
+		relativeToChangelogFile="true" />
+	<include file="changelog-0.1.0-SNAPSHOT.xml"
 		relativeToChangelogFile="true" />
 
 </databaseChangeLog>

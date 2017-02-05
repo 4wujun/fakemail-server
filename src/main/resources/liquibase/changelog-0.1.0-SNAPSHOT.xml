@@ -1,0 +1,66 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="patrice (generated)" id="1486299388049-1">
+        <createTable tableName="sender">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="senderPK"/>
+            </column>
+            <column name="address" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_updated" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <sql dbms="mysql">
+        	insert into sender (version, date_created, last_updated, address) select 0, current_timestamp, current_timestamp, t.sender from (select distinct sender from email) as t;
+        </sql>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486299388049-2">
+        <addColumn tableName="email">
+            <column  name="date_sent" type="datetime"/>
+        </addColumn>
+        <sql dbms="mysql">
+        	update email set date_sent = date_created;
+        </sql>
+        <addNotNullConstraint tableName="email" columnName="date_sent" columnDataType="datetime"/>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486299388049-3">
+        <addColumn tableName="email">
+            <column name="sender_id" type="bigint"/>
+        </addColumn>
+        <sql dbms="mysql">
+        	update email set sender_id = (select sender.id from sender where sender.address = email.sender);
+        </sql>
+        <addNotNullConstraint tableName="email" columnName="sender_id" columnDataType="bigint"/>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486299388049-4">
+        <addColumn tableName="email">
+            <column name="subject" type="varchar(250)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486299388049-5">
+        <addUniqueConstraint columnNames="address" constraintName="UC_SENDERADDRESS_COL" tableName="sender"/>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486299388049-6">
+        <addForeignKeyConstraint baseColumnNames="sender_id" baseTableName="email" constraintName="FKqf0tg2ni30qo0h1kykwttnn59" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sender"/>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486299388049-7">
+        <dropTable tableName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486299388049-8">
+        <dropColumn columnName="sender" tableName="email"/>
+    </changeSet>
+    <changeSet author="patrice (generated)" id="1486299388049-9">
+        <dropIndex indexName="message_recipient_idx" tableName="email"/>
+        <createIndex indexName="message_recipient_idx" tableName="email">
+            <column name="recipient"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

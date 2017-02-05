@@ -241,7 +241,8 @@
 				<configuration>
 					<propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
 					<outputChangeLogFile>src/main/resources/liquibase/changelog-${project.version}.xml</outputChangeLogFile>
-					<tag>${project.version}</tag>
+					<tag>version-${project.version}</tag>
+					<changeSetAuthor>${user.name}</changeSetAuthor>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -253,6 +254,21 @@
 						<groupId>org.springframework</groupId>
 						<artifactId>spring-context</artifactId>
 						<version>${spring.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-orm</artifactId>
+						<version>${spring.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-core</artifactId>
+						<version>${hibernate.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-validator</artifactId>
+						<version>${hibernate.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>
