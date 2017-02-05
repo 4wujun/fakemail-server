@@ -79,7 +79,7 @@ public class Email implements Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "sender_id")
+	@JoinColumn(name = "sender_id", nullable = false)
 	public Sender getSender() {
 		return sender;
 	}
@@ -107,7 +107,7 @@ public class Email implements Serializable {
 		this.dateSent = dateSent;
 	}
 
-	@Column(name = "subject", nullable = false, length = 250)
+	@Column(name = "subject", nullable = true, length = 250)
 	public String getSubject() {
 		return subject;
 	}
