@@ -1,2 +1,4 @@
 
-insert into email (id, version, date_created, last_updated, sender, recipient, message) values (hibernate_sequence.nextval, 0, current_timestamp, current_timestamp, 'patrice@legurun.org', 'toto@legurun.org', rawtohex('sldifjsodifuosdiufsoidfuou'));
+insert into sender (id, version, date_created, last_updated, address) values (hibernate_sequence.nextval, 0, current_timestamp, current_timestamp, 'patrice@legurun.org');
+insert into email (id, version, date_created, last_updated, sender_id, recipient, date_sent, subject, message) values (hibernate_sequence.nextval, 0, current_timestamp, current_timestamp, (select id from sender where address = 'patrice@legurun.org'), 'toto@legurun.org', current_timestamp, 'Test', rawtohex('sldifjsodifuosdiufsoidfuou'));
+insert into email (id, version, date_created, last_updated, sender_id, recipient, date_sent, subject, message) values (hibernate_sequence.nextval, 0, current_timestamp, current_timestamp, (select id from sender where address = 'patrice@legurun.org'), 'toto@legurun.org', current_timestamp, 'Test 2', rawtohex('sldifzdfzerezrezrzerzzerere'));
