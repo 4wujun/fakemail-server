@@ -1,25 +1,23 @@
 package org.legurun.test.fakemailserver.config;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ITemplateResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import nz.net.ultraq.thymeleaf.LayoutDialect;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Configuration
 @EnableWebMvc
@@ -27,49 +25,39 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	private static final Logger LOG = LoggerFactory.getLogger(WebMvcConfig.class);
 
-	@Autowired
-	private ApplicationContext applicationContext;
-
 	@Bean
 	public ViewResolver viewResolver() {
 		LOG.trace("Initialisation viewResolver");
-		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-		viewResolver.setTemplateEngine(templateEngine());
-		viewResolver.setCharacterEncoding("UTF-8");
+		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		viewResolver.setPrefix("/WEB-INF/views/");
+		viewResolver.setSuffix(".jsp");
 		return viewResolver;
-	}
-
-	@Bean
-	public TemplateEngine templateEngine() {
-		LOG.trace("Initialisation templateEngine");
-		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-		templateEngine.setEnableSpringELCompiler(true);
-		templateEngine.addTemplateResolver(templateResolver());
-		templateEngine.addDialect(new LayoutDialect());
-		return templateEngine;
-	}
-
-	@Bean
-	public ITemplateResolver templateResolver() {
-		LOG.trace("Initialisation templateResolver");
-		SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-		templateResolver.setApplicationContext(applicationContext);
-		templateResolver.setPrefix("/WEB-INF/templates/");
-		templateResolver.setSuffix(".html");
-		templateResolver.setTemplateMode(TemplateMode.HTML);
-		templateResolver.setCacheable(false);
-		return templateResolver;
 	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
-		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+		LOG.trace("Add resource handlers");
+		registry.addResourceHandler("/static/**")
+			.addResourceLocations("/css/", "/images/", "/js/", "/theme/")
+			.resourceChain(true);
 	}
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
+	}
+
+	@Override
+	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+		LOG.trace("Try to configure JSON date format ...");
+		for (HttpMessageConverter<?> converter : converters) {
+			if (converter instanceof MappingJackson2HttpMessageConverter) {
+				LOG.trace("JSON formatter found ! Configuring it");
+				MappingJackson2HttpMessageConverter c = (MappingJackson2HttpMessageConverter) converter;
+				ObjectMapper objectMapper = c.getObjectMapper();
+				objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+			}
+		}
+		super.extendMessageConverters(converters);
 	}
 }

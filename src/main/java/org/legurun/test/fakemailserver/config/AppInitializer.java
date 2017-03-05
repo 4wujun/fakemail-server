@@ -7,7 +7,8 @@ import javax.servlet.ServletException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
+import org.springframework.web.filter.ForwardedHeaderFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -30,7 +31,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Filter[] getServletFilters() {
-		return new Filter[] { new HiddenHttpMethodFilter(), new CharacterEncodingFilter() };
+		return new Filter[] { new CharacterEncodingFilter("UTF-8"), new ForwardedHeaderFilter(), new CommonsRequestLoggingFilter() };
 	}
 
 	@Override

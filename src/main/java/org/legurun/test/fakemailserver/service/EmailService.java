@@ -13,8 +13,11 @@ import javax.mail.internet.MimeMessage;
 
 import org.legurun.test.fakemailserver.dao.IEmailDao;
 import org.legurun.test.fakemailserver.dao.ISenderDao;
+import org.legurun.test.fakemailserver.dto.EmailSearchDTO;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
+import org.legurun.test.fakemailserver.utils.FilterExtjs;
+import org.legurun.test.fakemailserver.utils.PagedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +37,9 @@ public class EmailService implements IEmailService {
 	private IEmailDao emailDao;
 
 	@Override
-	public List<Email> list() {
+	public PagedList<EmailSearchDTO> search(List<FilterExtjs> filters, Integer start, Integer limit) {
 		LOG.debug("Getting list of emails");
-		return emailDao.list();
+		return emailDao.search(filters, start, limit);
 	}
 
 	@Override

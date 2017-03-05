@@ -6,11 +6,13 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @Configuration
 @EnableCaching
@@ -33,5 +35,14 @@ public class RootConfig {
 		LOG.trace("Initialisation ehCacheCacheManager");
 		EhCacheManagerFactoryBean cacheManagerFactory = new EhCacheManagerFactoryBean();
 		return cacheManagerFactory;
+	}
+
+	@Bean
+	public MessageSource messageSource() {
+		LOG.trace("Initialisation messageSource");
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("classpath:messages");
+		messageSource.setDefaultEncoding("UTF-8");
+		return messageSource;
 	}
 }

@@ -19,9 +19,12 @@ import javax.persistence.Version;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sender")
+@JsonIgnoreProperties({ "version", "dateCreated", "lastUpdated", "emails" })
 public class Sender implements Serializable {
 	private Long id;
 	private Long version;
