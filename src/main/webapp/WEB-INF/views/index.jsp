@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Insert title here</title>
-	<link rel="shortcut icon" href="<spring:url value="/images/favicon.ico" />"/>
+	<link rel="shortcut icon" href="<spring:url value="/static/images/favicon.ico" />"/>
 	<link rel="stylesheet" type="text/css" href="<spring:url value="/static/classic/theme-classic-all.css"/>">
 	<script type="text/javascript" src="<spring:url value="/static/ext-all-debug.js"/>"></script>
 	<script type="text/javascript" src="<spring:url value="/static/locale/ext-locale-${pageContext.response.locale.language}.js"/>"></script>
