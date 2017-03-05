@@ -1,11 +1,12 @@
 package org.legurun.test.fakemailserver.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.legurun.test.fakemailserver.dto.EmailSearchDTO;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.utils.FilterExtjs;
@@ -19,33 +20,28 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 	public PagedList<EmailSearchDTO> search(List<FilterExtjs> filters, Integer start, Integer limit) {
 		PagedList<EmailSearchDTO> pagedList = new PagedList<EmailSearchDTO>();
 
-		String selectQuery = " select new org.legurun.test.fakemailserver.dto.EmailSearchDTO(email.id, sender.address, email.recipient, email.dateSent, email.subject)";
-		String selectCount = " select cast(count(email) as integer)";
-		String fromQuery = " from Email email inner join email.sender sender";
-		StringBuilder whereQuery = new StringBuilder(" where 1=1");
-
-		Map<String, Object> parameters = new HashMap<String, Object>();
+		Criteria criteria = this.createCriteria();
+		criteria.setReadOnly(true);
+		criteria.createAlias("sender", "sender");
 		for (FilterExtjs filter : filters) {
 			if ("senderId".equals(filter.getProperty()) && filter.getValue() != null) {
-				whereQuery.append(" and sender.id = :senderId");
-				parameters.put("senderId", Long.parseLong(filter.getValue()));
+				criteria.add(Restrictions.eq("sender.id", Long.parseLong(filter.getValue())));
 			}
 		}
-		String orderByQuery = " order by email.dateSent";
+		criteria.setProjection(Projections.rowCount());
+		pagedList.setTotal((Number)criteria.uniqueResult());
 
-		Session session = this.getSession();
-
-		Query queryList = session.createQuery(selectQuery + fromQuery + whereQuery.toString() + orderByQuery);
-		queryList.setProperties(parameters);
-		queryList.setFirstResult(start);
-		queryList.setMaxResults(start);
-		queryList.setReadOnly(true);
-		pagedList.setData(queryList.list());
-
-		Query queryCount = session.createQuery(selectCount + fromQuery + whereQuery.toString());
-		queryCount.setProperties(parameters);
-		queryCount.setReadOnly(true);
-		pagedList.setTotal((Integer)queryCount.uniqueResult());
+		criteria.setProjection(Projections.projectionList()
+				.add(Projections.property("id"), "id")
+				.add(Projections.property("sender.address"), "sender")
+				.add(Projections.property("recipient"), "recipient")
+				.add(Projections.property("dateSent"), "dateSent")
+				.add(Projections.property("subject"), "subject"));
+		criteria.setResultTransformer(new AliasToBeanResultTransformer(EmailSearchDTO.class));
+		criteria.setFirstResult(start);
+		criteria.setMaxResults(limit);
+		criteria.addOrder(Order.asc("dateSent"));
+		pagedList.setData(criteria.list());
 		return pagedList;
 	}
 }

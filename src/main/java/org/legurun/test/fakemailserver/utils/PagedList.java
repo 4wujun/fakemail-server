@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PagedList<E> {
 	private List<E> data;
-	private Integer total = 0;
+	private Number total = 0;
 
 
 	public List<E> getData() {
@@ -15,11 +15,11 @@ public class PagedList<E> {
 		this.data = data;
 	}
 
-	public Integer getTotal() {
+	public Number getTotal() {
 		return total;
 	}
 
-	public void setTotal(Integer total) {
+	public void setTotal(Number total) {
 		this.total = total;
 	}
 }

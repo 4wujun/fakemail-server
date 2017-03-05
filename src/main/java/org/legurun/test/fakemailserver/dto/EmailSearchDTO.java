@@ -11,6 +11,9 @@ public class EmailSearchDTO implements Serializable {
 	private Date dateSent;
 	private String subject;
 
+	public EmailSearchDTO() {
+	}
+
 	public EmailSearchDTO(Long id, String sender, String recipient, Date dateSent, String subject) {
 		this.id = id;
 		this.sender = sender;
