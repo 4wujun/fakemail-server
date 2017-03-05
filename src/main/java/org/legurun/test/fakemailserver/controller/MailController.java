@@ -31,11 +31,11 @@ public class MailController {
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public PagedList<EmailSearchDTO> search(@RequestParam("senderId") Long senderId,
-			@RequestParam("start") Integer start, @RequestParam("limit") Integer limit) throws JsonMappingException, IOException {
+			@RequestParam("recipient") String recipient, @RequestParam("start") Integer start, @RequestParam("limit") Integer limit) throws JsonMappingException, IOException {
 		Sender sender = null;
 		if (senderId != null) {
 			sender = senderService.get(senderId);
 		}
-		return emailService.search(sender, start, limit);
+		return emailService.search(sender, recipient, start, limit);
 	}
 }

@@ -4,11 +4,15 @@ Ext.define('Fakemail.view.RechercheCriteres', {
 	requires: [
 		'Fakemail.controller.Search',
 		'Fakemail.field.SenderCombo' ],
-	items: {
+	items: [{
 		xtype: 'senderCombo',
 		fieldLabel: 'Sender',
 		name: 'senderId'
-	},
+	}, {
+		xtype: 'textfield',
+		fieldLabel: 'Recipient',
+		name: 'recipient'
+	}],
 	buttons: [{
 		text: 'Submit',
 		formBind: true,

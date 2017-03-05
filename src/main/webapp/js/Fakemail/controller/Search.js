@@ -9,7 +9,8 @@ Ext.define('Fakemail.controller.Search', {
 			var list = this.lookupReference('liste');
 			var store = list.getStore();
 			store.getProxy().setExtraParams({
-				'senderId': values['senderId']
+				senderId: values['senderId'],
+				recipient: values['recipient']
 			});
 			store.load();
 		}

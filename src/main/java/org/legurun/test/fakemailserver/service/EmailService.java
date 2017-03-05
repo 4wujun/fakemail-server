@@ -35,9 +35,10 @@ public class EmailService implements IEmailService {
 	private IEmailDao emailDao;
 
 	@Override
-	public PagedList<EmailSearchDTO> search(Sender sender, Integer start, Integer limit) {
+	public PagedList<EmailSearchDTO> search(Sender sender, 
+			String recipient, Integer start, Integer limit) {
 		LOG.debug("Getting list of emails");
-		return emailDao.search(sender, start, limit);
+		return emailDao.search(sender, recipient, start, limit);
 	}
 
 	@Override

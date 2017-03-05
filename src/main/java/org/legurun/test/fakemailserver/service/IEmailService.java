@@ -11,7 +11,8 @@ import org.subethamail.smtp.helper.SimpleMessageListener;
 
 public interface IEmailService extends SimpleMessageListener {
 
-	PagedList<EmailSearchDTO> search(Sender sender, Integer start, Integer limit);
+	PagedList<EmailSearchDTO> search(Sender sender,
+			String recipient, Integer start, Integer limit);
 
 	MimeMessage parse(Email email) throws MessagingException;
 }
