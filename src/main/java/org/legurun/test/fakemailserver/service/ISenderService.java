@@ -6,6 +6,8 @@ import org.legurun.test.fakemailserver.model.Sender;
 
 public interface ISenderService {
 
-	List<Sender> list();
+	public Sender get(Long id);
+
+	public List<Sender> list();
 
 }

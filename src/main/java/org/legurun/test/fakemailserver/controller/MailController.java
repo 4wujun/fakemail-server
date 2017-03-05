@@ -1,12 +1,11 @@
 package org.legurun.test.fakemailserver.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.legurun.test.fakemailserver.dto.EmailSearchDTO;
+import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.service.IEmailService;
-import org.legurun.test.fakemailserver.service.IExtjsService;
-import org.legurun.test.fakemailserver.utils.FilterExtjs;
+import org.legurun.test.fakemailserver.service.ISenderService;
 import org.legurun.test.fakemailserver.utils.PagedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,15 +24,18 @@ public class MailController {
 	private static final Logger LOG = LoggerFactory.getLogger(MailController.class);
 
 	@Autowired
-	private IEmailService emailService;
+	private ISenderService senderService;
 
 	@Autowired
-	private IExtjsService extjsService;
+	private IEmailService emailService;
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public PagedList<EmailSearchDTO> search(@RequestParam("filter") String filtersString,
+	public PagedList<EmailSearchDTO> search(@RequestParam("senderId") Long senderId,
 			@RequestParam("start") Integer start, @RequestParam("limit") Integer limit) throws JsonMappingException, IOException {
-		List<FilterExtjs> filters = extjsService.convert(filtersString);
-		return emailService.search(filters, start, limit);
+		Sender sender = null;
+		if (senderId != null) {
+			sender = senderService.get(senderId);
+		}
+		return emailService.search(sender, start, limit);
 	}
 }

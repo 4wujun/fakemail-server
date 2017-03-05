@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
-import java.util.List;
 import java.util.Properties;
 
 import javax.mail.MessagingException;
@@ -16,7 +15,6 @@ import org.legurun.test.fakemailserver.dao.ISenderDao;
 import org.legurun.test.fakemailserver.dto.EmailSearchDTO;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
-import org.legurun.test.fakemailserver.utils.FilterExtjs;
 import org.legurun.test.fakemailserver.utils.PagedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,9 +35,9 @@ public class EmailService implements IEmailService {
 	private IEmailDao emailDao;
 
 	@Override
-	public PagedList<EmailSearchDTO> search(List<FilterExtjs> filters, Integer start, Integer limit) {
+	public PagedList<EmailSearchDTO> search(Sender sender, Integer start, Integer limit) {
 		LOG.debug("Getting list of emails");
-		return emailDao.search(filters, start, limit);
+		return emailDao.search(sender, start, limit);
 	}
 
 	@Override

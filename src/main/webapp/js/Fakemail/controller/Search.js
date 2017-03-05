@@ -8,10 +8,10 @@ Ext.define('Fakemail.controller.Search', {
 			var values = form.getFieldValues();
 			var list = this.lookupReference('liste');
 			var store = list.getStore();
-			store.filter([{
-				property: 'senderId',
-				value: values['senderId']
-			}]);
+			store.getProxy().setExtraParams({
+				'senderId': values['senderId']
+			});
+			store.load();
 		}
 	},
 	onResetForm: function() {

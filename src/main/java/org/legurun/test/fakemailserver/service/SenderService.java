@@ -23,4 +23,10 @@ public class SenderService implements ISenderService {
 		LOG.debug("Getting list of senders");
 		return senderDao.list();
 	}
+
+	@Override
+	public Sender get(Long id) {
+		LOG.debug("Getting sender id = {}", id);
+		return senderDao.get(id);
+	}
 }

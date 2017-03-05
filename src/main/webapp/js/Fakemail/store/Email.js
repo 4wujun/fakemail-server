@@ -13,5 +13,5 @@ Ext.define('Fakemail.store.Email', {
 			totalProperty: 'total'
 		}
 	},
-	remoteFilter: true
+	pageSize: 5
 });

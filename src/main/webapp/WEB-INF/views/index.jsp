@@ -10,10 +10,12 @@
 	<script type="text/javascript" src="<spring:url value="/static/locale/ext-locale-${pageContext.response.locale.language}.js"/>"></script>
 	<script type="text/javascript" src="<spring:url value="/static/locale/Fakemail-locale-${pageContext.response.locale.language}.js"/>"></script>
 	<script type="text/javascript">
+Ext.Loader.setPath('Ext.ux', '<spring:url value="/static/Ext/ux"/>');
+
 Ext.application({
 	name: 'Fakemail',
 	mainView: 'Application',
-	appFolder: 'js/Fakemail',
+	appFolder: '<spring:url value="/static/Fakemail"/>',
 	quickTips: true,
 	models: [ 'Email' ],
 	stores: [ 'Email' ],

@@ -1,23 +1,49 @@
 Ext.define('Fakemail.view.RechercheListe', {
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.rechercheListe',
+	requires: [ 'Ext.ux.DataTip' ],
+	defaults: {
+		enableTextSelection: true
+	},
 	columns: [{
+		xtype: 'rownumberer'
+	}, {
 		text: 'Sender',
-		dataIndex: 'sender'
+		dataIndex: 'sender',
+		width: 200,
+		filter: {
+			type: 'string'
+		}
 	}, {
 		text: 'Recipient',
-		dataIndex: 'recipient'
+		dataIndex: 'recipient',
+		width: 200,
+		filter: {
+			type: 'string'
+		}
 	}, {
-		text: 'Date d\'envoi',
+		text: 'Sent date',
 		dataIndex: 'dateSent',
-		xtype: 'datecolumn'
+		xtype: 'datecolumn',
+		format: 'd/m/Y G:i:s',
+		width: 150,
+		filter: {
+			type: 'date'
+		}
 	}, {
 		text: 'Subject',
-		dataIndex: 'subject'
+		dataIndex: 'subject',
+		flex: 1,
+		filter: {
+			type: 'string'
+		}
 	}],
 	dockedItems: [{
 		xtype: 'pagingtoolbar',
 		displayInfo: true
+	}],
+	plugins: [{
+		ptype: 'gridfilters'
 	}],
 	initComponent: function () {
 		var app = Fakemail.getApplication();

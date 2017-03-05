@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface IDao<T extends Serializable> {
 
+	T get(Long id);
+
 	void persist(T entity);
 
 	void delete(T entity);

@@ -25,33 +25,28 @@ public abstract class AbstractDao<T extends Serializable> implements IDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.legurun.test.fakemailserver.dao.IDao#persist(T)
-	 */
+	protected Criteria createCriteria() {
+		return getSession().createCriteria(persistentClass);
+	}
+
+	public T get(Long id) {
+		return getSession().get(persistentClass, id);
+	}
+
 	@Override
 	public void persist(T entity) {
 		getSession().persist(entity);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.legurun.test.fakemailserver.dao.IDao#delete(T)
-	 */
 	@Override
 	public void delete(T entity) {
 		getSession().delete(entity);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.legurun.test.fakemailserver.dao.IDao#list()
-	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<T> list() {
 		return createCriteria().list();
-	}
-
-	protected Criteria createCriteria() {
-		return getSession().createCriteria(persistentClass);
 	}
 
 }
