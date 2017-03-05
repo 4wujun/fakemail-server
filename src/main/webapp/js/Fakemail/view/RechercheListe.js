@@ -15,6 +15,10 @@ Ext.define('Fakemail.view.RechercheListe', {
 		text: 'Subject',
 		dataIndex: 'subject'
 	}],
+	dockedItems: [{
+		xtype: 'pagingtoolbar',
+		displayInfo: true
+	}],
 	initComponent: function () {
 		var app = Fakemail.getApplication();
 		this.store = app.getEmailStore();
