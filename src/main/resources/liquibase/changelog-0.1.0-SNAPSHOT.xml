@@ -24,10 +24,10 @@
     </changeSet>
     <changeSet author="patrice (generated)" id="1486299388049-2">
         <addColumn tableName="email">
-            <column  name="date_sent" type="datetime"/>
+            <column  name="sent_date" type="datetime"/>
         </addColumn>
         <sql dbms="mysql">
-        	update email set date_sent = date_created;
+        	update email set sent_date = date_created;
         </sql>
         <addNotNullConstraint tableName="email" columnName="date_sent" columnDataType="datetime"/>
     </changeSet>

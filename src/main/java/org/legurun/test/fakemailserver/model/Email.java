@@ -23,7 +23,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "email", indexes = {
-	@Index(name = "message_recipient_idx", columnList = "recipient") 
+	@Index(name = "message_recipient_idx", columnList = "recipient"),
+	@Index(name = "message_sentdate_idx", columnList = "sent_date"),
+	@Index(name = "message_subject_idx", columnList = "subject")
 })
 public class Email implements Serializable {
 	private Long id;
@@ -32,7 +34,7 @@ public class Email implements Serializable {
 	private Date lastUpdated;
 	private Sender sender;
 	private String recipient;
-	private Date dateSent;
+	private Date sentDate;
 	private String subject;
 	private byte[] message;
 
@@ -99,13 +101,13 @@ public class Email implements Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_sent", nullable = false)
-	public Date getDateSent() {
-		return dateSent;
+	@Column(name = "sent_date", nullable = false)
+	public Date getSentDate() {
+		return sentDate;
 	}
 
-	public void setDateSent(Date dateSent) {
-		this.dateSent = dateSent;
+	public void setSentDate(Date sentDate) {
+		this.sentDate = sentDate;
 	}
 
 	@Column(name = "subject", nullable = true, length = 250)

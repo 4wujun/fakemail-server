@@ -1,5 +1,7 @@
 package org.legurun.test.fakemailserver.dao;
 
+import java.util.Date;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -19,7 +21,8 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public PagedList<EmailSearchReport> search(Sender sender,
-			String recipient, Integer start, Integer limit,
+			String recipient, Date sentSince, Date sentBefore,
+			Integer start, Integer limit,
 			String sortProperty, SortOrder sortOrder) {
 		PagedList<EmailSearchReport> pagedList = new PagedList<EmailSearchReport>();
 
@@ -32,6 +35,12 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 		if (StringUtils.hasText(recipient)) {
 			criteria.add(Restrictions.ilike("recipient", recipient.trim(), MatchMode.ANYWHERE));
 		}
+		if (sentSince != null) {
+			criteria.add(Restrictions.ge("sentDate", sentSince));
+		}
+		if (sentBefore != null) {
+			criteria.add(Restrictions.le("sentDate", sentBefore));
+		}
 		criteria.setProjection(Projections.rowCount());
 		pagedList.setTotal((Number)criteria.uniqueResult());
 
@@ -39,7 +48,7 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 				.add(Projections.property("id"), "id")
 				.add(Projections.property("sender.address"), "sender")
 				.add(Projections.property("recipient"), "recipient")
-				.add(Projections.property("dateSent"), "dateSent")
+				.add(Projections.property("sentDate"), "sentDate")
 				.add(Projections.property("subject"), "subject"));
 		criteria.setResultTransformer(new AliasToBeanResultTransformer(EmailSearchReport.class));
 		if (start != null && limit != null) {
@@ -53,7 +62,7 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 			}
 			criteria.addOrder(getOrder(propertyName, sortOrder));
 		}
-		criteria.addOrder(Order.asc("dateSent"));
+		criteria.addOrder(Order.asc("sentDate"));
 		pagedList.setData(criteria.list());
 		return pagedList;
 	}

@@ -49,6 +49,7 @@ public class EmailService implements IEmailService {
 			sender = senderService.get(searchCommand.getSenderId());
 		}
 		return emailDao.search(sender, searchCommand.getRecipient(),
+				searchCommand.getSentSince(), searchCommand.getSentBefore(),
 				start, limit, sortProperty, sortOrder);
 	}
 
@@ -77,13 +78,13 @@ public class EmailService implements IEmailService {
 		Email email = new Email();
 		email.setRecipient(recipient);
 		email.setMessage(StreamUtils.copyToByteArray(data));
-		email.setDateSent(new Date());
+		email.setSentDate(new Date());
 		try {
 			Session session = Session.getDefaultInstance(new Properties());
 			MimeMessage message = new MimeMessage(session, new ByteArrayInputStream(email.getMessage()));
 			email.setSubject(message.getSubject());
 			if (message.getSentDate() != null) {
-				email.setDateSent(message.getSentDate());
+				email.setSentDate(message.getSentDate());
 			}
 		} catch (MessagingException ex) {
 			LOG.error("Cannot analyze mail content", ex);

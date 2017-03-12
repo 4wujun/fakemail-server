@@ -43,7 +43,7 @@ $(document).ready(function(){
     		field: 'recipient',
     		title: 'Recipient'
     	}, {
-    		field: 'dateSent',
+    		field: 'sentDate',
     		title: 'Sent date',
     		formatter: function(value, row, index) {
     			return $.format.date(value, "dd/MM/yyyy HH:mm:ss")

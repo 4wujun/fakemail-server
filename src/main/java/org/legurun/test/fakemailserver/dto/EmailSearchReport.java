@@ -8,17 +8,17 @@ public class EmailSearchReport implements Serializable {
 	private Long id;
 	private String sender;
 	private String recipient;
-	private Date dateSent;
+	private Date sentDate;
 	private String subject;
 
 	public EmailSearchReport() {
 	}
 
-	public EmailSearchReport(Long id, String sender, String recipient, Date dateSent, String subject) {
+	public EmailSearchReport(Long id, String sender, String recipient, Date sentDate, String subject) {
 		this.id = id;
 		this.sender = sender;
 		this.recipient = recipient;
-		this.dateSent = dateSent;
+		this.sentDate = sentDate;
 		this.subject = subject;
 	}
 
@@ -46,12 +46,12 @@ public class EmailSearchReport implements Serializable {
 		this.recipient = recipient;
 	}
 
-	public Date getDateSent() {
-		return dateSent;
+	public Date getSentDate() {
+		return sentDate;
 	}
 
-	public void setDateSent(Date dateSent) {
-		this.dateSent = dateSent;
+	public void setSentDate(Date sentDate) {
+		this.sentDate = sentDate;
 	}
 
 	public String getSubject() {
