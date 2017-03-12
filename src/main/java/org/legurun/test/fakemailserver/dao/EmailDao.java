@@ -6,10 +6,11 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.AliasToBeanResultTransformer;
-import org.legurun.test.fakemailserver.dto.EmailSearchDTO;
+import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.utils.PagedList;
+import org.legurun.test.fakemailserver.utils.SortOrder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -17,9 +18,10 @@ import org.springframework.util.StringUtils;
 public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 	@SuppressWarnings("unchecked")
 	@Override
-	public PagedList<EmailSearchDTO> search(Sender sender,
-			String recipient, Integer start, Integer limit) {
-		PagedList<EmailSearchDTO> pagedList = new PagedList<EmailSearchDTO>();
+	public PagedList<EmailSearchReport> search(Sender sender,
+			String recipient, Integer start, Integer limit,
+			String sortProperty, SortOrder sortOrder) {
+		PagedList<EmailSearchReport> pagedList = new PagedList<EmailSearchReport>();
 
 		Criteria criteria = this.createCriteria();
 		criteria.setReadOnly(true);
@@ -39,9 +41,18 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 				.add(Projections.property("recipient"), "recipient")
 				.add(Projections.property("dateSent"), "dateSent")
 				.add(Projections.property("subject"), "subject"));
-		criteria.setResultTransformer(new AliasToBeanResultTransformer(EmailSearchDTO.class));
-		criteria.setFirstResult(start);
-		criteria.setMaxResults(limit);
+		criteria.setResultTransformer(new AliasToBeanResultTransformer(EmailSearchReport.class));
+		if (start != null && limit != null) {
+			criteria.setFirstResult(start);
+			criteria.setMaxResults(limit);
+		}
+		if (sortProperty != null) {
+			String propertyName = sortProperty;
+			if ("sender".equals(sortProperty)) {
+				propertyName = "sender.address";
+			}
+			criteria.addOrder(getOrder(propertyName, sortOrder));
+		}
 		criteria.addOrder(Order.asc("dateSent"));
 		pagedList.setData(criteria.list());
 		return pagedList;

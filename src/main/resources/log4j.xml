@@ -36,6 +36,14 @@
 		<level value="debug" />
 	</logger>
 
+	<logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
+		<level value="debug" />
+	</logger>
+
+<!-- 	<logger name="org.springframework.web.servlet.resource"> -->
+<!-- 		<level value="trace" /> -->
+<!-- 	</logger> -->
+
 	<root>
 		<priority value="warn" />
 		<appender-ref ref="console" />

@@ -12,10 +12,12 @@ import javax.mail.internet.MimeMessage;
 
 import org.legurun.test.fakemailserver.dao.IEmailDao;
 import org.legurun.test.fakemailserver.dao.ISenderDao;
-import org.legurun.test.fakemailserver.dto.EmailSearchDTO;
+import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
+import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.utils.PagedList;
+import org.legurun.test.fakemailserver.utils.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +32,24 @@ public class EmailService implements IEmailService {
 	private static final Logger LOG = LoggerFactory.getLogger(EmailService.class);
 
 	@Autowired
-	private ISenderDao senderDao;
+	private ISenderService senderService;
+
 	@Autowired
 	private IEmailDao emailDao;
 
+	@Autowired
+	private ISenderDao senderDao;
+
 	@Override
-	public PagedList<EmailSearchDTO> search(Sender sender, 
-			String recipient, Integer start, Integer limit) {
+	public PagedList<EmailSearchReport> search(EmailSearchCommand searchCommand,
+			Integer start, Integer limit, String sortProperty, SortOrder sortOrder) {
 		LOG.debug("Getting list of emails");
-		return emailDao.search(sender, recipient, start, limit);
+		Sender sender = null;
+		if (searchCommand.getSenderId() != null) {
+			sender = senderService.get(searchCommand.getSenderId());
+		}
+		return emailDao.search(sender, searchCommand.getRecipient(),
+				start, limit, sortProperty, sortOrder);
 	}
 
 	@Override
@@ -74,8 +85,7 @@ public class EmailService implements IEmailService {
 			if (message.getSentDate() != null) {
 				email.setDateSent(message.getSentDate());
 			}
-		}
-		catch (MessagingException ex) {
+		} catch (MessagingException ex) {
 			LOG.error("Cannot analyze mail content", ex);
 		}
 		sender.addEmail(email);

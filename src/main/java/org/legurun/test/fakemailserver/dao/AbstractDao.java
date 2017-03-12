@@ -7,6 +7,8 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.legurun.test.fakemailserver.utils.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractDao<T extends Serializable> implements IDao<T> {
@@ -49,4 +51,12 @@ public abstract class AbstractDao<T extends Serializable> implements IDao<T> {
 		return createCriteria().list();
 	}
 
+	protected static Order getOrder(String sortProperty, SortOrder sortOrder) {
+		if (sortOrder == SortOrder.DESCENDING) {
+			return Order.desc(sortProperty);
+		}
+		else {
+			return Order.asc(sortProperty);
+		}
+	}
 }

@@ -2,11 +2,13 @@ package org.legurun.test.fakemailserver.config;
 
 import java.util.List;
 
+import org.legurun.test.fakemailserver.utils.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
@@ -37,8 +39,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		LOG.trace("Add resource handlers");
+		registry.addResourceHandler("/webjars/**")
+			.addResourceLocations("classpath:/META-INF/resources/webjars/")
+			.resourceChain(true);
 		registry.addResourceHandler("/static/**")
-			.addResourceLocations("/css/", "/images/", "/js/", "/theme/")
+			.addResourceLocations("/static/")
 			.resourceChain(true);
 	}
 
@@ -59,5 +64,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 			}
 		}
 		super.extendMessageConverters(converters);
+	}
+	@Override
+	public void addFormatters(FormatterRegistry registry) {
+		registry.addConverter(new SortOrder.OrderConverter());
+		super.addFormatters(registry);
 	}
 }

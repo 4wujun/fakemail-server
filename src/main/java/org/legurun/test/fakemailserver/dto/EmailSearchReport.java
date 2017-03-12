@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class EmailSearchDTO implements Serializable {
+public class EmailSearchReport implements Serializable {
 	private Long id;
 	private String sender;
 	private String recipient;
 	private Date dateSent;
 	private String subject;
 
-	public EmailSearchDTO() {
+	public EmailSearchReport() {
 	}
 
-	public EmailSearchDTO(Long id, String sender, String recipient, Date dateSent, String subject) {
+	public EmailSearchReport(Long id, String sender, String recipient, Date dateSent, String subject) {
 		this.id = id;
 		this.sender = sender;
 		this.recipient = recipient;
