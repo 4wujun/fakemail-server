@@ -53,7 +53,7 @@ $(document).ready(function(){
     		title: 'Subject'
     	}],
     	pagination: true,
-    	pageSize: 3,
+    	pageSize: 10,
     	clickToSelect: true
     });
 });
