@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "sender")
 @JsonIgnoreProperties({ "version", "dateCreated", "lastUpdated", "emails" })
+@Cacheable
 public class Sender implements Serializable {
 	private Long id;
 	private Long version;
