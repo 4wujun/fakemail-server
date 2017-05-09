@@ -30,6 +30,7 @@ public class MailController {
 			@RequestParam(value = "limit", required = false) Integer limit,
 			@RequestParam(value = "sort", required = false) String sort,
 			@RequestParam(value = "order", required = false) SortOrder order) {
+		LOG.debug("Params : since {} - before {}", searchCommand.getSentSince(), searchCommand.getSentBefore());
 		return emailService.search(searchCommand, offset, limit, sort, order);
 	}
 }
