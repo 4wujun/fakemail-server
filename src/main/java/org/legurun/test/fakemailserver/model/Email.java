@@ -40,12 +40,12 @@ public class Email implements Serializable {
 
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -55,7 +55,7 @@ public class Email implements Serializable {
 		return version;
 	}
 
-	public void setVersion(Long version) {
+	public void setVersion(final Long version) {
 		this.version = version;
 	}
 
@@ -66,7 +66,7 @@ public class Email implements Serializable {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(final Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -77,7 +77,7 @@ public class Email implements Serializable {
 		return lastUpdated;
 	}
 
-	public void setLastUpdated(Date lastUpdated) {
+	public void setLastUpdated(final Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
 
@@ -87,7 +87,7 @@ public class Email implements Serializable {
 		return sender;
 	}
 
-	public void setSender(Sender sender) {
+	public void setSender(final Sender sender) {
 		this.sender = sender;
 	}
 
@@ -96,7 +96,7 @@ public class Email implements Serializable {
 		return recipient;
 	}
 
-	public void setRecipient(String recipient) {
+	public void setRecipient(final String recipient) {
 		this.recipient = recipient;
 	}
 
@@ -106,7 +106,7 @@ public class Email implements Serializable {
 		return sentDate;
 	}
 
-	public void setSentDate(Date sentDate) {
+	public void setSentDate(final Date sentDate) {
 		this.sentDate = sentDate;
 	}
 
@@ -115,7 +115,7 @@ public class Email implements Serializable {
 		return subject;
 	}
 
-	public void setSubject(String subject) {
+	public void setSubject(final String subject) {
 		this.subject = subject;
 	}
 
@@ -125,7 +125,7 @@ public class Email implements Serializable {
 		return message;
 	}
 
-	public void setMessage(byte[] message) {
+	public void setMessage(final byte[] message) {
 		this.message = message;
 	}
 

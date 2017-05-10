@@ -16,7 +16,7 @@ import org.subethamail.smtp.helper.SimpleMessageListenerAdapter;
 import org.subethamail.smtp.server.SMTPServer;
 
 @Component
-@ComponentScan(basePackages="org.legurun.test.fakemailserver.mail")
+@ComponentScan(basePackages = "org.legurun.test.fakemailserver.mail")
 public class SubEthaSMTPConfig {
 	private static final Logger LOG = LoggerFactory.getLogger(SubEthaSMTPConfig.class);
 
@@ -24,8 +24,8 @@ public class SubEthaSMTPConfig {
 	private Environment environment;
 
 	@Autowired
-	@Bean(initMethod="start", destroyMethod="stop")
-	public SMTPServer smtpServer(IEmailService mailService) throws UnknownHostException {
+	@Bean(initMethod = "start", destroyMethod = "stop")
+	public SMTPServer smtpServer(final IEmailService mailService) throws UnknownHostException {
 		LOG.trace("Initialisation smtpServer");
 		MessageHandlerFactory factory = new SimpleMessageListenerAdapter(mailService);
 

@@ -17,10 +17,11 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 @Configuration
 @EnableCaching
 @PropertySources({
-	@PropertySource(value="classpath:application.properties"),
-	@PropertySource(value="file:${externalConfigurationLocation}", ignoreResourceNotFound=true)
+	@PropertySource(value = "classpath:application.properties"),
+	@PropertySource(value = "file:${externalConfigurationLocation}",
+		ignoreResourceNotFound = true)
 })
-@ComponentScan(basePackages="org.legurun.test.fakemailserver.service")
+@ComponentScan(basePackages = "org.legurun.test.fakemailserver.service")
 public class RootConfig {
 	private static final Logger LOG = LoggerFactory.getLogger(RootConfig.class);
 

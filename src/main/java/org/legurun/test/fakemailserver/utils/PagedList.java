@@ -11,7 +11,7 @@ public class PagedList<E> {
 		return data;
 	}
 
-	public void setData(List<E> data) {
+	public void setData(final List<E> data) {
 		this.data = data;
 	}
 
@@ -19,7 +19,7 @@ public class PagedList<E> {
 		return total;
 	}
 
-	public void setTotal(Number total) {
+	public void setTotal(final Number total) {
 		this.total = total;
 	}
 }

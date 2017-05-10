@@ -14,7 +14,7 @@ public class EmailSearchReport implements Serializable {
 	public EmailSearchReport() {
 	}
 
-	public EmailSearchReport(Long id, String sender, String recipient, Date sentDate, String subject) {
+	public EmailSearchReport(final Long id, final String sender, final String recipient, final Date sentDate, final String subject) {
 		this.id = id;
 		this.sender = sender;
 		this.recipient = recipient;
@@ -26,7 +26,7 @@ public class EmailSearchReport implements Serializable {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -34,7 +34,7 @@ public class EmailSearchReport implements Serializable {
 		return sender;
 	}
 
-	public void setSender(String sender) {
+	public void setSender(final String sender) {
 		this.sender = sender;
 	}
 
@@ -42,7 +42,7 @@ public class EmailSearchReport implements Serializable {
 		return recipient;
 	}
 
-	public void setRecipient(String recipient) {
+	public void setRecipient(final String recipient) {
 		this.recipient = recipient;
 	}
 
@@ -50,7 +50,7 @@ public class EmailSearchReport implements Serializable {
 		return sentDate;
 	}
 
-	public void setSentDate(Date sentDate) {
+	public void setSentDate(final Date sentDate) {
 		this.sentDate = sentDate;
 	}
 
@@ -58,7 +58,7 @@ public class EmailSearchReport implements Serializable {
 		return subject;
 	}
 
-	public void setSubject(String subject) {
+	public void setSubject(final String subject) {
 		this.subject = subject;
 	}
 }

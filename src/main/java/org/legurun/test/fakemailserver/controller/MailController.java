@@ -25,11 +25,11 @@ public class MailController {
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public PagedList<EmailSearchReport> search(
-			EmailSearchCommand searchCommand,
-			@RequestParam(value = "offset", required = false) Integer offset,
-			@RequestParam(value = "limit", required = false) Integer limit,
-			@RequestParam(value = "sort", required = false) String sort,
-			@RequestParam(value = "order", required = false) SortOrder order) {
+			final EmailSearchCommand searchCommand,
+			@RequestParam(value = "offset", required = false) final Integer offset,
+			@RequestParam(value = "limit", required = false) final Integer limit,
+			@RequestParam(value = "sort", required = false) final String sort,
+			@RequestParam(value = "order", required = false) final SortOrder order) {
 		LOG.debug("Params : since {} - before {}", searchCommand.getSentSince(), searchCommand.getSentBefore());
 		return emailService.search(searchCommand, offset, limit, sort, order);
 	}

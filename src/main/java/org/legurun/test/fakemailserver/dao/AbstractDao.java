@@ -31,17 +31,17 @@ public abstract class AbstractDao<T extends Serializable> implements IDao<T> {
 		return getSession().createCriteria(persistentClass);
 	}
 
-	public T get(Long id) {
+	public T get(final Long id) {
 		return getSession().get(persistentClass, id);
 	}
 
 	@Override
-	public void persist(T entity) {
+	public void persist(final T entity) {
 		getSession().persist(entity);
 	}
 
 	@Override
-	public void delete(T entity) {
+	public void delete(final T entity) {
 		getSession().delete(entity);
 	}
 
@@ -51,7 +51,7 @@ public abstract class AbstractDao<T extends Serializable> implements IDao<T> {
 		return createCriteria().list();
 	}
 
-	protected static Order getOrder(String sortProperty, SortOrder sortOrder) {
+	protected static Order getOrder(final String sortProperty, final SortOrder sortOrder) {
 		if (sortOrder == SortOrder.DESCENDING) {
 			return Order.desc(sortProperty);
 		}

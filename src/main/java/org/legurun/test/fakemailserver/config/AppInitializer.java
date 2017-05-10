@@ -16,26 +16,34 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { RootConfig.class, RepositoryConfig.class, MelodyConfig.class, SubEthaSMTPConfig.class };
+		return new Class<?>[] {
+			RootConfig.class, RepositoryConfig.class, MelodyConfig.class, SubEthaSMTPConfig.class
+		};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { WebMvcConfig.class };
+		return new Class<?>[] {
+			WebMvcConfig.class
+		};
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] { "/" };
+		return new String[] {
+			"/"
+		};
 	}
 
 	@Override
 	protected Filter[] getServletFilters() {
-		return new Filter[] { new CharacterEncodingFilter("UTF-8"), new ForwardedHeaderFilter(), new CommonsRequestLoggingFilter() };
+		return new Filter[] {
+			new CharacterEncodingFilter("UTF-8"), new ForwardedHeaderFilter(), new CommonsRequestLoggingFilter()
+		};
 	}
 
 	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
+	public final void onStartup(final ServletContext servletContext) throws ServletException {
 		LOG.info("Use external configuration file " + System.getProperty("externalConfigurationLocation"));
 		super.onStartup(servletContext);
 	}

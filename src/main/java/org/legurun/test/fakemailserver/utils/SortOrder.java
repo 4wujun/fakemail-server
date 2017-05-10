@@ -8,7 +8,7 @@ public enum SortOrder {
 
 	public static class OrderConverter implements Converter<String, SortOrder> {
 		@Override
-		public SortOrder convert(String source) {
+		public SortOrder convert(final String source) {
 			if ("asc".equals(source)) {
 				return SortOrder.ASCENDING;
 			}

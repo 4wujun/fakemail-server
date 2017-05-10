@@ -20,10 +20,10 @@ import org.springframework.util.StringUtils;
 public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 	@SuppressWarnings("unchecked")
 	@Override
-	public PagedList<EmailSearchReport> search(Sender sender,
-			String recipient, Date sentSince, Date sentBefore,
-			Integer start, Integer limit,
-			String sortProperty, SortOrder sortOrder) {
+	public PagedList<EmailSearchReport> search(final Sender sender,
+			final String recipient, final Date sentSince, final Date sentBefore,
+			final Integer start, final Integer limit,
+			final String sortProperty, final SortOrder sortOrder) {
 		PagedList<EmailSearchReport> pagedList = new PagedList<EmailSearchReport>();
 
 		Criteria criteria = this.createCriteria();
@@ -42,7 +42,7 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 			criteria.add(Restrictions.le("sentDate", sentBefore));
 		}
 		criteria.setProjection(Projections.rowCount());
-		pagedList.setTotal((Number)criteria.uniqueResult());
+		pagedList.setTotal((Number) criteria.uniqueResult());
 
 		criteria.setProjection(Projections.projectionList()
 				.add(Projections.property("id"), "id")

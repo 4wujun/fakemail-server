@@ -30,7 +30,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		LOG.trace("Add resource handlers");
 		registry.addResourceHandler("/webjars/**")
 			.addResourceLocations("classpath:/META-INF/resources/webjars/")
@@ -41,12 +41,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+	public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
 
 	@Override
-	public void addFormatters(FormatterRegistry registry) {
+	public void addFormatters(final FormatterRegistry registry) {
 		registry.addConverter(new SortOrder.OrderConverter());
 		super.addFormatters(registry);
 	}

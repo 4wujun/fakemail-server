@@ -48,7 +48,7 @@ public class RepositoryConfig {
 
 	@Bean
 	@Autowired
-	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+	public HibernateTransactionManager transactionManager(final SessionFactory sessionFactory) {
 		LOG.trace("Initialisation sessionFactory");
 		HibernateTransactionManager htm = new HibernateTransactionManager();
 		htm.setSessionFactory(sessionFactory);
@@ -57,7 +57,7 @@ public class RepositoryConfig {
 
 	@Bean
 	@Autowired
-	public HibernateTemplate hibernateTemplate(SessionFactory sessionFactory) {
+	public HibernateTemplate hibernateTemplate(final SessionFactory sessionFactory) {
 		LOG.trace("Initialisation hibernateTemplate");
 		HibernateTemplate hibernateTemplate = new HibernateTemplate(sessionFactory);
 		return hibernateTemplate;
@@ -101,7 +101,7 @@ public class RepositoryConfig {
 
 	private static class LiquibaseCondition implements Condition {
 		@Override
-		public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+		public boolean matches(final ConditionContext context, final AnnotatedTypeMetadata metadata) {
 			Environment env = context.getEnvironment();
 			return env != null && env.getProperty("liquibase.enabled", Boolean.class, true);
 		}

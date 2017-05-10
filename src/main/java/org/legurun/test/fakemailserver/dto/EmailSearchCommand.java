@@ -14,7 +14,7 @@ public class EmailSearchCommand implements Serializable {
 		return senderId;
 	}
 
-	public void setSenderId(Long senderId) {
+	public void setSenderId(final Long senderId) {
 		this.senderId = senderId;
 	}
 
@@ -22,7 +22,7 @@ public class EmailSearchCommand implements Serializable {
 		return recipient;
 	}
 
-	public void setRecipient(String recipient) {
+	public void setRecipient(final String recipient) {
 		this.recipient = recipient;
 	}
 
@@ -30,7 +30,7 @@ public class EmailSearchCommand implements Serializable {
 		return sentSince;
 	}
 
-	public void setSentSince(Date sentFrom) {
+	public void setSentSince(final Date sentFrom) {
 		this.sentSince = sentFrom;
 	}
 
@@ -38,7 +38,7 @@ public class EmailSearchCommand implements Serializable {
 		return sentBefore;
 	}
 
-	public void setSentBefore(Date sentTo) {
+	public void setSentBefore(final Date sentTo) {
 		this.sentBefore = sentTo;
 	}
 

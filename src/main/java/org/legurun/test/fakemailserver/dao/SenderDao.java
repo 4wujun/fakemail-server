@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public class SenderDao extends AbstractDao<Sender> implements ISenderDao {
 
 	@Override
-	public Sender findByAddress(String address) {
+	public Sender findByAddress(final String address) {
 		Criteria criteria = createCriteria();
 		criteria.add(Restrictions.eq("address", address));
 		criteria.setCacheable(true);

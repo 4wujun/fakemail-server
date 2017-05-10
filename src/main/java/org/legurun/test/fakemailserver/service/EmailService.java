@@ -41,8 +41,8 @@ public class EmailService implements IEmailService {
 	private ISenderDao senderDao;
 
 	@Override
-	public PagedList<EmailSearchReport> search(EmailSearchCommand searchCommand,
-			Integer start, Integer limit, String sortProperty, SortOrder sortOrder) {
+	public PagedList<EmailSearchReport> search(final EmailSearchCommand searchCommand,
+			final Integer start, final Integer limit, final String sortProperty, final SortOrder sortOrder) {
 		LOG.debug("Getting list of emails");
 		Sender sender = null;
 		if (searchCommand.getSenderId() != null) {
@@ -54,7 +54,7 @@ public class EmailService implements IEmailService {
 	}
 
 	@Override
-	public MimeMessage parse(Email email) throws MessagingException {
+	public MimeMessage parse(final Email email) throws MessagingException {
 		Session session = Session.getDefaultInstance(new Properties());
 		ByteArrayInputStream inputStream = new ByteArrayInputStream(email.getMessage());
 		MimeMessage message = new MimeMessage(session, inputStream);
@@ -62,12 +62,12 @@ public class EmailService implements IEmailService {
 	}
 
 	@Override
-	public boolean accept(String from, String recipient) {
+	public boolean accept(final String from, final String recipient) {
 		return true;
 	}
 
 	@Override
-	public void deliver(String from, String recipient, InputStream data) throws TooMuchDataException, IOException {
+	public void deliver(final String from, final String recipient, final InputStream data) throws TooMuchDataException, IOException {
 		LOG.debug(String.format("Receiving message from %s to %s", from, recipient));
 		Sender sender = senderDao.findByAddress(from);
 		if (sender == null) {
@@ -86,7 +86,8 @@ public class EmailService implements IEmailService {
 			if (message.getSentDate() != null) {
 				email.setSentDate(message.getSentDate());
 			}
-		} catch (MessagingException ex) {
+		}
+		catch (MessagingException ex) {
 			LOG.error("Cannot analyze mail content", ex);
 		}
 		sender.addEmail(email);

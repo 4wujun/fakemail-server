@@ -38,12 +38,12 @@ public class Sender implements Serializable {
 
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -53,7 +53,7 @@ public class Sender implements Serializable {
 		return version;
 	}
 
-	public void setVersion(Long version) {
+	public void setVersion(final Long version) {
 		this.version = version;
 	}
 
@@ -64,7 +64,7 @@ public class Sender implements Serializable {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(final Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -75,7 +75,7 @@ public class Sender implements Serializable {
 		return lastUpdated;
 	}
 
-	public void setLastUpdated(Date lastUpdated) {
+	public void setLastUpdated(final Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
 
@@ -84,7 +84,7 @@ public class Sender implements Serializable {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(final String address) {
 		this.address = address;
 	}
 
@@ -93,16 +93,16 @@ public class Sender implements Serializable {
 		return emails;
 	}
 
-	public void setEmails(Set<Email> emails) {
+	public void setEmails(final Set<Email> emails) {
 		this.emails = emails;
 	}
 
-	public void addEmail(Email email) {
+	public void addEmail(final Email email) {
 		this.emails.add(email);
 		email.setSender(this);
 	}
 
-	public void removeEmail(Email email) {
+	public void removeEmail(final Email email) {
 		this.emails.remove(email);
 		email.setSender(null);
 	}
