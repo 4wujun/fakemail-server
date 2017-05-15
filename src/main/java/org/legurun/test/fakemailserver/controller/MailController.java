@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/mail")
 public class MailController {
-	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory.getLogger(MailController.class);
 
 	@Autowired

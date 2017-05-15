@@ -31,7 +31,7 @@
 	<logger name="org.springframework.orm.hibernate5">
 		<level value="info" />
 	</logger>
-	
+
 	<logger name="liquibase">
 		<level value="debug" />
 	</logger>
