@@ -16,6 +16,21 @@
 					<input type="text" id="recipient" name="recipient" class="form-control" data-toggle="tooltip" title="Part of recipient address"/>
 				</div>
 			</div>
+			<div class="form-group">
+				<label for="sentSince" class="control-label col-sm-2">Sent date</label>
+				<span class="control-label col-sm-1">from</span>
+				<input type="text" id="sentSince" name="sentSince" class="col-sm-2" data-toggle="tooltip" title="Begin sent date range"/>
+				<div class="input-append date">
+					<span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+				</div>
+				<span class="control-label col-sm-1">to</span>
+				<div class="input-append date">
+					<input type="text" id="sentBefore" name="sentBefore" class="col-sm-2" data-toggle="tooltip" title="End sent date range"/>
+					<span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+				</div>
+			</div>
 		</div>
 		<div class="panel-footer text-center">
 			<div class="btn-group">
@@ -43,6 +58,22 @@ $(function() {
 	})
 	.fail(function(data) {
 		console.log('error');
+	});
+	$('#searchForm #sentSince').datetimepicker({
+		language: '${pageContext.response.locale.language}',
+		format: 'dd/mm/yyyy hh:ii',
+		autoclose: true,
+		clearBtn: true,
+		todayBtn: true,
+		keyboardNavigation: false
+	});
+	$('#searchForm #sentBefore').datetimepicker({
+		language: '${pageContext.response.locale.language}',
+		format: 'dd/mm/yyyy hh:ii',
+		autoclose: true,
+		clearBtn: true,
+		todayBtn: true,
+		keyboardNavigation: false
 	});
 });
 </script>

@@ -61,9 +61,11 @@ $(document).ready(function(){
 $(function () {
 	$('#searchForm').submit(function(event) {
 		var array = $('#searchForm').serializeArray();
-		var searchParams = {};
+		var searchParams = { };
 		for (i = 0; i < array.length; i++) {
-			searchParams[array[i].name] = array[i].value;
+			if (array[i].value.length != 0) {
+				searchParams[array[i].name] = array[i].value;
+			}
 		}
 		$('#searchForm').data('searchParams', searchParams);
 	    $('#results').bootstrapTable('refresh');
