@@ -1,13 +1,18 @@
 package org.legurun.test.fakemailserver.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.transform.AliasToBeanResultTransformer;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
@@ -26,44 +31,53 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 			final String sortProperty, final SortOrder sortOrder) {
 		PagedList<EmailSearchReport> pagedList = new PagedList<EmailSearchReport>();
 
-		Criteria criteria = this.createCriteria();
-		criteria.setReadOnly(true);
-		criteria.createAlias("sender", "sender");
+		CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
+		CriteriaQuery<EmailSearchReport> query = builder.createQuery(EmailSearchReport.class);
+		Root<Email> rootEmail = query.from(Email.class);
+		Join<Email, Sender> joinSender = rootEmail.join("sender", JoinType.INNER);
+		query.select(builder.construct(EmailSearchReport.class, rootEmail.get("id"), joinSender.get("address"), rootEmail.get("recipient"), rootEmail.get("sentDate"), rootEmail.get("subject")));
+		List<Predicate> predicates = new ArrayList<Predicate>();
 		if (sender != null) {
-			criteria.add(Restrictions.eq("sender.id", sender.getId()));
+			predicates.add(builder.equal(rootEmail.get("sender"), sender));
 		}
 		if (StringUtils.hasText(recipient)) {
-			criteria.add(Restrictions.ilike("recipient", recipient.trim(), MatchMode.ANYWHERE));
+			predicates.add(builder.like(builder.upper(rootEmail.get("recipient")), "%" + recipient.trim().toUpperCase() + "%"));
 		}
 		if (sentSince != null) {
-			criteria.add(Restrictions.ge("sentDate", sentSince));
+			predicates.add(builder.greaterThanOrEqualTo(rootEmail.get("sentDate"), sentSince));
 		}
 		if (sentBefore != null) {
-			criteria.add(Restrictions.le("sentDate", sentBefore));
+			predicates.add(builder.lessThanOrEqualTo(rootEmail.get("sentDate"), sentBefore));
 		}
-		criteria.setProjection(Projections.rowCount());
-		pagedList.setTotal((Number) criteria.uniqueResult());
-
-		criteria.setProjection(Projections.projectionList()
-				.add(Projections.property("id"), "id")
-				.add(Projections.property("sender.address"), "sender")
-				.add(Projections.property("recipient"), "recipient")
-				.add(Projections.property("sentDate"), "sentDate")
-				.add(Projections.property("subject"), "subject"));
-		criteria.setResultTransformer(new AliasToBeanResultTransformer(EmailSearchReport.class));
-		if (start != null && limit != null) {
-			criteria.setFirstResult(start);
-			criteria.setMaxResults(limit);
-		}
+		query.where(predicates.toArray(new Predicate[] { }));
+		List<Order> orders = new ArrayList<Order>();
 		if (sortProperty != null) {
 			String propertyName = sortProperty;
 			if ("sender".equals(sortProperty)) {
 				propertyName = "sender.address";
 			}
-			criteria.addOrder(getOrder(propertyName, sortOrder));
+			if (sortOrder == SortOrder.DESCENDING) {
+				orders.add(builder.desc(rootEmail.get(propertyName)));
+			}
+			else {
+				orders.add(builder.asc(rootEmail.get(propertyName)));
+			}
 		}
-		criteria.addOrder(Order.asc("sentDate"));
-		pagedList.setData(criteria.list());
+		orders.add(builder.asc(rootEmail.get("sentDate")));
+		query.orderBy(orders);
+		TypedQuery<EmailSearchReport> typedQueryList = this.getEntityManager().createQuery(query);
+		if (start != null && limit != null) {
+			typedQueryList.setFirstResult(start);
+			typedQueryList.setMaxResults(limit);
+		}
+		pagedList.setData(typedQueryList.getResultList());
+
+		CriteriaQuery<Number> queryCount = builder.createQuery(Number.class);
+		Root<Email> rootCount = queryCount.from(Email.class);
+		queryCount.select(builder.count(rootCount));
+		queryCount.where(query.getRestriction());
+		pagedList.setTotal(this.getEntityManager().createQuery(queryCount).getSingleResult());
+
 		return pagedList;
 	}
 }

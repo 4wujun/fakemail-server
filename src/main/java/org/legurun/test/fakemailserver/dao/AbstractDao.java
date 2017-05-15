@@ -3,18 +3,20 @@ package org.legurun.test.fakemailserver.dao;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.legurun.test.fakemailserver.model.AbstractEntity;
-import org.legurun.test.fakemailserver.utils.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractDao<T extends AbstractEntity> implements IDao<T> {
 
 	@Autowired
-	private SessionFactory sessionFactory;
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	private final Class<T> persistentClass;
 
@@ -23,40 +25,29 @@ public abstract class AbstractDao<T extends AbstractEntity> implements IDao<T> {
 		this.persistentClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
-	protected Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
-
-	protected Criteria createCriteria() {
-		return getSession().createCriteria(persistentClass);
+	protected EntityManager getEntityManager() {
+		return this.entityManager;
 	}
 
 	public T get(final Long id) {
-		return getSession().get(persistentClass, id);
+		return entityManager.find(persistentClass, id);
 	}
 
 	@Override
 	public void persist(final T entity) {
-		getSession().persist(entity);
+		entityManager.persist(entity);
 	}
 
 	@Override
 	public void delete(final T entity) {
-		getSession().delete(entity);
+		entityManager.remove(entity);
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<T> list() {
-		return createCriteria().list();
-	}
-
-	protected static Order getOrder(final String sortProperty, final SortOrder sortOrder) {
-		if (sortOrder == SortOrder.DESCENDING) {
-			return Order.desc(sortProperty);
-		}
-		else {
-			return Order.asc(sortProperty);
-		}
+		CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
+		CriteriaQuery<T> query = builder.createQuery(this.persistentClass);
+		Root<T> root = query.from(this.persistentClass);
+		return this.getEntityManager().createQuery(query).getResultList();
 	}
 }

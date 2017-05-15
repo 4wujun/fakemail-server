@@ -2,10 +2,10 @@ package org.legurun.test.fakemailserver.config;
 
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +18,10 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import liquibase.integration.spring.SpringLiquibase;
@@ -48,33 +49,32 @@ public class RepositoryConfig {
 
 	@Bean
 	@Autowired
-	public HibernateTransactionManager transactionManager(final SessionFactory sessionFactory) {
+	public JpaTransactionManager transactionManager(final EntityManagerFactory entityManagerFactory) {
 		LOG.trace("Initialisation sessionFactory");
-		HibernateTransactionManager htm = new HibernateTransactionManager();
-		htm.setSessionFactory(sessionFactory);
+		JpaTransactionManager htm = new JpaTransactionManager();
+		htm.setEntityManagerFactory(entityManagerFactory);
 		return htm;
 	}
 
 	@Bean
-	@Autowired
-	public HibernateTemplate hibernateTemplate(final SessionFactory sessionFactory) {
-		LOG.trace("Initialisation hibernateTemplate");
-		HibernateTemplate hibernateTemplate = new HibernateTemplate(sessionFactory);
-		return hibernateTemplate;
+	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+		LOG.trace("Initialisation entityManagerFactoryBean");
+		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setDataSource(dataSource());
+		entityManagerFactoryBean.setPackagesToScan("org.legurun.test.fakemailserver.model");
+		entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+		entityManagerFactoryBean.setJpaProperties(jpaProperties());
+		return entityManagerFactoryBean;
 	}
 
 	@Bean
-	public LocalSessionFactoryBean sessionFactory() {
-		LOG.trace("Initialisation sessionFactory");
-		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setHibernateProperties(hibernateProperties());
-		sessionFactory.setPackagesToScan("org.legurun.test.fakemailserver.model");
-		return sessionFactory;
+	public JpaVendorAdapter jpaVendorAdapter() {
+		LOG.trace("Initialisation jpaVendorAdapter");
+		return new HibernateJpaVendorAdapter();
 	}
 
 	@Bean
-	public Properties hibernateProperties() {
+	public Properties jpaProperties() {
 		LOG.trace("Initialisation hibernateProperties");
 		Properties properties = new Properties();
 		properties.put(AvailableSettings.DIALECT, environment.getRequiredProperty("hibernate.dialect"));
