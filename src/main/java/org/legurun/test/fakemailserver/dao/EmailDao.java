@@ -49,7 +49,7 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 		if (sentBefore != null) {
 			predicates.add(builder.lessThanOrEqualTo(rootEmail.get("sentDate"), sentBefore));
 		}
-		query.where(predicates.toArray(new Predicate[] { }));
+		query.where(predicates.toArray(new Predicate[] {}));
 		List<Order> orders = new ArrayList<Order>();
 		if (sortProperty != null) {
 			String propertyName = sortProperty;

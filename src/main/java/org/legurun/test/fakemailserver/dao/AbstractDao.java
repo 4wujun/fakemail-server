@@ -47,7 +47,7 @@ public abstract class AbstractDao<T extends AbstractEntity> implements IDao<T> {
 	public List<T> list() {
 		CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<T> query = builder.createQuery(this.persistentClass);
-		Root<T> root = query.from(this.persistentClass);
+		query.from(this.persistentClass);
 		return this.getEntityManager().createQuery(query).getResultList();
 	}
 }
