@@ -1,6 +1,5 @@
 package org.legurun.test.fakemailserver.dao;
 
-import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -8,10 +7,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.legurun.test.fakemailserver.model.AbstractEntity;
 import org.legurun.test.fakemailserver.utils.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractDao<T extends Serializable> implements IDao<T> {
+public abstract class AbstractDao<T extends AbstractEntity> implements IDao<T> {
 
 	@Autowired
 	private SessionFactory sessionFactory;

@@ -1,9 +1,10 @@
 package org.legurun.test.fakemailserver.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
-public interface IDao<T extends Serializable> {
+import org.legurun.test.fakemailserver.model.AbstractEntity;
+
+public interface IDao<T extends AbstractEntity> {
 
 	T get(Long id);
 

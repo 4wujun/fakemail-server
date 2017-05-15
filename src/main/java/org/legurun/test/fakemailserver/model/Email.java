@@ -1,13 +1,9 @@
 package org.legurun.test.fakemailserver.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -15,10 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Version;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 @SuppressWarnings("serial")
 @Entity
@@ -27,58 +19,15 @@ import org.hibernate.annotations.UpdateTimestamp;
 	@Index(name = "message_sentdate_idx", columnList = "sent_date"),
 	@Index(name = "message_subject_idx", columnList = "subject")
 })
-public class Email implements Serializable {
-	private Long id;
-	private Long version;
-	private Date dateCreated;
-	private Date lastUpdated;
+public class Email extends AbstractEntity {
 	private Sender sender;
 	private String recipient;
 	private Date sentDate;
 	private String subject;
 	private byte[] message;
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	@Version
-	@Column(name = "version", nullable = false)
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(final Long version) {
-		this.version = version;
-	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_created", nullable = false)
-	@CreationTimestamp
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(final Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "last_updated", nullable = false)
-	@UpdateTimestamp
-	public Date getLastUpdated() {
-		return lastUpdated;
-	}
-
-	public void setLastUpdated(final Date lastUpdated) {
-		this.lastUpdated = lastUpdated;
+	public Email() {
+		super();
 	}
 
 	@ManyToOne
@@ -127,10 +76,5 @@ public class Email implements Serializable {
 
 	public void setMessage(final byte[] message) {
 		this.message = message;
-	}
-
-	@Override
-	public String toString() {
-		return "Email [id=" + id + "]";
 	}
 }
