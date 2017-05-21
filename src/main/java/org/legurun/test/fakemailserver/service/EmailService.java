@@ -39,7 +39,6 @@ import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.utils.PagedList;
-import org.legurun.test.fakemailserver.utils.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +62,7 @@ public class EmailService implements IEmailService {
 	private ISenderDao senderDao;
 
 	@Override
-	public PagedList<EmailSearchReport> search(final EmailSearchCommand searchCommand,
-			final Integer start, final Integer limit, final String sortProperty, final SortOrder sortOrder) {
+	public PagedList<EmailSearchReport> search(final EmailSearchCommand searchCommand) {
 		LOG.debug("Getting list of emails");
 		Sender sender = null;
 		if (searchCommand.getSenderId() != null) {
@@ -72,7 +70,7 @@ public class EmailService implements IEmailService {
 		}
 		return emailDao.search(sender, searchCommand.getRecipient(),
 				searchCommand.getSentSince(), searchCommand.getSentBefore(),
-				start, limit, sortProperty, sortOrder);
+				searchCommand.getOffset(), searchCommand.getLimit());
 	}
 
 	@Override

@@ -31,6 +31,8 @@ public class EmailSearchCommand implements Serializable {
 	private String recipient;
 	private Date sentSince;
 	private Date sentBefore;
+	private Integer offset;
+	private Integer limit;
 
 	public Long getSenderId() {
 		return senderId;
@@ -64,4 +66,25 @@ public class EmailSearchCommand implements Serializable {
 		this.sentBefore = sentTo;
 	}
 
+	public Integer getOffset() {
+		return offset;
+	}
+
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
+
+	public Integer getLimit() {
+		return limit;
+	}
+
+	public void setLimit(Integer limit) {
+		this.limit = limit;
+	}
+
+	@Override
+	public String toString() {
+		return "EmailSearchCommand [senderId=" + senderId + ", recipient=" + recipient + ", sentSince=" + sentSince
+				+ ", sentBefore=" + sentBefore + ", offset=" + offset + ", limit=" + limit + "]";
+	}
 }
