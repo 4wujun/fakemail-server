@@ -29,7 +29,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 
 	<licenses>
 		<license>
-			<name>GNU Lesser General Public License, Version 3</name>
+			<name>GNU Lesser General Public License, Version 3 or later</name>
 			<url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
 			<distribution>repo</distribution>
 		</license>
@@ -271,16 +271,6 @@ The main use is for testing software which sends mail, to forbid sending to real
 				<version>2.3</version>
 				<configuration>
 					<rulesUri>file:///${basedir}/ruleset.xml</rulesUri>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>license-maven-plugin</artifactId>
-				<version>1.12</version>
-				<configuration>
-					<addJavaLicenseAfterPackage>true</addJavaLicenseAfterPackage>
-					<emptyLineAfterHeader>true</emptyLineAfterHeader>
-					<licenseName>lgpl_v3</licenseName>
 				</configuration>
 			</plugin>
 			<plugin>
