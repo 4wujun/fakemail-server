@@ -35,17 +35,22 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = "org.legurun.test.fakemailserver.controller")
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
-	private static final Logger LOG = LoggerFactory.getLogger(WebMvcConfig.class);
+	private static final Logger LOG =
+			LoggerFactory.getLogger(WebMvcConfig.class);
 
 	@Bean
 	public ViewResolver viewResolver() {
 		LOG.trace("Initialisation viewResolver");
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		InternalResourceViewResolver viewResolver =
+				new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/views/");
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		LOG.trace("Add resource handlers");
@@ -57,12 +62,19 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 			.resourceChain(true);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
+	public void configureDefaultServletHandling(
+			final DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
 
 	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addFormatters(final FormatterRegistry registry) {
 		registry.addConverter(new SortOrder.OrderConverter());
 		super.addFormatters(registry);
