@@ -27,43 +27,70 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import net.bull.javamelody.MonitoringSpringAdvisor;
+import net.bull.javamelody.SpringContext;
 import net.bull.javamelody.SpringDataSourceFactoryBean;
 
 @Configuration
 public class MelodyConfig {
-	private static final Logger LOG = LoggerFactory.getLogger(MelodyConfig.class);
+	private static final Logger LOG =
+			LoggerFactory.getLogger(MelodyConfig.class);
 
 	@Bean
 	public SpringDataSourceFactoryBean monitoringDataSourceFactoryBean() {
 		LOG.trace("Initialisation monitoringDataSourceFactoryBean");
-		final SpringDataSourceFactoryBean factory = new SpringDataSourceFactoryBean();
+		final SpringDataSourceFactoryBean factory =
+				new SpringDataSourceFactoryBean();
 		factory.setTargetName("dataSource");
 		return factory;
 	}
 
 	@Bean
+	public SpringContext javamelodySpringContext() {
+		LOG.trace("Initialize javamelodySpringContext");
+		final SpringContext context = new SpringContext();
+		return context;
+	}
+
+	@Bean
 	public MonitoringSpringAdvisor springServiceMonitoringAdvisor() {
 		LOG.trace("Initialisation springServiceMonitoringAdvisor");
-		final MonitoringSpringAdvisor advisor = new MonitoringSpringAdvisor();
-		advisor.setPointcut(new AnnotationMatchingPointcut(Service.class));
+		final MonitoringSpringAdvisor advisor =
+				new MonitoringSpringAdvisor();
+		advisor.setPointcut(
+				new AnnotationMatchingPointcut(Service.class));
 		return advisor;
 	}
 
 	@Bean
 	public MonitoringSpringAdvisor springRepositoryMonitoringAdvisor() {
 		LOG.trace("Initialisation springRepositoryMonitoringAdvisor");
-		final MonitoringSpringAdvisor advisor = new MonitoringSpringAdvisor();
-		advisor.setPointcut(new AnnotationMatchingPointcut(Repository.class));
+		final MonitoringSpringAdvisor advisor =
+				new MonitoringSpringAdvisor();
+		advisor.setPointcut(
+				new AnnotationMatchingPointcut(Repository.class));
 		return advisor;
 	}
 
 	@Bean
 	public MonitoringSpringAdvisor springControllerMonitoringAdvisor() {
 		LOG.trace("Initialisation springControllerMonitoringAdvisor");
-		final MonitoringSpringAdvisor advisor = new MonitoringSpringAdvisor();
-		advisor.setPointcut(new AnnotationMatchingPointcut(Controller.class));
+		final MonitoringSpringAdvisor advisor =
+				new MonitoringSpringAdvisor();
+		advisor.setPointcut(
+				new AnnotationMatchingPointcut(Controller.class));
+		return advisor;
+	}
+
+	@Bean
+	public MonitoringSpringAdvisor springRestControllerMonitoringAdvisor() {
+		LOG.trace("Initialisation springRestControllerMonitoringAdvisor");
+		final MonitoringSpringAdvisor advisor =
+				new MonitoringSpringAdvisor();
+		advisor.setPointcut(
+				new AnnotationMatchingPointcut(RestController.class));
 		return advisor;
 	}
 
