@@ -31,13 +31,20 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	private static final Logger LOG = LoggerFactory.getLogger(AppInitializer.class);
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] {
-			RootConfig.class, RepositoryConfig.class, MelodyConfig.class, SubEthaSMTPConfig.class
+			RootConfig.class, RepositoryConfig.class,
+			MelodyConfig.class, SubEthaSMTPConfig.class
 		};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		return new Class<?>[] {
@@ -45,6 +52,9 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] {
@@ -52,16 +62,26 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected Filter[] getServletFilters() {
 		return new Filter[] {
-			new CharacterEncodingFilter("UTF-8"), new ForwardedHeaderFilter(), new CommonsRequestLoggingFilter()
+			new CharacterEncodingFilter("UTF-8"),
+			new ForwardedHeaderFilter(),
+			new CommonsRequestLoggingFilter()
 		};
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public final void onStartup(final ServletContext servletContext) throws ServletException {
-		LOG.info("Use external configuration file " + System.getProperty("externalConfigurationLocation"));
+	public final void onStartup(final ServletContext servletContext)
+			throws ServletException {
+		LOG.info("Use external configuration file "
+				+ System.getProperty("externalConfigurationLocation"));
 		super.onStartup(servletContext);
 	}
 }
