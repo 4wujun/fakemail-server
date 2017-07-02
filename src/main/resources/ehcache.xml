@@ -25,6 +25,9 @@
 	</service>
 
 	<cache alias="senders">
+		<expiry>
+			<ttl>120</ttl>
+		</expiry>
 		<resources>
 			<heap unit="entries">2000</heap>
 		</resources>
