@@ -20,6 +20,7 @@ package org.legurun.test.fakemailserver.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -33,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "sender")
 @JsonIgnoreProperties({ "emails" })
+@Cacheable
 public class Sender extends AbstractEntity {
 	private String address;
 
