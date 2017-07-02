@@ -17,17 +17,21 @@ package org.legurun.test.fakemailserver.dao;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
+import javax.cache.annotation.CachePut;
+import javax.cache.annotation.CacheResult;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.legurun.test.fakemailserver.model.Sender;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class SenderDao extends AbstractDao<Sender> implements ISenderDao {
 
 	@Override
+	@CacheResult(cacheName="senders")
 	public Sender findByAddress(final String address) {
 		CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<Sender> query = builder.createQuery(Sender.class);
@@ -36,5 +40,17 @@ public class SenderDao extends AbstractDao<Sender> implements ISenderDao {
 				builder.equal(root.get("address"), address)
 		);
 		return this.getEntityManager().createQuery(query).getSingleResult();
+	}
+
+	@Override
+	@CachePut(cacheName="senders")
+	public void persist(Sender entity) {
+		super.persist(entity);
+	}
+
+	@Override
+	@CacheEvict(cacheNames="senders")
+	public void delete(Sender entity) {
+		super.delete(entity);
 	}
 }

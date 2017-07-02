@@ -38,7 +38,8 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] {
 			RootConfig.class, RepositoryConfig.class,
-			MelodyConfig.class, SubEthaSMTPConfig.class
+			CacheConfig.class, MelodyConfig.class,
+			SubEthaSMTPConfig.class
 		};
 	}
 

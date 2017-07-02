@@ -19,6 +19,8 @@ package org.legurun.test.fakemailserver.service;
 
 import java.util.List;
 
+import javax.cache.annotation.CacheResult;
+
 import org.legurun.test.fakemailserver.dao.ISenderDao;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.slf4j.Logger;
@@ -30,18 +32,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class SenderService implements ISenderService {
-	private static final Logger LOG = LoggerFactory.getLogger(SenderService.class);
+	private static final Logger LOG =
+			LoggerFactory.getLogger(SenderService.class);
 
 	@Autowired
 	private ISenderDao senderDao;
 
 	@Override
+	@CacheResult(cacheName="senders")
 	public List<Sender> list() {
 		LOG.debug("Getting list of senders");
 		return senderDao.list();
 	}
 
 	@Override
+	@CacheResult(cacheName="senders")
 	public Sender get(final Long id) {
 		LOG.debug("Getting sender id = {}", id);
 		return senderDao.get(id);

@@ -60,6 +60,8 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<jstl.version>1.2</jstl.version>
 		<aspectj.version>1.8.10</aspectj.version>
 		<liquibase.version>3.5.3</liquibase.version>
+		<ehcache.version>3.3.1</ehcache.version>
+		<cache-api.version>1.0.0</cache-api.version>
 		<tomcat.version>[7.0,8.0)</tomcat.version>
 		<melody.version>1.67.0</melody.version>
 		<junit.version>4.12</junit.version>
@@ -173,8 +175,18 @@ The main use is for testing software which sends mail, to forbid sending to real
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-ehcache</artifactId>
+			<artifactId>hibernate-jcache</artifactId>
 			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>${ehcache.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.cache</groupId>
+			<artifactId>cache-api</artifactId>
+			<version>${cache-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.bull.javamelody</groupId>
@@ -239,7 +251,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
-			<version>3.1.1</version>
+			<version>3.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -264,7 +276,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator</artifactId>
-			<version>0.32</version>
+			<version>0.32-1</version>
 		</dependency>
 	</dependencies>
 
