@@ -56,6 +56,9 @@ public class EmailService implements IEmailService {
 	@Autowired
 	private ISenderDao senderDao;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public PagedList<EmailSearchReport> search(final EmailSearchCommand searchCommand) {
 		LOG.debug("Getting list of emails");
@@ -68,6 +71,9 @@ public class EmailService implements IEmailService {
 				searchCommand.getOffset(), searchCommand.getLimit());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public MimeMessage parse(final Email email) throws MessagingException {
 		Session session = Session.getDefaultInstance(new Properties());
@@ -76,11 +82,17 @@ public class EmailService implements IEmailService {
 		return message;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean accept(final String from, final String recipient) {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void deliver(final String from, final String recipient, final InputStream data) throws TooMuchDataException, IOException {
 		LOG.debug(String.format("Receiving message from %s to %s", from, recipient));
