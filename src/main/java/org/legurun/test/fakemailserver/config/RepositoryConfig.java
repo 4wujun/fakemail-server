@@ -1,5 +1,6 @@
 package org.legurun.test.fakemailserver.config;
 
+import java.io.IOException;
 /*******************************************************************************
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -22,6 +23,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.hibernate.cache.jcache.JCacheRegionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,7 +75,7 @@ public class RepositoryConfig {
 	}
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() throws IOException {
 		LOG.trace("Initialisation entityManagerFactoryBean");
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
@@ -90,7 +92,7 @@ public class RepositoryConfig {
 	}
 
 	@Bean
-	public Properties jpaProperties() {
+	public Properties jpaProperties() throws IOException {
 		LOG.trace("Initialisation hibernateProperties");
 		Properties properties = new Properties();
 		properties.put(AvailableSettings.DIALECT, environment.getRequiredProperty("hibernate.dialect"));
@@ -102,6 +104,9 @@ public class RepositoryConfig {
 		if (environment.getProperty("hibernate.hbm2ddl.import_files") != null) {
 			properties.put(AvailableSettings.HBM2DDL_LOAD_SCRIPT_SOURCE, environment.getProperty("hibernate.hbm2ddl.import_files"));
 		}
+		properties.put(AvailableSettings.CACHE_REGION_FACTORY, JCacheRegionFactory.class);
+		properties.put(AvailableSettings.USE_QUERY_CACHE, true);
+		properties.put(AvailableSettings.USE_SECOND_LEVEL_CACHE, true);
 		return properties;
 	}
 
