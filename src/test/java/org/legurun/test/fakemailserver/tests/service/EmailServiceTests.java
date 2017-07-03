@@ -43,7 +43,7 @@ public class EmailServiceTests {
 
 	/**
 	 * Test the accept method.
-	 * @see {@link IEmailService#accept(String, String)}
+	 * @see IEmailService#accept(String, String)
 	 */
 	@Test
 	public void testAccept() {
