@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.config;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.config;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 import javax.servlet.Filter;
 import javax.servlet.http.HttpSessionListener;
 
@@ -33,20 +33,38 @@ import net.bull.javamelody.MonitoringSpringAdvisor;
 import net.bull.javamelody.SpringContext;
 import net.bull.javamelody.SpringDataSourceFactoryBean;
 
+/**
+ * Configure JavaMelody.
+ *
+ * @author patrice
+ * @since 2017
+ * @see {@link https://github.com/javamelody/javamelody}
+ */
 @Configuration
 public class MelodyConfig {
+	/**
+	 * Logger.
+	 */
 	private static final Logger LOG =
 			LoggerFactory.getLogger(MelodyConfig.class);
 
+	/**
+	 * Get the data source factory.
+	 * @return Data source factory
+	 */
 	@Bean
 	public SpringDataSourceFactoryBean monitoringDataSourceFactoryBean() {
-		LOG.trace("Initialisation monitoringDataSourceFactoryBean");
+		LOG.trace("Initialize monitoringDataSourceFactoryBean");
 		final SpringDataSourceFactoryBean factory =
 				new SpringDataSourceFactoryBean();
 		factory.setTargetName("dataSource");
 		return factory;
 	}
 
+	/**
+	 * Get the spring context.
+	 * @return Spring context
+	 */
 	@Bean
 	public SpringContext javamelodySpringContext() {
 		LOG.trace("Initialize javamelodySpringContext");
@@ -54,9 +72,13 @@ public class MelodyConfig {
 		return context;
 	}
 
+	/**
+	 * Get the service monitoring.
+	 * @return Service monitoring advisor
+	 */
 	@Bean
 	public MonitoringSpringAdvisor springServiceMonitoringAdvisor() {
-		LOG.trace("Initialisation springServiceMonitoringAdvisor");
+		LOG.trace("Initialize springServiceMonitoringAdvisor");
 		final MonitoringSpringAdvisor advisor =
 				new MonitoringSpringAdvisor();
 		advisor.setPointcut(
@@ -64,9 +86,13 @@ public class MelodyConfig {
 		return advisor;
 	}
 
+	/**
+	 * Get the repository monitoring.
+	 * @return Repository monitoring advisor
+	 */
 	@Bean
 	public MonitoringSpringAdvisor springRepositoryMonitoringAdvisor() {
-		LOG.trace("Initialisation springRepositoryMonitoringAdvisor");
+		LOG.trace("Initialize springRepositoryMonitoringAdvisor");
 		final MonitoringSpringAdvisor advisor =
 				new MonitoringSpringAdvisor();
 		advisor.setPointcut(
@@ -74,9 +100,13 @@ public class MelodyConfig {
 		return advisor;
 	}
 
+	/**
+	 * Get the controller monitoring.
+	 * @return Controller monitoring advisor
+	 */
 	@Bean
 	public MonitoringSpringAdvisor springControllerMonitoringAdvisor() {
-		LOG.trace("Initialisation springControllerMonitoringAdvisor");
+		LOG.trace("Initialize springControllerMonitoringAdvisor");
 		final MonitoringSpringAdvisor advisor =
 				new MonitoringSpringAdvisor();
 		advisor.setPointcut(
@@ -84,9 +114,13 @@ public class MelodyConfig {
 		return advisor;
 	}
 
+	/**
+	 * Get the REST controller monitoring.
+	 * @return REST controller monitoring advisor
+	 */
 	@Bean
 	public MonitoringSpringAdvisor springRestControllerMonitoringAdvisor() {
-		LOG.trace("Initialisation springRestControllerMonitoringAdvisor");
+		LOG.trace("Initialize springRestControllerMonitoringAdvisor");
 		final MonitoringSpringAdvisor advisor =
 				new MonitoringSpringAdvisor();
 		advisor.setPointcut(
@@ -94,15 +128,23 @@ public class MelodyConfig {
 		return advisor;
 	}
 
+	/**
+	 * Get the JavaMelody session listener.
+	 * @return Session listener
+	 */
 	@Bean
 	public HttpSessionListener javaMelodyListener() {
-		LOG.trace("Initialisation javaMelodyListener");
+		LOG.trace("Initialize javaMelodyListener");
 		return new net.bull.javamelody.SessionListener();
 	}
 
+	/**
+	 * Get the JavaMelody filter.
+	 * @return Filter
+	 */
 	@Bean
 	public Filter javaMelodyFilter() {
-		LOG.trace("Initialisation javaMelodyFilter");
+		LOG.trace("Initialize javaMelodyFilter");
 		return new net.bull.javamelody.MonitoringFilter();
 	}
 

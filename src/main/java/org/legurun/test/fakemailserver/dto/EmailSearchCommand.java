@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.dto;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.dto;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.io.Serializable;
 import java.util.Date;
@@ -65,7 +65,7 @@ public class EmailSearchCommand implements Serializable {
 		return offset;
 	}
 
-	public void setOffset(Integer offset) {
+	public void setOffset(final Integer offset) {
 		this.offset = offset;
 	}
 
@@ -73,13 +73,18 @@ public class EmailSearchCommand implements Serializable {
 		return limit;
 	}
 
-	public void setLimit(Integer limit) {
+	public void setLimit(final Integer limit) {
 		this.limit = limit;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
-		return "EmailSearchCommand [senderId=" + senderId + ", recipient=" + recipient + ", sentSince=" + sentSince
-				+ ", sentBefore=" + sentBefore + ", offset=" + offset + ", limit=" + limit + "]";
+		return "EmailSearchCommand [senderId=" + senderId
+				+ ", recipient=" + recipient + ", sentSince=" + sentSince
+				+ ", sentBefore=" + sentBefore
+				+ ", offset=" + offset + ", limit=" + limit + "]";
 	}
 }

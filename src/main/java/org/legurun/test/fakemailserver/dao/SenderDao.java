@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.dao;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.dao;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import javax.cache.annotation.CachePut;
 import javax.cache.annotation.CacheResult;
@@ -27,30 +27,46 @@ import org.legurun.test.fakemailserver.model.Sender;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Sender DAO implementation.
+ *
+ * @author patrice
+ * @since 2017
+ */
 @Repository
 public class SenderDao extends AbstractDao<Sender> implements ISenderDao {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	@CacheResult(cacheName="senders")
+	@CacheResult(cacheName = "senders")
 	public Sender findByAddress(final String address) {
-		CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
-		CriteriaQuery<Sender> query = builder.createQuery(Sender.class);
-		Root<Sender> root = query.from(Sender.class);
+		final CriteriaBuilder builder =
+				this.getEntityManager().getCriteriaBuilder();
+		final CriteriaQuery<Sender> query = builder.createQuery(Sender.class);
+		final Root<Sender> root = query.from(Sender.class);
 		query.where(
 				builder.equal(root.get("address"), address)
 		);
 		return this.getEntityManager().createQuery(query).getSingleResult();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	@CachePut(cacheName="senders")
-	public void persist(Sender entity) {
+	@CachePut(cacheName = "senders")
+	public void persist(final Sender entity) {
 		super.persist(entity);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	@CacheEvict(cacheNames="senders")
-	public void delete(Sender entity) {
+	@CacheEvict(cacheNames = "senders")
+	public void delete(final Sender entity) {
 		super.delete(entity);
 	}
 }

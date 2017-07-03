@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.utils;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,42 +15,8 @@ package org.legurun.test.fakemailserver.utils;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.springframework.core.convert.converter.Converter;
-
 /**
- * Sort order.
- *
+ * Contains the Data Transfert Object (DTO) code.
  * @author patrice
- * @since 2017
  */
-public enum SortOrder {
-	/**
-	 * Ascending order.
-	 */
-	ASCENDING,
-	/**
-	 * Descending order.
-	 */
-	DESCENDING;
-
-	/**
-	 * Converter for SortOrder.
-	 * @author patrice
-	 * @since 2017
-	 */
-	public static class OrderConverter implements Converter<String, SortOrder> {
-		@SuppressWarnings("checkstyle:returncount")
-		@Override
-		public SortOrder convert(final String source) {
-			if ("asc".equals(source)) {
-				return SortOrder.ASCENDING;
-			}
-			else if ("desc".equals(source)) {
-				return SortOrder.DESCENDING;
-			}
-			else {
-				return null;
-			}
-		}
-	}
-}
+package org.legurun.test.fakemailserver.dto;

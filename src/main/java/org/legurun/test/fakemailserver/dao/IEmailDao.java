@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.dao;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.dao;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.util.Date;
 
@@ -24,7 +24,23 @@ import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.utils.PagedList;
 
+/**
+ * Email DAO.
+ *
+ * @author patrice
+ * @since 2017
+ */
 public interface IEmailDao extends IDao<Email> {
+	/**
+	 * Search emails.
+	 * @param sender Sender
+	 * @param recipient Recipient address
+	 * @param sentSince Date since the email was sent
+	 * @param sentBefore Date before the email was sent
+	 * @param start Start index for pagination
+	 * @param limit Limit results for pagination
+	 * @return Search result
+	 */
 	PagedList<EmailSearchReport> search(Sender sender,
 		String recipient, Date sentSince, Date sentBefore,
 		Integer start, Integer limit);

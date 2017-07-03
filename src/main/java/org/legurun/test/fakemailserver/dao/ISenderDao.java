@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.dao;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,11 +15,22 @@ package org.legurun.test.fakemailserver.dao;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import org.legurun.test.fakemailserver.model.Sender;
 
+/**
+ * Sender DAO.
+ *
+ * @author patrice
+ * @since 2017
+ */
 public interface ISenderDao extends IDao<Sender> {
 
+	/**
+	 * Find a sender by his address.
+	 * @param address Adress
+	 * @return Sender or <code>null</code> if not found
+	 */
 	Sender findByAddress(String address);
 }

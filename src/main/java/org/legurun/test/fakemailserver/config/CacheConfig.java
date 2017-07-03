@@ -1,8 +1,6 @@
 package org.legurun.test.fakemailserver.config;
 
-import java.io.IOException;
-
-/******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,8 +15,9 @@ import java.io.IOException;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
+import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,24 +29,47 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
+/**
+ * Cache configuration.
+ *
+ * @author patrice
+ * @since 2017
+ */
 @Configuration
 @EnableCaching
 public class CacheConfig {
-	private static final Logger LOG = LoggerFactory.getLogger(CacheConfig.class);
+	/**
+	 * Logger.
+	 */
+	private static final Logger LOG =
+			LoggerFactory.getLogger(CacheConfig.class);
 
+	/**
+	 * Construct the cache manager for Spring.
+	 * @return Cache manager for Spring
+	 * @throws IOException Configuration of the manager failed
+	 */
 	@Bean
 	public CacheManager cacheManager() throws IOException {
-		LOG.trace("Initialisation cacheManager");
-		JCacheCacheManager cacheManager = new JCacheCacheManager();
+		LOG.trace("Initialize cacheManager");
+		final JCacheCacheManager cacheManager =
+				new JCacheCacheManager();
 		cacheManager.setCacheManager(jcacheManager().getObject());
 		return cacheManager;
 	}
 
+	/**
+	 * Construct the JCache cache manager.
+	 * @return Cache manager
+	 * @throws IOException Configuration of the manager failed
+	 */
 	@Bean
 	public JCacheManagerFactoryBean jcacheManager() throws IOException {
-		LOG.trace("Initialisation jcacheManager");
-		JCacheManagerFactoryBean cacheManagerFactory = new JCacheManagerFactoryBean();
-		cacheManagerFactory.setCacheManagerUri(new ClassPathResource("ehcache.xml").getURI());
+		LOG.trace("Initialize jcacheManager");
+		final JCacheManagerFactoryBean cacheManagerFactory =
+				new JCacheManagerFactoryBean();
+		cacheManagerFactory.setCacheManagerUri(
+				new ClassPathResource("ehcache.xml").getURI());
 		return cacheManagerFactory;
 	}
 }

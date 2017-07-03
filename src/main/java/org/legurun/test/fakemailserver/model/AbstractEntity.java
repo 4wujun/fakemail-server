@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.model;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.model;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.io.Serializable;
 import java.util.Date;
@@ -34,62 +34,111 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Common class for persisted entities.
+ *
+ * @author patrice
+ * @since 2017
+ */
 @SuppressWarnings("serial")
 @MappedSuperclass
 @JsonIgnoreProperties({ "version", "dateCreated", "lastUpdated" })
 public abstract class AbstractEntity implements Serializable {
-	private Long id;
-	private Long version;
-	private Date dateCreated;
-	private Date lastUpdated;
-
-	public AbstractEntity() {
-		super();
-	}
-
+	/**
+	 * Identifier.
+	 */
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	/**
+	 * Version number for optimistic locking.
+	 */
+	@Version
+	@Column(name = "version", nullable = false)
+	private Long version;
+	/**
+	 * Creation date.
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_created", nullable = false)
+	@CreationTimestamp
+	private Date dateCreated;
+	/**
+	 * Last modification date.
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "last_updated", nullable = false)
+	@UpdateTimestamp
+	private Date lastUpdated;
+
+	/**
+	 * Get the identifier.
+	 * @return Identifier
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * Set the identifier.
+	 * @param id Identifier
+	 */
 	public void setId(final Long id) {
 		this.id = id;
 	}
 
-	@Version
-	@Column(name = "version", nullable = false)
+	/**
+	 * Get the entity version.
+	 * @return Version number
+	 */
 	public Long getVersion() {
 		return version;
 	}
 
+	/**
+	 * Set the entity version.
+	 * @param version Version number
+	 */
 	public void setVersion(final Long version) {
 		this.version = version;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_created", nullable = false)
-	@CreationTimestamp
+	/**
+	 * Get the creation date.
+	 * @return Creation date
+	 */
 	public Date getDateCreated() {
 		return dateCreated;
 	}
 
+	/**
+	 * Set the creation date.
+	 * @param dateCreated Creation date
+	 */
 	public void setDateCreated(final Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "last_updated", nullable = false)
-	@UpdateTimestamp
+	/**
+	 * Get the last modification date.
+	 * @return Last modification date
+	 */
 	public Date getLastUpdated() {
 		return lastUpdated;
 	}
 
+	/**
+	 * Set the modification date.
+	 * @param lastUpdated Modification date
+	 */
 	public void setLastUpdated(final Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -100,6 +149,9 @@ public abstract class AbstractEntity implements Serializable {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -111,7 +163,7 @@ public abstract class AbstractEntity implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		AbstractEntity other = (AbstractEntity) obj;
+		final AbstractEntity other = (AbstractEntity) obj;
 		if (id == null) {
 			if (other.id != null) {
 				return false;
@@ -123,6 +175,9 @@ public abstract class AbstractEntity implements Serializable {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + " [id=" + id + "]";

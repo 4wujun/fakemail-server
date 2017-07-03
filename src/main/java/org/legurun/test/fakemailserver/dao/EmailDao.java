@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.dao;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.dao;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,35 +37,60 @@ import org.legurun.test.fakemailserver.utils.PagedList;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+/**
+ * DAO implementation for Email entity.
+ *
+ * @author patrice
+ * @since 2017
+ * @see Email
+ */
 @Repository
 public class EmailDao extends AbstractDao<Email> implements IEmailDao {
+	@SuppressWarnings("checkstyle:multiplestringliterals")
 	@Override
 	public PagedList<EmailSearchReport> search(final Sender sender,
-			final String recipient, final Date sentSince, final Date sentBefore,
-			final Integer start, final Integer limit) {
-		PagedList<EmailSearchReport> pagedList = new PagedList<EmailSearchReport>();
+			final String recipient, final Date sentSince,
+			final Date sentBefore, final Integer start,
+			final Integer limit) {
+		final PagedList<EmailSearchReport> pagedList =
+				new PagedList<EmailSearchReport>();
 
-		CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
-		CriteriaQuery<EmailSearchReport> query = builder.createQuery(EmailSearchReport.class);
-		Root<Email> rootEmail = query.from(Email.class);
-		Join<Email, Sender> joinSender = rootEmail.join("sender", JoinType.INNER);
-		query.select(builder.construct(EmailSearchReport.class, rootEmail.get("id"), joinSender.get("address"), rootEmail.get("recipient"), rootEmail.get("sentDate"), rootEmail.get("subject")));
-		List<Predicate> predicates = new ArrayList<Predicate>();
+		final CriteriaBuilder builder =
+				this.getEntityManager().getCriteriaBuilder();
+		final CriteriaQuery<EmailSearchReport> query =
+				builder.createQuery(EmailSearchReport.class);
+		final Root<Email> rootEmail = query.from(Email.class);
+		final Join<Email, Sender> joinSender =
+				rootEmail.join("sender", JoinType.INNER);
+		query.select(
+				builder.construct(
+						EmailSearchReport.class, rootEmail.get("id"),
+						joinSender.get("address"), rootEmail.get("recipient"),
+						rootEmail.get("sentDate"), rootEmail.get("subject")));
+		final List<Predicate> predicates = new ArrayList<Predicate>();
 		if (sender != null) {
 			predicates.add(builder.equal(rootEmail.get("sender"), sender));
 		}
 		if (StringUtils.hasText(recipient)) {
-			predicates.add(builder.like(builder.upper(rootEmail.get("recipient")), "%" + recipient.trim().toUpperCase() + "%"));
+			predicates.add(
+					builder.like(
+							builder.upper(
+									rootEmail.get("recipient")),
+							"%" + recipient.trim().toUpperCase() + "%"));
 		}
 		if (sentSince != null) {
-			predicates.add(builder.greaterThanOrEqualTo(rootEmail.get("sentDate"), sentSince));
+			predicates.add(
+					builder.greaterThanOrEqualTo(
+							rootEmail.get("sentDate"), sentSince));
 		}
 		if (sentBefore != null) {
-			predicates.add(builder.lessThanOrEqualTo(rootEmail.get("sentDate"), sentBefore));
+			predicates.add(
+					builder.lessThanOrEqualTo(
+							rootEmail.get("sentDate"), sentBefore));
 		}
 		query.where(predicates.toArray(new Predicate[] {}));
-		List<Order> orders = new ArrayList<Order>();
-/*		if (sortProperty != null) {
+		final List<Order> orders = new ArrayList<Order>();
+		/* if (sortProperty != null) {
 			String propertyName = sortProperty;
 			if ("sender".equals(sortProperty)) {
 				propertyName = "sender.address";
@@ -79,18 +104,21 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 		}*/
 		orders.add(builder.asc(rootEmail.get("sentDate")));
 		query.orderBy(orders);
-		TypedQuery<EmailSearchReport> typedQueryList = this.getEntityManager().createQuery(query);
+		final TypedQuery<EmailSearchReport> typedQueryList =
+				this.getEntityManager().createQuery(query);
 		if (start != null && limit != null) {
 			typedQueryList.setFirstResult(start);
 			typedQueryList.setMaxResults(limit);
 		}
 		pagedList.setData(typedQueryList.getResultList());
 
-		CriteriaQuery<Number> queryCount = builder.createQuery(Number.class);
-		Root<Email> rootCount = queryCount.from(Email.class);
+		final CriteriaQuery<Number> queryCount =
+				builder.createQuery(Number.class);
+		final Root<Email> rootCount = queryCount.from(Email.class);
 		queryCount.select(builder.count(rootCount));
 		queryCount.where(query.getRestriction());
-		pagedList.setTotal(this.getEntityManager().createQuery(queryCount).getSingleResult());
+		pagedList.setTotal(this.getEntityManager().
+				createQuery(queryCount).getSingleResult());
 
 		return pagedList;
 	}

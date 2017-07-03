@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.config;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.config;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
@@ -28,8 +28,19 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-	private static final Logger LOG = LoggerFactory.getLogger(AppInitializer.class);
+/**
+ * Main initializer code.
+ *
+ * @author patrice
+ * @since 2017
+ */
+public class AppInitializer
+		extends AbstractAnnotationConfigDispatcherServletInitializer {
+	/**
+	 * Logger.
+	 */
+	private static final Logger LOG =
+			LoggerFactory.getLogger(AppInitializer.class);
 
 	/**
 	 * {@inheritDoc}

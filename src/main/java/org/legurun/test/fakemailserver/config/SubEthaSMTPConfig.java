@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.config;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.config;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -32,24 +32,50 @@ import org.subethamail.smtp.MessageHandlerFactory;
 import org.subethamail.smtp.helper.SimpleMessageListenerAdapter;
 import org.subethamail.smtp.server.SMTPServer;
 
+/**
+ * Configuration for the SMTP server.
+ *
+ * @author patrice
+ * @since 2017
+ * @see SMTPServer
+ */
 @Component
 @ComponentScan(basePackages = "org.legurun.test.fakemailserver.mail")
 public class SubEthaSMTPConfig {
-	private static final Logger LOG = LoggerFactory.getLogger(SubEthaSMTPConfig.class);
+	/**
+	 * Logger.
+	 */
+	private static final Logger LOG =
+			LoggerFactory.getLogger(SubEthaSMTPConfig.class);
 
+	/**
+	 * Execution environment.
+	 */
 	@Autowired
 	private Environment environment;
 
+	/**
+	 * Get the SMTP server.
+	 *
+	 * @param mailService Mail managment service.
+	 * @return SMTP server
+	 * @throws UnknownHostException Listening host unknown
+	 */
 	@Autowired
 	@Bean(initMethod = "start", destroyMethod = "stop")
-	public SMTPServer smtpServer(final IEmailService mailService) throws UnknownHostException {
-		LOG.trace("Initialisation smtpServer");
-		MessageHandlerFactory factory = new SimpleMessageListenerAdapter(mailService);
+	public SMTPServer smtpServer(final IEmailService mailService)
+			throws UnknownHostException {
+		LOG.trace("Initialize smtpServer");
+		final MessageHandlerFactory factory =
+				new SimpleMessageListenerAdapter(mailService);
 
-		String listenHost = environment.getRequiredProperty("smtp.listen.host");
-		int listenPort = environment.getRequiredProperty("smtp.listen.port", Integer.class);
+		final String listenHost =
+				environment.getRequiredProperty("smtp.listen.host");
+		final int listenPort =
+				environment.getRequiredProperty("smtp.listen.port",
+						Integer.class);
 		LOG.debug("Listening on {}:{}", listenHost, listenPort);
-		SMTPServer server = new SMTPServer(factory);
+		final SMTPServer server = new SMTPServer(factory);
 		server.setSoftwareName("Fakemail Server");
 		server.setBindAddress(InetAddress.getByName(listenHost));
 		server.setPort(listenPort);

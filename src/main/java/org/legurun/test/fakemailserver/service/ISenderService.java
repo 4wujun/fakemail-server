@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.service;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,15 +15,30 @@ package org.legurun.test.fakemailserver.service;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.util.List;
 
 import org.legurun.test.fakemailserver.model.Sender;
 
+/**
+ * Sender service.
+ *
+ * @author patrice
+ * @since 2017
+ */
 public interface ISenderService {
 
+	/**
+	 * Get a sender by identifier.
+	 * @param id Identifier
+	 * @return Sender or <code>null</code> if not found
+	 */
 	Sender get(Long id);
 
+	/**
+	 * List all the senders.
+	 * @return Senders list.
+	 */
 	List<Sender> list();
 }

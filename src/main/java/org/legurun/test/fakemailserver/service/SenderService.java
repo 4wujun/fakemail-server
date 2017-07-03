@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.service;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.service;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.util.List;
 
@@ -29,24 +29,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Sender service implementation.
+ *
+ * @author patrice
+ * @since 2017
+ */
 @Service
 @Transactional
 public class SenderService implements ISenderService {
+	/**
+	 * Logger.
+	 */
 	private static final Logger LOG =
 			LoggerFactory.getLogger(SenderService.class);
 
+	/**
+	 * Sender DAO.
+	 */
 	@Autowired
 	private ISenderDao senderDao;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	@CacheResult(cacheName="senders")
+	@CacheResult(cacheName = "senders")
 	public List<Sender> list() {
 		LOG.debug("Getting list of senders");
 		return senderDao.list();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	@CacheResult(cacheName="senders")
+	@CacheResult(cacheName = "senders")
 	public Sender get(final Long id) {
 		LOG.debug("Getting sender id = {}", id);
 		return senderDao.get(id);

@@ -45,7 +45,7 @@
         <sql dbms="mysql">
         	update email set sent_date = date_created;
         </sql>
-        <addNotNullConstraint tableName="email" columnName="date_sent" columnDataType="datetime"/>
+        <addNotNullConstraint tableName="email" columnName="sent_date" columnDataType="datetime"/>
     </changeSet>
     <changeSet author="patrice (generated)" id="1486299388049-3">
         <addColumn tableName="email">

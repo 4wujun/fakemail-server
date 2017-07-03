@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.config;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.config;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import org.legurun.test.fakemailserver.utils.SortOrder;
 import org.slf4j.Logger;
@@ -27,21 +27,35 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+/**
+ * Configuration for Spring MVC.
+ *
+ * @author patrice
+ * @since 2017
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "org.legurun.test.fakemailserver.controller")
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
+	/**
+	 * Logger.
+	 */
 	private static final Logger LOG =
 			LoggerFactory.getLogger(WebMvcConfig.class);
 
+	/**
+	 * Get the view resolver for JSP.
+	 * @return View resolver
+	 */
 	@Bean
 	public ViewResolver viewResolver() {
-		LOG.trace("Initialisation viewResolver");
-		InternalResourceViewResolver viewResolver =
+		LOG.trace("Initialize viewResolver");
+		final InternalResourceViewResolver viewResolver =
 				new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/views/");
 		viewResolver.setSuffix(".jsp");
@@ -52,14 +66,18 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+	public void addResourceHandlers(
+			final ResourceHandlerRegistry registry) {
 		LOG.trace("Add resource handlers");
-		registry.addResourceHandler("/webjars/**")
-			.addResourceLocations("classpath:/META-INF/resources/webjars/")
-			.resourceChain(true);
-		registry.addResourceHandler("/static/**")
-			.addResourceLocations("/static/")
-			.resourceChain(true);
+		final ResourceHandlerRegistration registrationWebJars =
+				registry.addResourceHandler("/webjars/**");
+		registrationWebJars.addResourceLocations(
+				"classpath:/META-INF/resources/webjars/");
+		registrationWebJars.resourceChain(true);
+		final ResourceHandlerRegistration registrationStatic =
+				registry.addResourceHandler("/static/**");
+		registrationStatic.addResourceLocations("/static/");
+		registrationStatic.resourceChain(true);
 	}
 
 	/**

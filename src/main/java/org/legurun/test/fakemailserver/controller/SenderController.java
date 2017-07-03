@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.controller;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.controller;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.util.List;
 
@@ -26,13 +26,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Sender REST controller.
+ *
+ * @author patrice
+ * @since 2017
+ */
 @RestController
 @RequestMapping("/api/sender")
 public class SenderController {
 
+	/**
+	 * Sender service.
+	 */
 	@Autowired
 	private ISenderService senderService;
 
+	/**
+	 * List the senders.
+	 * @return Senders list
+	 */
 	@GetMapping
 	public List<Sender> list() {
 		return senderService.list();

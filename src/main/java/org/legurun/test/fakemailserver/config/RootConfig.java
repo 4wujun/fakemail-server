@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.config;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.config;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,26 +27,45 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
+/**
+ * Root configuration.
+ *
+ * @author patrice
+ * @since 2017
+ */
 @Configuration
 @PropertySource(value = "classpath:application.properties")
 @PropertySource(value = "file:${externalConfigurationLocation}",
 		ignoreResourceNotFound = true)
 @ComponentScan(basePackages = "org.legurun.test.fakemailserver.service")
 public class RootConfig {
-	private static final Logger LOG = LoggerFactory.getLogger(RootConfig.class);
+	/**
+	 * Logger.
+	 */
+	private static final Logger LOG =
+			LoggerFactory.getLogger(RootConfig.class);
 
+	/**
+	 * Get the message source.
+	 * @return Message source
+	 */
 	@Bean
 	public MessageSource messageSource() {
-		LOG.trace("Initialisation messageSource");
-		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		LOG.trace("Initialize messageSource");
+		final ReloadableResourceBundleMessageSource messageSource =
+				new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("classpath:messages");
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
 	}
 
+	/**
+	 * Get default auto-proxxy creator.
+	 * @return Auto-proxy creator
+	 */
 	@Bean
 	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
-		LOG.trace("Initialisation defaultAdvisorAutoProxyCreator");
+		LOG.trace("Initialize defaultAdvisorAutoProxyCreator");
 		return new DefaultAdvisorAutoProxyCreator();
 	}
 }

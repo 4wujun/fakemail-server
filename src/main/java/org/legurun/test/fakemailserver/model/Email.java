@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.model;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.model;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.util.Date;
 
@@ -29,6 +29,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * Email entity.
+ *
+ * @author patrice
+ * @since 2017
+ */
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "email", indexes = {
@@ -37,60 +43,112 @@ import javax.persistence.TemporalType;
 	@Index(name = "message_subject_idx", columnList = "subject")
 })
 public class Email extends AbstractEntity {
-	private Sender sender;
-	private String recipient;
-	private Date sentDate;
-	private String subject;
-	private byte[] message;
-
-	public Email() {
-		super();
-	}
-
+	/**
+	 * Sender.
+	 */
 	@ManyToOne
 	@JoinColumn(name = "sender_id", nullable = false)
+	private Sender sender;
+	/**
+	 * Recipient address.
+	 */
+	@Column(name = "recipient", nullable = false, length = 250)
+	private String recipient;
+	/**
+	 * Sent date.
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "sent_date", nullable = false)
+	private Date sentDate;
+	/**
+	 * Subject.
+	 */
+	@Column(name = "subject", nullable = true, length = 250)
+	private String subject;
+	/**
+	 * Full message.
+	 */
+	@Lob
+	@Column(name = "message", nullable = false)
+	private byte[] message;
+
+
+	/**
+	 * Get the sender.
+	 * @return Sender
+	 */
 	public Sender getSender() {
 		return sender;
 	}
 
+	/**
+	 * Set the sender.
+	 * @param sender Sender
+	 */
 	public void setSender(final Sender sender) {
 		this.sender = sender;
 	}
 
-	@Column(name = "recipient", nullable = false, length = 250)
+	/**
+	 * Get the recipient address.
+	 * @return Recipient address
+	 */
 	public String getRecipient() {
 		return recipient;
 	}
 
+	/**
+	 * Set the recipient address.
+	 * @param recipient Recipient address
+	 */
 	public void setRecipient(final String recipient) {
 		this.recipient = recipient;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "sent_date", nullable = false)
+	/**
+	 * Get the sent date.
+	 * @return Sent date
+	 */
 	public Date getSentDate() {
 		return sentDate;
 	}
 
+	/**
+	 * Set the sent date.
+	 * @param sentDate Sent date
+	 */
 	public void setSentDate(final Date sentDate) {
 		this.sentDate = sentDate;
 	}
 
-	@Column(name = "subject", nullable = true, length = 250)
+	/**
+	 * Get the sent date.
+	 * @return Sent date
+	 */
 	public String getSubject() {
 		return subject;
 	}
 
+	/**
+	 * Set the subject.
+	 * @param subject Subject
+	 */
 	public void setSubject(final String subject) {
 		this.subject = subject;
 	}
 
-	@Lob
-	@Column(name = "message", nullable = false)
+	/**
+	 * Get the full message.
+	 * @return Message
+	 */
 	public byte[] getMessage() {
 		return message;
 	}
 
+	/**
+	 * Set the full message.
+	 * @param message Message
+	 */
 	public void setMessage(final byte[] message) {
 		this.message = message;
 	}

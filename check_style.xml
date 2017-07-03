@@ -1,20 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright (C) 2017 Patrice Le Gurun
-
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU Lesser General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU Lesser General Public License for more details.
-
-  You should have received a copy of the GNU Lesser General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN" "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 
 <!--
@@ -29,6 +13,7 @@
   <property name="fileExtensions" value="java, properties, xml"/>
   <module name="TreeWalker">
     <module name="FileContentsHolder"/>
+    <module name="SuppressWarningsHolder"/>
     <module name="JavadocMethod"/>
     <module name="JavadocType"/>
     <module name="JavadocVariable"/>
@@ -48,7 +33,9 @@
     <module name="UnusedImports">
       <property name="processJavadoc" value="false"/>
     </module>
-    <module name="LineLength"/>
+    <module name="LineLength">
+      <property name="tabWidth" value="4"/>
+    </module>
     <module name="MethodLength"/>
     <module name="ParameterNumber"/>
     <module name="EmptyForIteratorPad"/>
@@ -79,7 +66,11 @@
     </module>
     <module name="IllegalInstantiation"/>
     <module name="InnerAssignment"/>
-    <module name="MagicNumber"/>
+    <module name="MagicNumber">
+      <property name="ignoreHashCodeMethod" value="true"/>
+      <property name="ignoreAnnotation" value="true"/>
+      <property name="constantWaiverParentToken" value="TYPECAST,METHOD_CALL,EXPR,ARRAY_INIT,UNARY_MINUS,UNARY_PLUS,ELIST,STAR,ASSIGN,PLUS,MINUS,DIV,LITERAL_NEW"/>
+    </module>
     <module name="MissingSwitchDefault"/>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
@@ -88,9 +79,94 @@
     <module name="InterfaceIsType"/>
     <module name="VisibilityModifier"/>
     <module name="ArrayTypeStyle"/>
-    <module name="FinalParameters"/>
+    <module name="FinalParameters">
+      <property name="tokens" value="METHOD_DEF,CTOR_DEF,LITERAL_CATCH"/>
+    </module>
     <module name="TodoComment"/>
     <module name="UpperEll"/>
+    <module name="SuppressWarnings"/>
+    <module name="MissingDeprecated"/>
+    <module name="MissingOverride"/>
+    <module name="PackageAnnotation"/>
+    <module name="AnnotationLocation"/>
+    <module name="AtclauseOrder"/>
+    <module name="JavadocParagraph"/>
+    <module name="SingleLineJavadoc"/>
+    <module name="AbstractClassName"/>
+    <module name="ClassTypeParameterName"/>
+    <module name="MethodTypeParameterName"/>
+    <module name="InterfaceTypeParameterName"/>
+    <module name="CatchParameterName"/>
+    <module name="AbbreviationAsWordInName">
+      <property name="allowedAbbreviations" value="SMTP"/>
+    </module>
+    <module name="NonEmptyAtclauseDescription"/>
+    <module name="JavadocTagContinuationIndentation"/>
+    <module name="WriteTag"/>
+    <module name="AnnotationUseStyle"/>
+    <module name="AvoidStaticImport"/>
+    <module name="ImportOrder">
+      <property name="option" value="above"/>
+      <property name="groups" value="/^java\./,javax,org,com"/>
+      <property name="separated" value="true"/>
+      <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
+    <module name="AnonInnerLength"/>
+    <module name="ParameterNumber">
+      <property name="ignoreOverriddenMethods" value="true"/>
+    </module>
+    <module name="MethodCount"/>
+    <module name="EmptyForInitializerPad"/>
+    <module name="EmptyLineSeparator">
+      <property name="allowNoEmptyLineBetweenFields" value="true"/>
+    </module>
+    <module name="SeparatorWrap"/>
+    <module name="SingleSpaceSeparator"/>
+    <module name="EmptyCatchBlock"/>
+    <module name="DefaultComesLast"/>
+    <module name="DeclarationOrder"/>
+    <module name="EqualsAvoidNull"/>
+    <module name="ExplicitInitialization"/>
+    <module name="FallThrough"/>
+    <module name="FinalLocalVariable">
+      <property name="tokens" value="PARAMETER_DEF,VARIABLE_DEF"/>
+    </module>
+    <module name="IllegalCatch"/>
+    <module name="IllegalThrows"/>
+    <module name="IllegalType">
+      <property name="tokens" value="METHOD_DEF,PARAMETER_DEF,VARIABLE_DEF"/>
+    </module>
+    <module name="ModifiedControlVariable"/>
+    <module name="MultipleStringLiterals">
+      <property name="ignoreOccurrenceContext" value="ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ANNOTATIONS,ANNOTATION,ANNOTATION_MEMBER_VALUE_PAIR,ANNOTATION_ARRAY_INIT"/>
+    </module>
+    <module name="MultipleVariableDeclarations"/>
+    <module name="NestedForDepth"/>
+    <module name="NestedTryDepth"/>
+    <module name="NestedIfDepth"/>
+    <module name="NoClone"/>
+    <module name="PackageDeclaration"/>
+    <module name="RequireThis"/>
+    <module name="ReturnCount"/>
+    <module name="StringLiteralEquality"/>
+    <module name="SuperClone"/>
+    <module name="SuperFinalize"/>
+    <module name="UnnecessaryParentheses"/>
+    <module name="OneStatementPerLine"/>
+    <module name="InnerTypeLast"/>
+    <module name="MutableException"/>
+    <module name="ThrowsCount"/>
+    <module name="BooleanExpressionComplexity"/>
+    <module name="ClassDataAbstractionCoupling"/>
+    <module name="ClassFanOutComplexity"/>
+    <module name="CyclomaticComplexity"/>
+    <module name="JavaNCSS"/>
+    <module name="NPathComplexity"/>
+    <module name="CommentsIndentation"/>
+    <module name="TrailingComment"/>
+    <module name="UncommentedMain"/>
+    <module name="OuterTypeFilename"/>
+    <module name="AvoidEscapedUnicodeCharacters"/>
   </module>
   <module name="JavadocPackage"/>
   <module name="NewlineAtEndOfFile"/>
@@ -101,4 +177,6 @@
     <property name="message" value="Line has trailing spaces."/>
   </module>
   <module name="SuppressionCommentFilter"/>
+  <module name="UniqueProperties"/>
+  <module name="SuppressWarningsFilter"/>
 </module>

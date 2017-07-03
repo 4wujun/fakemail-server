@@ -1,6 +1,6 @@
 package org.legurun.test.fakemailserver.service;
 
-/*******************************************************************************
+/*
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@ package org.legurun.test.fakemailserver.service;
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -42,17 +42,36 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StreamUtils;
 import org.subethamail.smtp.TooMuchDataException;
 
+/**
+ * Email management service implementation.
+ *
+ * @author patrice
+ * @since 2017
+ */
 @Service
 @Transactional
 public class EmailService implements IEmailService {
-	private static final Logger LOG = LoggerFactory.getLogger(EmailService.class);
+	/**
+	 * Logger.
+	 */
+	private static final Logger LOG =
+			LoggerFactory.getLogger(EmailService.class);
 
+	/**
+	 * Sender service.
+	 */
 	@Autowired
 	private ISenderService senderService;
 
+	/**
+	 * Email DAO.
+	 */
 	@Autowired
 	private IEmailDao emailDao;
 
+	/**
+	 * Sender DAO.
+	 */
 	@Autowired
 	private ISenderDao senderDao;
 
@@ -60,7 +79,8 @@ public class EmailService implements IEmailService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public PagedList<EmailSearchReport> search(final EmailSearchCommand searchCommand) {
+	public PagedList<EmailSearchReport> search(
+			final EmailSearchCommand searchCommand) {
 		LOG.debug("Getting list of emails");
 		Sender sender = null;
 		if (searchCommand.getSenderId() != null) {
@@ -76,9 +96,10 @@ public class EmailService implements IEmailService {
 	 */
 	@Override
 	public MimeMessage parse(final Email email) throws MessagingException {
-		Session session = Session.getDefaultInstance(new Properties());
-		ByteArrayInputStream inputStream = new ByteArrayInputStream(email.getMessage());
-		MimeMessage message = new MimeMessage(session, inputStream);
+		final Session session = Session.getDefaultInstance(new Properties());
+		final ByteArrayInputStream inputStream =
+				new ByteArrayInputStream(email.getMessage());
+		final MimeMessage message = new MimeMessage(session, inputStream);
 		return message;
 	}
 
@@ -94,27 +115,32 @@ public class EmailService implements IEmailService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void deliver(final String from, final String recipient, final InputStream data) throws TooMuchDataException, IOException {
-		LOG.debug(String.format("Receiving message from %s to %s", from, recipient));
+	public void deliver(final String from, final String recipient,
+			final InputStream data) throws TooMuchDataException, IOException {
+		LOG.debug(String.format("Receiving message from %s to %s",
+				from, recipient));
 		Sender sender = senderDao.findByAddress(from);
 		if (sender == null) {
 			sender = new Sender();
 			sender.setAddress(from);
 			senderDao.persist(sender);
 		}
-		Email email = new Email();
+		final Email email = new Email();
 		email.setRecipient(recipient);
 		email.setMessage(StreamUtils.copyToByteArray(data));
 		email.setSentDate(new Date());
 		try {
-			Session session = Session.getDefaultInstance(new Properties());
-			MimeMessage message = new MimeMessage(session, new ByteArrayInputStream(email.getMessage()));
+			final Session session =
+					Session.getDefaultInstance(new Properties());
+			final MimeMessage message =
+					new MimeMessage(session,
+							new ByteArrayInputStream(email.getMessage()));
 			email.setSubject(message.getSubject());
 			if (message.getSentDate() != null) {
 				email.setSentDate(message.getSentDate());
 			}
 		}
-		catch (MessagingException ex) {
+		catch (final MessagingException ex) {
 			LOG.error("Cannot analyze mail content", ex);
 		}
 		sender.addEmail(email);
