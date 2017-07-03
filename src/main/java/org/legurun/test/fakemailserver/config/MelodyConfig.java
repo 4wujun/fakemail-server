@@ -38,7 +38,7 @@ import net.bull.javamelody.SpringDataSourceFactoryBean;
  *
  * @author patrice
  * @since 2017
- * @see {@link https://github.com/javamelody/javamelody}
+ * @see <a href="https://github.com/javamelody/javamelody">Java Melody</a>
  */
 @Configuration
 public class MelodyConfig {

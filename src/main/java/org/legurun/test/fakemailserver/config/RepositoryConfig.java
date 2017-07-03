@@ -51,7 +51,7 @@ import liquibase.integration.spring.SpringLiquibase;
  *
  * @author patrice
  * @since 2017
- * @see {@link http://www.liquibase.org/} for model management
+ * @see <a href="http://www.liquibase.org/">Liquibase</a>
  */
 @Configuration
 @EnableTransactionManagement
