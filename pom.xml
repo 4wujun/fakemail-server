@@ -69,7 +69,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<checkstyle.version>2.17</checkstyle.version>
 		<checkstyle.config.location>${basedir}/src/config/check_style.xml</checkstyle.config.location>
 		<findbugs.version>3.0.4</findbugs.version>
-		<findbugs.excludeFilterFile>${basedir}/src/config/pmdExcludeFilters.xml</findbugs.excludeFilterFile>
+		<findbugs.excludeFilterFile>${basedir}/src/config/findbugsExcludeFilter.xml</findbugs.excludeFilterFile>
 	</properties>
 
 	<prerequisites>
