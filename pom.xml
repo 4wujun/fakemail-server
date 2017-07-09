@@ -66,6 +66,10 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<tomcat.version>[7.0,8.0)</tomcat.version>
 		<melody.version>1.68.0</melody.version>
 		<junit.version>4.12</junit.version>
+		<checkstyle.version>2.17</checkstyle.version>
+		<checkstyle.config.location>${basedir}/src/config/check_style.xml</checkstyle.config.location>
+		<findbugs.version>3.0.4</findbugs.version>
+		<findbugs.excludeFilterFile>${basedir}/src/config/pmdExcludeFilters.xml</findbugs.excludeFilterFile>
 	</properties>
 
 	<prerequisites>
@@ -241,6 +245,12 @@ The main use is for testing software which sends mail, to forbid sending to real
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>annotations</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -453,10 +463,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.17</version>
-				<configuration>
-					<configLocation>src/config/check_style.xml</configLocation>
-				</configuration>
+				<version>${checkstyle.version}</version>
 				<dependencies>
 					<dependency>
 						<groupId>com.puppycrawl.tools</groupId>
@@ -464,6 +471,11 @@ The main use is for testing software which sends mail, to forbid sending to real
 						<version>7.8.2</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${findbugs.version}</version>
 			</plugin>
 		</plugins>
 	</build>
@@ -474,6 +486,11 @@ The main use is for testing software which sends mail, to forbid sending to real
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>2.20</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${findbugs.version}</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -487,21 +504,8 @@ The main use is for testing software which sends mail, to forbid sending to real
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.17</version>
-				<configuration>
-					<configLocation>src/config/check_style.xml</configLocation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.10.4</version>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>3.0.4</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

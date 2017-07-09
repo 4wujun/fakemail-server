@@ -30,6 +30,8 @@ import org.hibernate.annotations.NaturalId;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Sender entity.
  *
@@ -37,6 +39,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @since 2017
  */
 @SuppressWarnings("serial")
+@SuppressFBWarnings("SE_NO_SERIALVERSIONID")
 @Entity
 @Table(name = "sender")
 @JsonIgnoreProperties("emails")

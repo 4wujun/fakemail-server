@@ -20,6 +20,8 @@ package org.legurun.test.fakemailserver.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 @SuppressWarnings("serial")
 public class EmailSearchReport implements Serializable {
 	private Long id;
@@ -31,6 +33,7 @@ public class EmailSearchReport implements Serializable {
 	public EmailSearchReport() {
 	}
 
+	@SuppressFBWarnings("EI_EXPOSE_REP2")
 	public EmailSearchReport(final Long id, final String sender,
 			final String recipient, final Date sentDate,
 			final String subject) {
@@ -65,10 +68,12 @@ public class EmailSearchReport implements Serializable {
 		this.recipient = recipient;
 	}
 
+	@SuppressFBWarnings("EI_EXPOSE_REP")
 	public Date getSentDate() {
 		return sentDate;
 	}
 
+	@SuppressFBWarnings("EI_EXPOSE_REP2")
 	public void setSentDate(final Date sentDate) {
 		this.sentDate = sentDate;
 	}

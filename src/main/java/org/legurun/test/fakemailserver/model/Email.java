@@ -29,6 +29,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Email entity.
  *
@@ -36,6 +38,7 @@ import javax.persistence.TemporalType;
  * @since 2017
  */
 @SuppressWarnings("serial")
+@SuppressFBWarnings("SE_NO_SERIALVERSIONID")
 @Entity
 @Table(name = "email", indexes = {
 	@Index(name = "message_recipient_idx", columnList = "recipient"),
