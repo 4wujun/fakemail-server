@@ -19,8 +19,6 @@ import javax.persistence.NoResultException;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import javax.transaction.Transactional;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
