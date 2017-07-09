@@ -115,6 +115,7 @@ public class RepositoryConfig {
 		LOG.trace("Initialize entityManagerFactoryBean");
 		final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean =
 				new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setPersistenceUnitName("fakemailserver");
 		entityManagerFactoryBean.setDataSource(dataSource());
 		entityManagerFactoryBean.setPackagesToScan(
 				"org.legurun.test.fakemailserver.model");
