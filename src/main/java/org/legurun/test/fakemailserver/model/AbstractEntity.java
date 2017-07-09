@@ -25,12 +25,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -62,15 +61,15 @@ public abstract class AbstractEntity implements Serializable {
 	 * Creation date.
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_created", nullable = false)
-	@CreationTimestamp
+	@Column(name = "date_created", nullable = false, insertable = true,
+		updatable = false)
 	private Date dateCreated;
 	/**
 	 * Last modification date.
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "last_updated", nullable = false)
-	@UpdateTimestamp
+	@Column(name = "last_updated", nullable = false, insertable = true,
+		updatable = true)
 	private Date lastUpdated;
 
 	/**
@@ -136,6 +135,17 @@ public abstract class AbstractEntity implements Serializable {
 	 */
 	public void setLastUpdated(final Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
+	}
+
+	@PrePersist
+	public void onCreate() {
+		this.dateCreated = new Date();
+		this.lastUpdated = this.dateCreated;
+	}
+
+	@PreUpdate
+	public void onUpdate() {
+		this.lastUpdated = new Date();
 	}
 
 	/**
