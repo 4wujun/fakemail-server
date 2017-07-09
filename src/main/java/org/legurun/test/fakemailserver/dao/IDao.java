@@ -28,6 +28,7 @@ import org.legurun.test.fakemailserver.model.AbstractEntity;
  * @param <T> Entity class
  * @since 2017
  */
+@SuppressWarnings("PMD.ShortClassName")
 public interface IDao<T extends AbstractEntity> {
 
 	/**
@@ -35,6 +36,7 @@ public interface IDao<T extends AbstractEntity> {
 	 * @param id Identifier
 	 * @return Entity or <code>null</code> if not found
 	 */
+	@SuppressWarnings("PMD.ShortVariable")
 	T get(Long id);
 
 	/**

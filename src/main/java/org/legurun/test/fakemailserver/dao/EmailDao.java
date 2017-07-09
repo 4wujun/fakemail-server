@@ -46,7 +46,12 @@ import org.springframework.util.StringUtils;
  */
 @Repository
 public class EmailDao extends AbstractDao<Email> implements IEmailDao {
-	@SuppressWarnings("checkstyle:multiplestringliterals")
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings(
+			{ "checkstyle:multiplestringliterals",
+				"PMD.AvoidDuplicateLiterals" })
 	@Override
 	public PagedList<EmailSearchReport> search(final Sender sender,
 			final String recipient, final Date sentSince,

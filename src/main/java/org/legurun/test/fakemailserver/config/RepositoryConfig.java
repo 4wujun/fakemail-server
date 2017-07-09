@@ -76,15 +76,17 @@ public class RepositoryConfig {
 	@Bean
 	public DataSource dataSource() {
 		LOG.trace("Initialize dataSource");
-		final BasicDataSource ds = new BasicDataSource();
-		ds.setDriverClassName(
+		final BasicDataSource datasource = new BasicDataSource();
+		datasource.setDriverClassName(
 				environment.getRequiredProperty("jdbc.driverClassName"));
-		ds.setUrl(environment.getRequiredProperty("jdbc.url"));
-		ds.setUsername(environment.getRequiredProperty("jdbc.username"));
-		ds.setPassword(environment.getRequiredProperty("jdbc.password"));
-		ds.setValidationQuery(
+		datasource.setUrl(environment.getRequiredProperty("jdbc.url"));
+		datasource.setUsername(
+				environment.getRequiredProperty("jdbc.username"));
+		datasource.setPassword(
+				environment.getRequiredProperty("jdbc.password"));
+		datasource.setValidationQuery(
 				environment.getRequiredProperty("dbcp.validationQuery"));
-		return ds;
+		return datasource;
 	}
 
 	/**
@@ -107,6 +109,7 @@ public class RepositoryConfig {
 	 * @return Entity manager factory
 	 */
 	@Bean
+	@SuppressWarnings("PMD.LongVariable")
 	public LocalContainerEntityManagerFactoryBean
 			entityManagerFactoryBean() {
 		LOG.trace("Initialize entityManagerFactoryBean");

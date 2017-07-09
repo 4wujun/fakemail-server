@@ -72,6 +72,7 @@ public abstract class AbstractDao<T extends AbstractEntity>
 	 * {@inheritDoc}
 	 */
 	@Override
+	@SuppressWarnings("PMD.ShortVariable")
 	public T get(final Long id) {
 		return entityManager.find(persistentClass, id);
 	}

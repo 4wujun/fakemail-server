@@ -68,8 +68,7 @@ public class MelodyConfig {
 	@Bean
 	public SpringContext javamelodySpringContext() {
 		LOG.trace("Initialize javamelodySpringContext");
-		final SpringContext context = new SpringContext();
-		return context;
+		return new SpringContext();
 	}
 
 	/**

@@ -50,6 +50,7 @@ public abstract class AbstractEntity implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SuppressWarnings("PMD.ShortVariable")
 	private Long id;
 	/**
 	 * Version number for optimistic locking.
@@ -84,6 +85,7 @@ public abstract class AbstractEntity implements Serializable {
 	 * Set the identifier.
 	 * @param id Identifier
 	 */
+	@SuppressWarnings("PMD.ShortVariable")
 	public void setId(final Long id) {
 		this.id = id;
 	}

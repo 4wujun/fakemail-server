@@ -477,6 +477,18 @@ The main use is for testing software which sends mail, to forbid sending to real
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>${findbugs.version}</version>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.8</version>
+				<configuration>
+					<rulesets>
+						<ruleset>src/config/pmd.xml</ruleset>
+					</rulesets>
+					<includeTests>true</includeTests>
+					<skipEmptyReport>false</skipEmptyReport>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -496,6 +508,13 @@ The main use is for testing software which sends mail, to forbid sending to real
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>3.8</version>
+				<configuration>
+					<rulesets>
+						<ruleset>src/config/pmd.xml</ruleset>
+					</rulesets>
+					<includeTests>true</includeTests>
+					<skipEmptyReport>false</skipEmptyReport>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -99,8 +99,7 @@ public class EmailService implements IEmailService {
 		final Session session = Session.getDefaultInstance(new Properties());
 		final ByteArrayInputStream inputStream =
 				new ByteArrayInputStream(email.getMessage());
-		final MimeMessage message = new MimeMessage(session, inputStream);
-		return message;
+		return new MimeMessage(session, inputStream);
 	}
 
 	/**

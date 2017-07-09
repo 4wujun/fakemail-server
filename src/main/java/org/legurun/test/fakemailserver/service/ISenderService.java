@@ -34,6 +34,7 @@ public interface ISenderService {
 	 * @param id Identifier
 	 * @return Sender or <code>null</code> if not found
 	 */
+	@SuppressWarnings("PMD.ShortVariable")
 	Sender get(Long id);
 
 	/**

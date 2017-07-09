@@ -24,6 +24,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 @SuppressWarnings("serial")
 public class EmailSearchReport implements Serializable {
+	@SuppressWarnings("PMD.ShortVariable")
 	private Long id;
 	private String sender;
 	private String recipient;
@@ -34,6 +35,7 @@ public class EmailSearchReport implements Serializable {
 	}
 
 	@SuppressFBWarnings("EI_EXPOSE_REP2")
+	@SuppressWarnings("PMD.ShortVariable")
 	public EmailSearchReport(final Long id, final String sender,
 			final String recipient, final Date sentDate,
 			final String subject) {
@@ -48,6 +50,7 @@ public class EmailSearchReport implements Serializable {
 		return id;
 	}
 
+	@SuppressWarnings("PMD.ShortVariable")
 	public void setId(final Long id) {
 		this.id = id;
 	}

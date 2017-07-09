@@ -65,6 +65,7 @@ public class SenderService implements ISenderService {
 	 */
 	@Override
 	@CacheResult(cacheName = "senders")
+	@SuppressWarnings("PMD.ShortVariable")
 	public Sender get(final Long id) {
 		LOG.debug("Getting sender id = {}", id);
 		return senderDao.get(id);
