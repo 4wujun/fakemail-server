@@ -505,6 +505,21 @@ The main use is for testing software which sends mail, to forbid sending to real
 					</instrumentation>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4.1</version>
+				<configuration>
+					<rules>
+						<requireJavaVersion>
+							<version>1.8.0</version>
+						</requireJavaVersion>
+						<requireMavenVersion>
+							<version>3.5.0</version>
+						</requireMavenVersion>
+					</rules>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
