@@ -63,7 +63,7 @@ public class SenderDaoTests {
 	}
 
 	@Before
-	private void createSenders() {
+	public void createSenders() {
 		final Sender sender1 = new Sender();
 		sender1.setAddress("test@foo.org");
 		senderDao.persist(sender1);
