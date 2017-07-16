@@ -68,4 +68,54 @@ public class PagedList<E> {
 	public void setTotal(final Number total) {
 		this.total = total;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		//CHECKSTYLE:OFF
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
+		result = prime * result + ((total == null) ? 0 : total.hashCode());
+		//CHECKSTYLE:ON
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings({ "unchecked", "PMD.CyclomaticComplexity",
+		"PMD.StdCyclomaticComplexity", "PMD.ModifiedCyclomaticComplexity" })
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final PagedList<E> other = (PagedList<E>) obj;
+		if (data == null) {
+			if (other.data != null) {
+				return false;
+			}
+		}
+		else if (!data.equals(other.data)) {
+			return false;
+		}
+		if (total == null) {
+			if (other.total != null) {
+				return false;
+			}
+		}
+		else if (!total.equals(other.total)) {
+			return false;
+		}
+		return true;
+	}
 }
