@@ -45,15 +45,6 @@ public class SenderDaoTests {
 
 	@Test
 	@Transactional
-	public void testPersist() {
-		Sender sender = new Sender();
-		sender.setAddress("good@bar.com");
-		senderDao.persist(sender);
-		Assert.assertNotNull(sender.getId());
-	}
-
-	@Test
-	@Transactional
 	@SuppressWarnings("checkstyle:multiplestringliterals")
 	public void testFindByAddress() {
 		createSenders();
