@@ -20,7 +20,6 @@ package org.legurun.test.fakemailserver.tests.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,13 +30,16 @@ import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.service.ISenderService;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
+
+import static org.junit.Assert.*;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Sender service tests.
@@ -64,27 +66,30 @@ public class SenderServiceTests {
 		final Sender sender = new Sender();
 		sender.setAddress("foo@bar.com");
 		senders.add(sender);
-		Mockito.when(senderDao.list()).thenReturn(senders);
+		when(senderDao.list()).thenReturn(senders);
 		ReflectionTestUtils.setField(senderService, "senderDao", senderDao);
 
 		final List<Sender> result = senderService.list();
-		Assert.assertEquals(senders, result);
+		assertEquals("Result list must contains only one result",
+				senders, result);
+		verify(senderDao, times(1)).list();
 	}
 
 
 	@Test
 	public void testGet() {
 		final Sender sender = new Sender();
-		Mockito.when(senderDao.get(1L)).thenReturn(null);
-		Mockito.when(senderDao.get(2L)).thenReturn(sender);
-
+		when(senderDao.get(1L)).thenReturn(null);
+		when(senderDao.get(2L)).thenReturn(sender);
 		ReflectionTestUtils.setField(senderService, "senderDao", senderDao);
 
 		final Sender resultNull = senderService.get(1L);
-		Assert.assertNull(resultNull);
+		assertNull("Result must be null", resultNull);
 
 		final Sender resultNotNull = senderService.get(2L);
-		Assert.assertNotNull(resultNotNull);
+		assertNotNull("Result must be not null", resultNotNull);
+		verify(senderDao, times(1)).get(eq(1L));
+		verify(senderDao, times(1)).get(eq(2L));
 	}
 
 	@Before

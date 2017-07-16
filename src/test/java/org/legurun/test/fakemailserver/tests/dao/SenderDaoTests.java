@@ -19,7 +19,7 @@ package org.legurun.test.fakemailserver.tests.dao;
 
 import javax.persistence.NoResultException;
 
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.legurun.test.fakemailserver.config.RepositoryConfig;
@@ -31,6 +31,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
@@ -47,21 +49,20 @@ public class SenderDaoTests {
 	@Transactional
 	@SuppressWarnings("checkstyle:multiplestringliterals")
 	public void testFindByAddress() {
-		createSenders();
 		final Sender goodSender = senderDao.findByAddress("good@bar.com");
-		Assert.assertNotNull(goodSender);
-		Assert.assertEquals("good@bar.com", goodSender.getAddress());
+		assertNotNull(goodSender);
+		assertEquals("good@bar.com", goodSender.getAddress());
 	}
 
 	@Test(expected = NoResultException.class)
 	@Transactional
 	@SuppressWarnings("checkstyle:multiplestringliterals")
 	public void testFindByAddressUnknow() {
-		createSenders();
 		final Sender badSender = senderDao.findByAddress("unknown@foo.org");
-		Assert.assertNull(badSender);
+		assertNull(badSender);
 	}
 
+	@Before
 	private void createSenders() {
 		final Sender sender1 = new Sender();
 		sender1.setAddress("test@foo.org");
