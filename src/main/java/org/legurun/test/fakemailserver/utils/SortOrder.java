@@ -41,6 +41,11 @@ public enum SortOrder {
 	 * @since 2017
 	 */
 	public static class OrderConverter implements Converter<String, SortOrder> {
+		/**
+		 * Convert order string to enum.
+		 * @param source Order string
+		 * @return Enum
+		 */
 		@SuppressWarnings("checkstyle:returncount")
 		@Override
 		public SortOrder convert(final String source) {

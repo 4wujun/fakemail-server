@@ -20,6 +20,7 @@ package org.legurun.test.fakemailserver.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -81,7 +82,8 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 					builder.like(
 							builder.upper(
 									rootEmail.get("recipient")),
-							"%" + recipient.trim().toUpperCase() + "%"));
+							"%" + recipient.trim().
+								toUpperCase(Locale.ENGLISH) + "%"));
 		}
 		if (sentSince != null) {
 			predicates.add(

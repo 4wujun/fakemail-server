@@ -137,12 +137,18 @@ public abstract class AbstractEntity implements Serializable {
 		this.lastUpdated = lastUpdated;
 	}
 
+	/**
+	 * Initialize the timestamp fields on creation.
+	 */
 	@PrePersist
 	public void onCreate() {
 		this.dateCreated = new Date();
 		this.lastUpdated = this.dateCreated;
 	}
 
+	/**
+	 * Modify the last update filed on update.
+	 */
 	@PreUpdate
 	public void onUpdate() {
 		this.lastUpdated = new Date();

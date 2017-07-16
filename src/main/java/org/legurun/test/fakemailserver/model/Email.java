@@ -145,7 +145,10 @@ public class Email extends AbstractEntity {
 	 * @return Message
 	 */
 	public byte[] getMessage() {
-		return message;
+		if (message != null) {
+			return message.clone();
+		}
+		return null;
 	}
 
 	/**
@@ -153,6 +156,11 @@ public class Email extends AbstractEntity {
 	 * @param message Message
 	 */
 	public void setMessage(final byte[] message) {
-		this.message = message;
+		if (message == null) {
+			this.message = null;
+		}
+		else {
+			this.message = message.clone();
+		}
 	}
 }
