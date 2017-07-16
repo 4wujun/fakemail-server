@@ -1,4 +1,9 @@
-package org.legurun.test.fakemailserver.tests.dao;
+package org.legurun.test.fakemailserver.tests.model;
+
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
 /*
  * Copyright (C) 2017 Patrice Le Gurun
@@ -17,69 +22,31 @@ package org.legurun.test.fakemailserver.tests.dao;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import javax.persistence.NoResultException;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.legurun.test.fakemailserver.config.RepositoryConfig;
 import org.legurun.test.fakemailserver.config.RootConfig;
-import org.legurun.test.fakemailserver.dao.ISenderDao;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
 @TestPropertySource(value = "classpath:application-test-h2.properties")
-public class SenderDaoTests {
+public class SenderTests {
 
-	/**
-	 * DAO to test.
-	 */
 	@Autowired
-	private ISenderDao senderDao;
+	private Validator validator;
 
 	@Test
-	@Transactional
-	public void testPersist() {
-		Sender sender = new Sender();
-		sender.setAddress("good@bar.com");
-		senderDao.persist(sender);
-		Assert.assertNotNull(sender.getId());
-	}
-
-	@Test
-	@Transactional
-	@SuppressWarnings("checkstyle:multiplestringliterals")
-	public void testFindByAddress() {
-		createSenders();
-		final Sender goodSender = senderDao.findByAddress("good@bar.com");
-		Assert.assertNotNull(goodSender);
-		Assert.assertEquals("good@bar.com", goodSender.getAddress());
-	}
-
-	@Test(expected = NoResultException.class)
-	@Transactional
-	@SuppressWarnings("checkstyle:multiplestringliterals")
-	public void testFindByAddressUnknow() {
-		createSenders();
-		final Sender badSender = senderDao.findByAddress("unknown@foo.org");
-		Assert.assertNull(badSender);
-	}
-
-	private void createSenders() {
-		final Sender sender1 = new Sender();
-		sender1.setAddress("test@foo.org");
-		senderDao.persist(sender1);
-		final Sender sender2 = new Sender();
-		sender2.setAddress("test2@foo.org");
-		senderDao.persist(sender2);
-		final Sender sender3 = new Sender();
-		sender3.setAddress("good@bar.com");
-		senderDao.persist(sender3);
+	public void testNotEmail() {
+		final Sender sender = new Sender();
+		sender.setAddress("bademail");
+		final Set<ConstraintViolation<Sender>> errors = validator.validateProperty(sender, "address");
+		Assert.assertNotNull(errors);
+		Assert.assertFalse(errors.isEmpty());
 	}
 }

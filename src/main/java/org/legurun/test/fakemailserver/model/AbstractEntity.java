@@ -30,6 +30,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -49,6 +50,7 @@ public abstract class AbstractEntity implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NotNull
 	@SuppressWarnings("PMD.ShortVariable")
 	private Long id;
 	/**
@@ -56,6 +58,7 @@ public abstract class AbstractEntity implements Serializable {
 	 */
 	@Version
 	@Column(name = "version", nullable = false)
+	@NotNull
 	private Long version;
 	/**
 	 * Creation date.
@@ -63,6 +66,7 @@ public abstract class AbstractEntity implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_created", nullable = false, insertable = true,
 		updatable = false)
+	@NotNull
 	private Date dateCreated;
 	/**
 	 * Last modification date.
@@ -70,6 +74,7 @@ public abstract class AbstractEntity implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_updated", nullable = false, insertable = true,
 		updatable = true)
+	@NotNull
 	private Date lastUpdated;
 
 	/**

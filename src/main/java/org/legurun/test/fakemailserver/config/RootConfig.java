@@ -26,6 +26,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
  * Root configuration.
@@ -67,5 +68,15 @@ public class RootConfig {
 	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
 		LOG.trace("Initialize defaultAdvisorAutoProxyCreator");
 		return new DefaultAdvisorAutoProxyCreator();
+	}
+
+	/**
+	 * Get validator.
+	 * @return Validator
+	 */
+	@Bean
+	public LocalValidatorFactoryBean validator() {
+		LOG.trace("Initialize validator");
+		return new LocalValidatorFactoryBean();
 	}
 }
