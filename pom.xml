@@ -533,7 +533,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 					<rulesets>
 						<ruleset>src/config/pmd.xml</ruleset>
 					</rulesets>
-					<includeTests>true</includeTests>
+					<includeTests>false</includeTests>
 					<skipEmptyReport>false</skipEmptyReport>
 				</configuration>
 			</plugin>
