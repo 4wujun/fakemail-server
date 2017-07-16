@@ -34,10 +34,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
 @TestPropertySource(value = "classpath:application-test-h2.properties")
 public class SenderDaoTests {
+
+	private Sender sender1;
+	private Sender sender2;
+	private Sender sender3;
 
 	/**
 	 * DAO to test.
@@ -62,15 +68,43 @@ public class SenderDaoTests {
 		assertNull(badSender);
 	}
 
+	@Test
+	@Transactional
+	@SuppressWarnings("checkstyle:multiplestringliterals")
+	public void testList() {
+		final List<Sender> list = senderDao.list();
+		assertNotNull(list);
+		assertEquals(3, list.size());
+	}
+
+	@Test
+	@Transactional
+	@SuppressWarnings("checkstyle:multiplestringliterals")
+	public void testGet() {
+		final Sender sender = senderDao.get(sender1.getId());
+		assertNotNull(sender);
+		assertEquals(sender1, sender);
+	}
+
+	@Test
+	@Transactional
+	@SuppressWarnings("checkstyle:multiplestringliterals")
+	public void testDelete() {
+		senderDao.delete(sender1);
+		final List<Sender> list = senderDao.list();
+		assertNotNull(list);
+		assertEquals(2, list.size());
+	}
+
 	@Before
 	public void createSenders() {
-		final Sender sender1 = new Sender();
+		sender1 = new Sender();
 		sender1.setAddress("test@foo.org");
 		senderDao.persist(sender1);
-		final Sender sender2 = new Sender();
+		sender2 = new Sender();
 		sender2.setAddress("test2@foo.org");
 		senderDao.persist(sender2);
-		final Sender sender3 = new Sender();
+		sender3 = new Sender();
 		sender3.setAddress("good@bar.com");
 		senderDao.persist(sender3);
 	}
