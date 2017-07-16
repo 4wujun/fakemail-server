@@ -42,10 +42,6 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<tag>HEAD</tag>
 	</scm>
 
-	<prerequisites>
-		<maven>3.5.0</maven>
-	</prerequisites>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.sourceEncoding>UTF-8</project.reporting.sourceEncoding>
