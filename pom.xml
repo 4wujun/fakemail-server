@@ -42,6 +42,10 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<tag>HEAD</tag>
 	</scm>
 
+	<prerequisites>
+		<maven>3.5.0</maven>
+	</prerequisites>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.sourceEncoding>UTF-8</project.reporting.sourceEncoding>
@@ -53,7 +57,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<subethasmtp.version>3.1.7</subethasmtp.version>
 		<h2.version>1.4.196</h2.version>
 		<dbcp2.version>2.1.1</dbcp2.version>
-		<mysql.version>6.0.6</mysql.version>
+		<mariadb.version>2.0.3</mariadb.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
 		<servlet.version>3.1.0</servlet.version>
@@ -64,17 +68,13 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<ehcache.version>3.3.1</ehcache.version>
 		<cache-api.version>1.0.0</cache-api.version>
 		<tomcat.version>[7.0,8.0)</tomcat.version>
-		<melody.version>1.68.0</melody.version>
+		<melody.version>1.68.1</melody.version>
 		<junit.version>4.12</junit.version>
 		<checkstyle.version>2.17</checkstyle.version>
 		<checkstyle.config.location>${basedir}/src/config/check_style.xml</checkstyle.config.location>
 		<findbugs.version>3.0.4</findbugs.version>
 		<findbugs.excludeFilterFile>${basedir}/src/config/findbugsExcludeFilter.xml</findbugs.excludeFilterFile>
 	</properties>
-
-	<prerequisites>
-		<maven>3.3</maven>
-	</prerequisites>
 
 	<dependencies>
 		<dependency>
@@ -210,9 +210,9 @@ The main use is for testing software which sends mail, to forbid sending to real
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>${mariadb.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -249,7 +249,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 		<dependency>
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>annotations</artifactId>
-			<version>3.0.1</version>
+			<version>3.0.1u2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
