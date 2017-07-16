@@ -17,7 +17,9 @@ package org.legurun.test.fakemailserver.tests.dao;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,11 +41,15 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
 @TestPropertySource(value = "classpath:application-test-h2.properties")
+@SuppressWarnings("checkstyle:multiplestringliterals")
 public class SenderDaoTests {
 
 	private Sender sender1;
 	private Sender sender2;
 	private Sender sender3;
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	/**
 	 * DAO to test.
@@ -53,7 +59,6 @@ public class SenderDaoTests {
 
 	@Test
 	@Transactional
-	@SuppressWarnings("checkstyle:multiplestringliterals")
 	public void testFindByAddress() {
 		final Sender goodSender = senderDao.findByAddress("good@bar.com");
 		assertNotNull(goodSender);
@@ -62,7 +67,6 @@ public class SenderDaoTests {
 
 	@Test(expected = NoResultException.class)
 	@Transactional
-	@SuppressWarnings("checkstyle:multiplestringliterals")
 	public void testFindByAddressUnknow() {
 		final Sender badSender = senderDao.findByAddress("unknown@foo.org");
 		assertNull(badSender);
@@ -70,7 +74,6 @@ public class SenderDaoTests {
 
 	@Test
 	@Transactional
-	@SuppressWarnings("checkstyle:multiplestringliterals")
 	public void testList() {
 		final List<Sender> list = senderDao.list();
 		assertNotNull(list);
@@ -79,7 +82,6 @@ public class SenderDaoTests {
 
 	@Test
 	@Transactional
-	@SuppressWarnings("checkstyle:multiplestringliterals")
 	public void testGet() {
 		final Sender sender = senderDao.get(sender1.getId());
 		assertNotNull(sender);
@@ -88,7 +90,6 @@ public class SenderDaoTests {
 
 	@Test
 	@Transactional
-	@SuppressWarnings("checkstyle:multiplestringliterals")
 	public void testDelete() {
 		senderDao.delete(sender1);
 		final List<Sender> list = senderDao.list();
@@ -100,12 +101,13 @@ public class SenderDaoTests {
 	public void createSenders() {
 		sender1 = new Sender();
 		sender1.setAddress("test@foo.org");
-		senderDao.persist(sender1);
+		entityManager.persist(sender1);
 		sender2 = new Sender();
 		sender2.setAddress("test2@foo.org");
-		senderDao.persist(sender2);
+		entityManager.persist(sender2);
 		sender3 = new Sender();
 		sender3.setAddress("good@bar.com");
-		senderDao.persist(sender3);
+		entityManager.persist(sender3);
+		entityManager.flush();
 	}
 }
