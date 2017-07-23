@@ -74,10 +74,10 @@ public class SenderControllerTests {
 
 	@Test
 	public void testList() throws Exception {
-		Sender sender1 = new Sender();
+		final Sender sender1 = new Sender();
 		sender1.setId(1L);
 		sender1.setAddress("foo@bar.com");
-		Sender sender2 = new Sender();
+		final Sender sender2 = new Sender();
 		sender2.setId(2L);
 		sender2.setAddress("bar@foo.org");
 
