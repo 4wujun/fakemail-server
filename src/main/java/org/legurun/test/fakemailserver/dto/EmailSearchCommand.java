@@ -93,4 +93,98 @@ public class EmailSearchCommand implements Serializable {
 				+ ", sentBefore=" + sentBefore
 				+ ", offset=" + offset + ", limit=" + limit + "]";
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings({ "PMD.NPathComplexity",
+		"checkstyle:AvoidInlineConditionals" })
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((limit == null) ? 0 : limit.hashCode());
+		result = prime * result
+				+ ((offset == null) ? 0 : offset.hashCode());
+		result = prime * result
+				+ ((recipient == null) ? 0 : recipient.hashCode());
+		result = prime * result
+				+ ((senderId == null) ? 0 : senderId.hashCode());
+		result = prime * result
+				+ ((sentBefore == null) ? 0 : sentBefore.hashCode());
+		result = prime * result
+				+ ((sentSince == null) ? 0 : sentSince.hashCode());
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	@SuppressWarnings({ "PMD.CyclomaticComplexity",
+		"PMD.StdCyclomaticComplexity", "PMD.ModifiedCyclomaticComplexity",
+		"PMD.NPathComplexity", "checkstyle:CyclomaticComplexity",
+		"checkstyle:NPathComplexity"})
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final EmailSearchCommand other = (EmailSearchCommand) obj;
+		if (limit == null) {
+			if (other.limit != null) {
+				return false;
+			}
+		}
+		else if (!limit.equals(other.limit)) {
+			return false;
+		}
+		if (offset == null) {
+			if (other.offset != null) {
+				return false;
+			}
+		}
+		else if (!offset.equals(other.offset)) {
+			return false;
+		}
+		if (recipient == null) {
+			if (other.recipient != null) {
+				return false;
+			}
+		}
+		else if (!recipient.equals(other.recipient)) {
+			return false;
+		}
+		if (senderId == null) {
+			if (other.senderId != null) {
+				return false;
+			}
+		}
+		else if (!senderId.equals(other.senderId)) {
+			return false;
+		}
+		if (sentBefore == null) {
+			if (other.sentBefore != null) {
+				return false;
+			}
+		}
+		else if (!sentBefore.equals(other.sentBefore)) {
+			return false;
+		}
+		if (sentSince == null) {
+			if (other.sentSince != null) {
+				return false;
+			}
+		}
+		else if (!sentSince.equals(other.sentSince)) {
+			return false;
+		}
+		return true;
+	}
 }
