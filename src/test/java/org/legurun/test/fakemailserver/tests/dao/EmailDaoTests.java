@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.tests.dao;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -16,6 +14,8 @@ package org.legurun.test.fakemailserver.tests.dao;
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package org.legurun.test.fakemailserver.tests.dao;
 
 import static org.junit.Assert.*;
 
@@ -78,6 +78,22 @@ public class EmailDaoTests {
 		final Email email = emailDao.get(email1.getId());
 		assertNotNull(email);
 		assertEquals(email1, email);
+	}
+
+	@Test
+	@Transactional
+	public void testPersist() {
+		final Email email = new Email();
+		email.setSender(sender1);
+		email.setRecipient("test4@bar.com");
+		email.setSentDate(new Date());
+		email.setSubject("Test 4");
+		email.setMessage(new byte[] {});
+		emailDao.persist(email);
+
+		final Email result = entityManager.find(Email.class, email.getId());
+		assertNotNull(email);
+		assertEquals(email, result);
 	}
 
 	@Test
@@ -151,6 +167,26 @@ public class EmailDaoTests {
 		assertNotNull(list);
 		assertEquals(4L, list.getTotal());
 		assertEquals(2, list.getData().size());
+	}
+
+	@Test
+	@Transactional
+	public void testSearchAllWithOffsetOnly() {
+		PagedList<EmailSearchReport> list =
+			emailDao.search(null, null, null, null, 1, null);
+		assertNotNull(list);
+		assertEquals(4L, list.getTotal());
+		assertEquals(4, list.getData().size());
+	}
+
+	@Test
+	@Transactional
+	public void testSearchAllWithLimitOnly() {
+		PagedList<EmailSearchReport> list =
+			emailDao.search(null, null, null, null, null, 2);
+		assertNotNull(list);
+		assertEquals(4L, list.getTotal());
+		assertEquals(4, list.getData().size());
 	}
 
 	@Test
