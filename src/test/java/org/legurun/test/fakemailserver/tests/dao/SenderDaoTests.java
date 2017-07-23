@@ -41,7 +41,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
 @TestPropertySource(value = "classpath:application-test-h2.properties")
-@SuppressWarnings("checkstyle:multiplestringliterals")
+@SuppressWarnings("checkstyle:MultipleStringLiterals")
 public class SenderDaoTests {
 
 	private Sender sender1;
