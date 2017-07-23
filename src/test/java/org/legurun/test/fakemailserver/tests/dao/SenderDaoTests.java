@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.tests.dao;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,6 +15,12 @@ package org.legurun.test.fakemailserver.tests.dao;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package org.legurun.test.fakemailserver.tests.dao;
+
+import static org.junit.Assert.*;
+
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -33,10 +37,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.Assert.*;
-
-import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
@@ -78,6 +78,18 @@ public class SenderDaoTests {
 		final List<Sender> list = senderDao.list();
 		assertNotNull(list);
 		assertEquals(3, list.size());
+	}
+
+	@Test
+	@Transactional
+	public void testPersist() {
+		final Sender sender = new Sender();
+		sender.setAddress("bar@foo.net");
+		senderDao.persist(sender);
+
+		final Sender result = entityManager.find(Sender.class, sender.getId());
+		assertNotNull(sender);
+		assertEquals(sender, result);
 	}
 
 	@Test
