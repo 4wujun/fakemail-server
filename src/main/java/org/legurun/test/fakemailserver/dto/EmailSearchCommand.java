@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.dto;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,68 +15,141 @@ package org.legurun.test.fakemailserver.dto;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package org.legurun.test.fakemailserver.dto;
+
 import java.io.Serializable;
 import java.util.Date;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
+/**
+ * Command for the email search.
+ * @author patrice
+ * @since 2017
+ */
 @SuppressWarnings("serial")
 public class EmailSearchCommand implements Serializable {
+	/**
+	 * Sender identifier.
+	 */
 	private Long senderId;
+	/**
+	 * Recipient address.
+	 */
 	private String recipient;
+	/**
+	 * Date since the mail was sent.
+	 */
 	private Date sentSince;
+	/**
+	 * Date before the mails was sent.
+	 */
 	private Date sentBefore;
+	/**
+	 * Start of the pagination.
+	 */
 	private Integer offset;
+	/**
+	 * Size of the pagination.
+	 */
 	private Integer limit;
 
+	/**
+	 * Get the sender identifier.
+	 * @return Sender identifier
+	 */
 	public Long getSenderId() {
 		return senderId;
 	}
 
+	/**
+	 * Set the sender identifier.
+	 * @param senderId Sender identifier
+	 */
 	public void setSenderId(final Long senderId) {
 		this.senderId = senderId;
 	}
 
+	/**
+	 * Get the recipient address.
+	 * @return Recipient address
+	 */
 	public String getRecipient() {
 		return recipient;
 	}
 
+	/**
+	 * Set the recipient address.
+	 * @param recipient Recipient address
+	 */
 	public void setRecipient(final String recipient) {
 		this.recipient = recipient;
 	}
 
+	/**
+	 * Get the date since the mails was sent.
+	 * @return Date since the mails was sent
+	 */
 	@SuppressFBWarnings("EI_EXPOSE_REP")
 	public Date getSentSince() {
 		return sentSince;
 	}
 
+	/**
+	 * Set the date since the mails was sent.
+	 * @param sentSince Date since the mails was sent
+	 */
 	@SuppressFBWarnings("EI_EXPOSE_REP2")
-	public void setSentSince(final Date sentFrom) {
-		this.sentSince = sentFrom;
+	public void setSentSince(final Date sentSince) {
+		this.sentSince = sentSince;
 	}
 
+	/**
+	 * Get the date before the mails was sent.
+	 * @return Date before the mails was sent
+	 */
 	@SuppressFBWarnings("EI_EXPOSE_REP")
 	public Date getSentBefore() {
 		return sentBefore;
 	}
 
+	/**
+	 * Set the date before the mails was sent.
+	 * @param sentBefore Date before the mails was sent
+	 */
 	@SuppressFBWarnings("EI_EXPOSE_REP2")
-	public void setSentBefore(final Date sentTo) {
-		this.sentBefore = sentTo;
+	public void setSentBefore(final Date sentBefore) {
+		this.sentBefore = sentBefore;
 	}
 
+	/**
+	 * Get the start of the pagination.
+	 * @return Start of the pagination
+	 */
 	public Integer getOffset() {
 		return offset;
 	}
 
+	/**
+	 * Set the start of the pagination.
+	 * @param offset Start of the pagination
+	 */
 	public void setOffset(final Integer offset) {
 		this.offset = offset;
 	}
 
+	/**
+	 * Get the size of the pagination.
+	 * @return Size of the pagination
+	 */
 	public Integer getLimit() {
 		return limit;
 	}
 
+	/**
+	 * Set the size of the pagination.
+	 * @param limit Size of the pagination
+	 */
 	public void setLimit(final Integer limit) {
 		this.limit = limit;
 	}
