@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.tests.service;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -16,6 +14,11 @@ package org.legurun.test.fakemailserver.tests.service;
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package org.legurun.test.fakemailserver.tests.service;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.eq;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +39,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
-
-import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
 
@@ -67,7 +68,6 @@ public class SenderServiceTests {
 		sender.setAddress("foo@bar.com");
 		senders.add(sender);
 		when(senderDao.list()).thenReturn(senders);
-		ReflectionTestUtils.setField(senderService, "senderDao", senderDao);
 
 		final List<Sender> result = senderService.list();
 		assertEquals("Result list must contains only one result",
@@ -81,7 +81,6 @@ public class SenderServiceTests {
 		final Sender sender = new Sender();
 		when(senderDao.get(1L)).thenReturn(null);
 		when(senderDao.get(2L)).thenReturn(sender);
-		ReflectionTestUtils.setField(senderService, "senderDao", senderDao);
 
 		final Sender resultNull = senderService.get(1L);
 		assertNull("Result must be null", resultNull);
@@ -95,5 +94,6 @@ public class SenderServiceTests {
 	@Before
 	public void initMockito() {
 		MockitoAnnotations.initMocks(this);
+		ReflectionTestUtils.setField(senderService, "senderDao", senderDao);
 	}
 }
