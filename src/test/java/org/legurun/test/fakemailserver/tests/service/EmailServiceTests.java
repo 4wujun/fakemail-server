@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.tests.service;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -16,6 +14,11 @@ package org.legurun.test.fakemailserver.tests.service;
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package org.legurun.test.fakemailserver.tests.service;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,8 +46,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import static org.junit.Assert.*;
-
 import static org.mockito.Mockito.*;
 
 /**
@@ -70,7 +71,7 @@ public class EmailServiceTests {
 	private ISenderService senderService;
 
 	@Test
-	public void testSearch() {
+	public void testSearchWithSender() {
 		final Sender sender = new Sender();
 		sender.setId(1L);
 		when(senderService.get(1L)).thenReturn(sender);
@@ -87,8 +88,6 @@ public class EmailServiceTests {
 		when(
 				emailDao.search(sender, "foo@bar.com",
 						dateSince, dateBefore, 0, 25)).thenReturn(pagedList);
-		ReflectionTestUtils.setField(emailService, "emailDao", emailDao);
-		ReflectionTestUtils.setField(emailService, "senderService", senderService);
 
 		final EmailSearchCommand command = new EmailSearchCommand();
 		command.setSenderId(1L);
@@ -106,6 +105,36 @@ public class EmailServiceTests {
 		verify(emailDao, times(1)).search(eq(sender),
 			eq("foo@bar.com"), eq(dateSince),
 			eq(dateBefore), eq(0), eq(25));
+		verifyNoMoreInteractions(senderService);
+		verifyNoMoreInteractions(emailDao);
+	}
+
+	@Test
+	public void testSearchWithoutSender() {
+		final Sender sender = new Sender();
+		sender.setId(1L);
+		when(senderService.get(1L)).thenReturn(sender);
+		final PagedList<EmailSearchReport> pagedList =
+				new PagedList<EmailSearchReport>();
+		pagedList.setData(new ArrayList<EmailSearchReport>());
+		pagedList.setTotal(0);
+		when(
+				emailDao.search(null, null,
+						null, null, null, null)).thenReturn(pagedList);
+
+		final EmailSearchCommand command = new EmailSearchCommand();
+		command.setSenderId(null);
+
+		final PagedList<EmailSearchReport> result =
+				emailService.search(command);
+		assertNotNull("search() must return a result", result);
+		assertEquals(pagedList, result);
+		verify(senderService, times(0)).get(1L);
+		verify(emailDao, times(1)).search(isNull(),
+				isNull(), isNull(),
+				isNull(), isNull(), isNull());
+		verifyNoMoreInteractions(senderService);
+		verifyNoMoreInteractions(emailDao);
 	}
 
 	/**
@@ -122,5 +151,7 @@ public class EmailServiceTests {
 	@Before
 	public void initMockito() {
 		MockitoAnnotations.initMocks(this);
+		ReflectionTestUtils.setField(emailService, "emailDao", emailDao);
+		ReflectionTestUtils.setField(emailService, "senderService", senderService);
 	}
 }
