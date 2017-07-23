@@ -24,7 +24,6 @@ import org.legurun.test.fakemailserver.utils.PagedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +55,7 @@ public class MailController {
 	 * @param searchCommand Search criteria
 	 * @return Search result
 	 */
-	@PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping
 	public PagedList<EmailSearchReport> search(
 			@RequestBody(required = false)
 			final EmailSearchCommand searchCommand) {

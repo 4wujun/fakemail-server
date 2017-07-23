@@ -51,7 +51,7 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 	 * {@inheritDoc}
 	 */
 	@SuppressWarnings(
-			{ "checkstyle:multiplestringliterals",
+			{ "checkstyle:MultipleStringLiterals",
 				"PMD.AvoidDuplicateLiterals" })
 	@Override
 	public PagedList<EmailSearchReport> search(final Sender sender,
