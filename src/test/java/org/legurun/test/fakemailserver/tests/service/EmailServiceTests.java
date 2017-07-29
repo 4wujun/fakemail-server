@@ -18,13 +18,21 @@
 package org.legurun.test.fakemailserver.tests.service;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import static org.mockito.ArgumentMatchers.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.Address;
+import javax.mail.Message.RecipientType;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +41,7 @@ import org.legurun.test.fakemailserver.config.RootConfig;
 import org.legurun.test.fakemailserver.dao.IEmailDao;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
+import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.service.IEmailService;
 import org.legurun.test.fakemailserver.service.ISenderService;
@@ -41,12 +50,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
-
-import static org.mockito.Mockito.*;
 
 /**
  * Email service tests.
@@ -146,6 +155,28 @@ public class EmailServiceTests {
 		assertTrue("accept() must be true",
 				emailService.accept("sender@foo.com", "recipient@bar.org")
 			);
+	}
+
+	@Test
+	public void testParse() throws Exception {
+		final Resource testMailFile =
+				new ClassPathResource("testEmailServiceParse.txt");
+		final Email email = new Email();
+		email.setMessage(IOUtils.toByteArray(testMailFile.getInputStream()));
+
+		final MimeMessage message =
+				emailService.parse(email);
+		final Address senderAddress =
+				new InternetAddress("sender@foobar.org");
+		final Address recipientAddress =
+				new InternetAddress("recipient@bar.com");
+		Assert.assertArrayEquals(
+				new Address[] { senderAddress }, message.getFrom());
+		Assert.assertArrayEquals(
+				new Address[] { recipientAddress },
+				message.getRecipients(RecipientType.TO));
+		Assert.assertEquals("Test", message.getSubject());
+		//Sat, 17 Jun 2017 19:06:06 +0200 (CEST)
 	}
 
 	@Before
