@@ -6,6 +6,7 @@
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<inceptionYear>2017</inceptionYear>
+	<url>https://www.legurun.org/fakemailserver/</url>
 	<name>Fakemail server</name>
 	<description>Fakemail server aims to act as a &quot;blackhole&quot; mail server.
 Each mail send to Fakemail is stored into database and never forwarded to legitimate recipients.
@@ -15,6 +16,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 	<organization>
 		<name>Patrice Le Gurun</name>
 	</organization>
+
 	<developers>
 		<developer>
 			<id>patrice</id>
@@ -34,6 +36,13 @@ The main use is for testing software which sends mail, to forbid sending to real
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
+	<distributionManagement>
+		<site>
+			<id>www.legurun.org</id>
+			<url>scp://www.legurun.org/srv/fakemailserver</url>
+		</site>
+	</distributionManagement>
 
 	<scm>
 		<url>https://www.legurun.org/gitweb/?p=fakemailserver.git;a=summary</url>
@@ -555,6 +564,23 @@ The main use is for testing software which sends mail, to forbid sending to real
 					</rules>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.6</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>2.12</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -607,6 +633,11 @@ The main use is for testing software which sends mail, to forbid sending to real
 						<format>xml</format>
 					</formats>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changelog-plugin</artifactId>
+				<version>2.3</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
