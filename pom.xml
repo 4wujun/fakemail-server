@@ -45,9 +45,9 @@ The main use is for testing software which sends mail, to forbid sending to real
 	</distributionManagement>
 
 	<scm>
-		<url>https://www.legurun.org/gitweb/?p=fakemailserver.git;a=summary</url>
-		<connection>scm:git:https://www.legurun.org/git/fakemailserver.git</connection>
-		<developerConnection>scm:git:https://www.legurun.org/git/fakemailserver.git</developerConnection>
+		<url>http://github.com/patlenain/fakemail-server</url>
+		<connection>scm:git:git://github.com/patlenain/fakemail-server.git</connection>
+		<developerConnection>scm:git:git@github.com:patlenain/fakemail-server.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
