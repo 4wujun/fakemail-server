@@ -1,0 +1,7 @@
+org.legurun.test.fakemailserver.config
+org.legurun.test.fakemailserver.controller
+org.legurun.test.fakemailserver.dao
+org.legurun.test.fakemailserver.dto
+org.legurun.test.fakemailserver.model
+org.legurun.test.fakemailserver.service
+org.legurun.test.fakemailserver.utils

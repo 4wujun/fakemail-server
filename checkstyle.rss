@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>Fakemail server - Checkstyle report</title>
+    <link>https://patlenain.github.com/fakemail-server/</link>
+    <description>Fakemail server - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2017 Patrice Le Gurun</copyright>
+    <item>
+      <title>File: 36,
+             Errors: 0,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>https://patlenain.github.com/fakemail-server//checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://patlenain.github.com/fakemail-server//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.config.CacheConfig.java">org/legurun/test/fakemailserver/config/CacheConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.service.SenderService.java">org/legurun/test/fakemailserver/service/SenderService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dao.ISenderDao.java">org/legurun/test/fakemailserver/dao/ISenderDao.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.utils.PagedList.java">org/legurun/test/fakemailserver/utils/PagedList.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.controller.package-info.java">org/legurun/test/fakemailserver/controller/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dto.EmailSearchReport.java">org/legurun/test/fakemailserver/dto/EmailSearchReport.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.service.EmailService.java">org/legurun/test/fakemailserver/service/EmailService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.model.package-info.java">org/legurun/test/fakemailserver/model/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.utils.SortOrder.java">org/legurun/test/fakemailserver/utils/SortOrder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dao.IEmailDao.java">org/legurun/test/fakemailserver/dao/IEmailDao.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.config.package-info.java">org/legurun/test/fakemailserver/config/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dao.AbstractDao.java">org/legurun/test/fakemailserver/dao/AbstractDao.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.model.AbstractEntity.java">org/legurun/test/fakemailserver/model/AbstractEntity.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dto.EmailSearchCommand.java">org/legurun/test/fakemailserver/dto/EmailSearchCommand.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.model.Sender.java">org/legurun/test/fakemailserver/model/Sender.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#application.properties">application.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dao.IDao.java">org/legurun/test/fakemailserver/dao/IDao.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dao.EmailDao.java">org/legurun/test/fakemailserver/dao/EmailDao.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.config.WebMvcConfig.java">org/legurun/test/fakemailserver/config/WebMvcConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.config.AppInitializer.java">org/legurun/test/fakemailserver/config/AppInitializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.model.Email.java">org/legurun/test/fakemailserver/model/Email.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.service.IEmailService.java">org/legurun/test/fakemailserver/service/IEmailService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.service.package-info.java">org/legurun/test/fakemailserver/service/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dao.SenderDao.java">org/legurun/test/fakemailserver/dao/SenderDao.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dto.package-info.java">org/legurun/test/fakemailserver/dto/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.controller.MailController.java">org/legurun/test/fakemailserver/controller/MailController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.controller.SenderController.java">org/legurun/test/fakemailserver/controller/SenderController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.service.ISenderService.java">org/legurun/test/fakemailserver/service/ISenderService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.config.RepositoryConfig.java">org/legurun/test/fakemailserver/config/RepositoryConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.config.RootConfig.java">org/legurun/test/fakemailserver/config/RootConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.controller.HomeController.java">org/legurun/test/fakemailserver/controller/HomeController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.utils.package-info.java">org/legurun/test/fakemailserver/utils/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.dao.package-info.java">org/legurun/test/fakemailserver/dao/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.config.SubEthaSMTPConfig.java">org/legurun/test/fakemailserver/config/SubEthaSMTPConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#liquibase.liquibase.properties">liquibase/liquibase.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://patlenain.github.com/fakemail-server//checkstyle.html#org.legurun.test.fakemailserver.config.MelodyConfig.java">org/legurun/test/fakemailserver/config/MelodyConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
