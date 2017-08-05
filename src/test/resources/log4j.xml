@@ -29,36 +29,28 @@
 	</logger>
 
 	<logger name="org.springframework">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="org.hibernate">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="net.bull.javamelody">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="org.subethamail.smtp">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="org.springframework.orm.hibernate5">
-		<level value="info" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="liquibase">
 		<level value="debug" />
 	</logger>
-
-	<logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
-		<level value="debug" />
-	</logger>
-
-<!-- 	<logger name="org.springframework.web.servlet.resource"> -->
-<!-- 		<level value="trace" /> -->
-<!-- 	</logger> -->
 
 	<root>
 		<priority value="warn" />
