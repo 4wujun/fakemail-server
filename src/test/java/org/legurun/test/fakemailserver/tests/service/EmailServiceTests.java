@@ -19,7 +19,6 @@ package org.legurun.test.fakemailserver.tests.service;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import static org.mockito.ArgumentMatchers.*;
 
 import java.util.ArrayList;
 import java.util.Date;
