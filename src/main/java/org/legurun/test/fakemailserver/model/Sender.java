@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.model;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,6 +15,8 @@ package org.legurun.test.fakemailserver.model;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package org.legurun.test.fakemailserver.model;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,10 +25,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -52,7 +52,7 @@ public class Sender extends AbstractEntity {
 	 */
 	@Column(name = "address", nullable = false, unique = true)
 	@NaturalId
-	@org.hibernate.validator.constraints.Email
+	@javax.validation.constraints.Email
 	@NotBlank
 	@Length(max = 250)
 	private String address;
