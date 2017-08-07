@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.model;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -16,6 +14,8 @@ package org.legurun.test.fakemailserver.model;
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package org.legurun.test.fakemailserver.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -49,7 +49,7 @@ public abstract class AbstractEntity implements Serializable {
 	 */
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	@SuppressWarnings("PMD.ShortVariable")
 	private Long id;
