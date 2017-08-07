@@ -45,6 +45,9 @@ tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
 
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.0.2'
+}
 //mainClassName = 'org.legurun.test.fakemailserver.Main'
 
 repositories {

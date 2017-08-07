@@ -1,0 +1,35 @@
+#!groovy
+
+apply plugin: 'org.liquibase.gradle'
+
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'org.liquibase:liquibase-gradle-plugin:1.2.4'
+	}
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	runtime "com.h2database:h2:1.4.196"
+	runtime "org.mariadb.jdbc:mariadb-java-client:2.1.0"	
+}
+
+liquibase {
+	activities {
+		main {
+			changeLogFile = "${projectDir}/src/main/resources/liquibase/changelog-master.xml"
+			url 'jdbc:mysql://localhost:3306/fakemail_ref?nullNamePatternMatchesAll=true'
+			username
+			password
+			//src/main/resources/liquibase/liquibase.properties
+		}
+	}
+}
