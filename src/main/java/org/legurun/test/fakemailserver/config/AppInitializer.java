@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.config;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -16,6 +14,8 @@ package org.legurun.test.fakemailserver.config;
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package org.legurun.test.fakemailserver.config;
 
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
