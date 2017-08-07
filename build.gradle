@@ -114,13 +114,13 @@ dependencies {
 
 task('runH2', type: com.bmuschko.gradle.tomcat.tasks.TomcatRun) {
 	doFirst {
-		System.setProperty('externalConfigurationLocation', 'src/main/config/application-h2.properties')
+		System.setProperty('externalConfigurationLocation', "${project.rootDir}/src/main/config/application-h2.properties")
 	}
 }
 
 task('runMysql', type: com.bmuschko.gradle.tomcat.tasks.TomcatRun) {
 	doFirst {
-		System.setProperty('externalConfigurationLocation', 'src/main/config/application-mysql.properties')
+		System.setProperty('externalConfigurationLocation', "${project.rootDir}/src/main/config/application-mysql.properties")
 	}
 }
 
@@ -138,7 +138,7 @@ hibernate {
 }
 
 checkstyle {
-	configFile = file("${project.rootDir}/src/config/check_style.xml")
+	configFile = file("${project.rootDir}/src/config/checkstyle.xml")
 	ignoreFailures = true
 	sourceSets = [project.sourceSets.main]
 }
