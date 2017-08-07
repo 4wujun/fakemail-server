@@ -48,9 +48,8 @@ public abstract class AbstractEntity implements Serializable {
 	 * Identifier.
 	 */
 	@Id
-	@Column(name = "id")
+	@Column(name = "id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
 	@SuppressWarnings("PMD.ShortVariable")
 	private Long id;
 	/**
