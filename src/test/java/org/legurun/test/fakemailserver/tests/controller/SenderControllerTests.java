@@ -23,54 +23,42 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Arrays;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.config.RepositoryConfig;
-import org.legurun.test.fakemailserver.config.RootConfig;
-import org.legurun.test.fakemailserver.config.WebMvcConfig;
 import org.legurun.test.fakemailserver.controller.SenderController;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.service.ISenderService;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.legurun.test.fakemailserver.service.SenderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class,
-		RepositoryConfig.class, WebMvcConfig.class })
-@TestPropertySource(value = "classpath:application-test-h2.properties")
-@WebAppConfiguration
+@RunWith(SpringRunner.class)
+@Transactional
+@AutoConfigureCache
+@AutoConfigureDataJpa
+@AutoConfigureTestDatabase
+@AutoConfigureTestEntityManager
+@WebMvcTest(SenderController.class)
 public class SenderControllerTests {
 
+	@Autowired
 	private MockMvc mockMvc;
 
-	@Mock
+	@MockBean
 	private ISenderService senderService;
-
-	@Autowired
-	@InjectMocks
-	private SenderController senderController;
-
-	@Autowired
-	private WebApplicationContext webApplicationContext;
-
-	@Before
-	public void setup() {
-		mockMvc =
-			MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-	}
 
 	@Test
 	public void testList() throws Exception {
@@ -95,8 +83,12 @@ public class SenderControllerTests {
 		verifyNoMoreInteractions(senderService);
 	}
 
-	@Before
-	public void initMockito() {
-		MockitoAnnotations.initMocks(this);
+
+	@TestConfiguration
+	static class TestContextConfiguration {
+		@Bean
+		public ISenderService senderService() {
+			return new SenderService();
+		}
 	}
 }

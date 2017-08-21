@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.controller;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,6 +15,8 @@ package org.legurun.test.fakemailserver.controller;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package org.legurun.test.fakemailserver.controller;
+
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.service.IEmailService;
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Email REST controller.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 @RestController

@@ -17,6 +17,6 @@
 
 /**
  * Contains the Data Access Object (DAO) code.
- * @author patrice
+ * @author patlenain
  */
 package org.legurun.test.fakemailserver.dao;

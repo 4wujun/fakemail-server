@@ -29,7 +29,7 @@ import org.subethamail.smtp.helper.SimpleMessageListener;
 /**
  * Email service.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 public interface IEmailService extends SimpleMessageListener {

@@ -16,7 +16,7 @@
  */
 
 /**
- * Contains the DAO test code.
- * @author patrice
+ * Contains the main class for Spring Boot.
+ * @author patlenain
  */
-package org.legurun.test.fakemailserver.tests.config;
+package org.legurun.test.fakemailserver;

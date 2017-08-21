@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Common class for persisted entities.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 @SuppressWarnings("serial")

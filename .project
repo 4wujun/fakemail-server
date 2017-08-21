@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>Fakemail Server</name>
-	<comment>Fakemail server</comment>
+	<comment>Fakemail server aims to act as a &quot;blackhole&quot; mail server.
+	Each mail send to Fakemail is stored into database and never forwarded to legitimate recipients.
+	Those mails can be displayed on a web interface.
+	The main use is for testing software which sends mail, to forbid sending to real users.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -20,12 +23,29 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>net.sf.eclipsecs.core.CheckstyleBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>ch.acanda.eclipse.pmd.builder.PMDBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.springsource.ide.eclipse.gradle.core.nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
+		<nature>net.sf.eclipsecs.core.CheckstyleNature</nature>
+		<nature>ch.acanda.eclipse.pmd.builder.PMDNature</nature>
+		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 	</natures>
 </projectDescription>

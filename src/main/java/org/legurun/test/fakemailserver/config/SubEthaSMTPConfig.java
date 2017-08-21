@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.config;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,6 +15,8 @@ package org.legurun.test.fakemailserver.config;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package org.legurun.test.fakemailserver.config;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -24,8 +24,8 @@ import org.legurun.test.fakemailserver.service.IEmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.subethamail.smtp.MessageHandlerFactory;
@@ -35,12 +35,13 @@ import org.subethamail.smtp.server.SMTPServer;
 /**
  * Configuration for the SMTP server.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  * @see SMTPServer
  */
 @Component
-@ComponentScan(basePackages = "org.legurun.test.fakemailserver.mail")
+@ConditionalOnProperty(prefix = "app.mail.server",
+	value = "enabled", havingValue = "true", matchIfMissing = false)
 public class SubEthaSMTPConfig {
 	/**
 	 * Logger.
@@ -57,9 +58,11 @@ public class SubEthaSMTPConfig {
 	/**
 	 * Get the SMTP server.
 	 *
-	 * @param mailService Mail managment service.
+	 * @param mailService
+	 *            Mail managment service.
 	 * @return SMTP server
-	 * @throws UnknownHostException Listening host unknown
+	 * @throws UnknownHostException
+	 *             Listening host unknown
 	 */
 	@Autowired
 	@Bean(initMethod = "start", destroyMethod = "stop")

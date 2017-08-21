@@ -24,7 +24,7 @@ import org.legurun.test.fakemailserver.model.Sender;
 /**
  * Sender service.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 public interface ISenderService {

@@ -24,7 +24,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * Command for the email search.
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 @SuppressWarnings("serial")

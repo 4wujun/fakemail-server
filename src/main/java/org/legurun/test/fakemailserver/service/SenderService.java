@@ -32,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Sender service implementation.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 @Service

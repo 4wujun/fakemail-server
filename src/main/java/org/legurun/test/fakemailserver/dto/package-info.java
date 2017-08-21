@@ -17,6 +17,6 @@
 
 /**
  * Contains the Data Transfert Object (DTO) code.
- * @author patrice
+ * @author patlenain
  */
 package org.legurun.test.fakemailserver.dto;

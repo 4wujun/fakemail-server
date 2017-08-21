@@ -17,45 +17,38 @@
 
 package org.legurun.test.fakemailserver.tests.controller;
 
-import org.junit.Before;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.config.RepositoryConfig;
-import org.legurun.test.fakemailserver.config.RootConfig;
-import org.legurun.test.fakemailserver.config.WebMvcConfig;
+import org.legurun.test.fakemailserver.controller.HomeController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class,
-		RepositoryConfig.class, WebMvcConfig.class })
-@TestPropertySource(value = "classpath:application-test-h2.properties")
-@WebAppConfiguration
+@RunWith(SpringRunner.class)
+@Transactional
+@AutoConfigureCache
+@AutoConfigureDataJpa
+@AutoConfigureTestDatabase
+@AutoConfigureTestEntityManager
+@WebMvcTest(HomeController.class)
 public class HomeControllerTests {
 
-	private MockMvc mockMvc;
-
 	@Autowired
-	private WebApplicationContext webApplicationContext;
-
-	@Before
-	public void setup() {
-		mockMvc =
-			MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-	}
+	private MockMvc mockMvc;
 
 	@Test
 	public void testIndex() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/"))
-			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.view().name("index"));
+		mockMvc.perform(get("/"))
+			.andExpect(status().isOk())
+			.andExpect(view().name("index"));
 	}
 }

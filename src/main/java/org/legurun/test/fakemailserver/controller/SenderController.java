@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.controller;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,6 +15,8 @@ package org.legurun.test.fakemailserver.controller;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package org.legurun.test.fakemailserver.controller;
+
 import java.util.List;
 
 import org.legurun.test.fakemailserver.model.Sender;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Sender REST controller.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 @RestController

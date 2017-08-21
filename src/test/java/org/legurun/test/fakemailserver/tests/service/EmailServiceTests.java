@@ -18,7 +18,7 @@
 package org.legurun.test.fakemailserver.tests.service;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,50 +32,50 @@ import javax.mail.internet.MimeMessage;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.config.RepositoryConfig;
-import org.legurun.test.fakemailserver.config.RootConfig;
 import org.legurun.test.fakemailserver.dao.IEmailDao;
+import org.legurun.test.fakemailserver.dao.ISenderDao;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
+import org.legurun.test.fakemailserver.service.EmailService;
 import org.legurun.test.fakemailserver.service.IEmailService;
 import org.legurun.test.fakemailserver.service.ISenderService;
 import org.legurun.test.fakemailserver.utils.PagedList;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Email service tests.
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
-@TestPropertySource(value = "classpath:application-test-h2.properties")
+@RunWith(SpringRunner.class)
+@TestPropertySource("classpath:application-test-h2.properties")
 public class EmailServiceTests {
 	/**
 	 * Email service to test.
 	 */
 	@Autowired
-	@InjectMocks
 	private IEmailService emailService;
 
-	@Mock
+	@MockBean
 	private IEmailDao emailDao;
 
-	@Mock
+	@MockBean
+	private ISenderDao senderDao;
+
+	@MockBean
 	private ISenderService senderService;
 
 	@Test
@@ -178,10 +178,12 @@ public class EmailServiceTests {
 		//Sat, 17 Jun 2017 19:06:06 +0200 (CEST)
 	}
 
-	@Before
-	public void initMockito() {
-		MockitoAnnotations.initMocks(this);
-		ReflectionTestUtils.setField(emailService, "emailDao", emailDao);
-		ReflectionTestUtils.setField(emailService, "senderService", senderService);
+
+	@TestConfiguration
+	static class TestContextConfiguration {
+		@Bean
+		public IEmailService emailService() {
+			return new EmailService();
+		}
 	}
 }

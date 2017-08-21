@@ -45,7 +45,7 @@ import org.subethamail.smtp.TooMuchDataException;
 /**
  * Email management service implementation.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 @Service

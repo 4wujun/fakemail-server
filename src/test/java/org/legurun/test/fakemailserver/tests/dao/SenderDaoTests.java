@@ -28,19 +28,15 @@ import javax.persistence.PersistenceContext;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.config.RepositoryConfig;
-import org.legurun.test.fakemailserver.config.RootConfig;
 import org.legurun.test.fakemailserver.dao.ISenderDao;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
-@TestPropertySource(value = "classpath:application-test-h2.properties")
+@RunWith(SpringRunner.class)
+@DataJpaTest
 @SuppressWarnings("checkstyle:MultipleStringLiterals")
 public class SenderDaoTests {
 

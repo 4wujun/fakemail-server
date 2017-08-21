@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.dao;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -16,6 +14,8 @@ package org.legurun.test.fakemailserver.dao;
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package org.legurun.test.fakemailserver.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,7 +41,7 @@ import org.springframework.util.StringUtils;
 /**
  * DAO implementation for Email entity.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  * @see Email
  */
