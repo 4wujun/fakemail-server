@@ -35,6 +35,7 @@ import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.utils.PagedList;
+import org.legurun.test.fakemailserver.utils.SortOrder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -46,18 +47,20 @@ import org.springframework.util.StringUtils;
  * @see Email
  */
 @Repository
+@SuppressWarnings({ "PMD.CyclomaticComplexity",
+	"PMD.ModifiedCyclomaticComplexity", "PMD.StdCyclomaticComplexity" })
 public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings(
-			{ "checkstyle:MultipleStringLiterals",
-				"PMD.AvoidDuplicateLiterals" })
+	@SuppressWarnings({ "checkstyle:MultipleStringLiterals",
+		"checkstyle:NPathComplexity",
+		"PMD.AvoidDuplicateLiterals", "PMD.NPathComplexity" })
 	@Override
 	public PagedList<EmailSearchReport> search(final Sender sender,
 			final String recipient, final Date sentSince,
-			final Date sentBefore, final Integer start,
-			final Integer limit) {
+			final Date sentBefore, final String sort, final String order,
+			final Integer start, final Integer limit) {
 		final PagedList<EmailSearchReport> pagedList =
 				new PagedList<EmailSearchReport>();
 
@@ -97,18 +100,18 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 		}
 		query.where(predicates.toArray(new Predicate[] {}));
 		final List<Order> orders = new ArrayList<Order>();
-		/* if (sortProperty != null) {
-			String propertyName = sortProperty;
-			if ("sender".equals(sortProperty)) {
+		if (sort != null) {
+			String propertyName = sort;
+			if ("sender".equals(sort)) {
 				propertyName = "sender.address";
 			}
-			if (sortOrder == SortOrder.DESCENDING) {
+			if (SortOrder.isDescending(order)) {
 				orders.add(builder.desc(rootEmail.get(propertyName)));
 			}
 			else {
 				orders.add(builder.asc(rootEmail.get(propertyName)));
 			}
-		}*/
+		}
 		orders.add(builder.asc(rootEmail.get("sentDate")));
 		query.orderBy(orders);
 		final TypedQuery<EmailSearchReport> typedQueryList =

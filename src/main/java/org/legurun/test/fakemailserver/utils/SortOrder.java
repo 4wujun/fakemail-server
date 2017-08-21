@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.utils;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,7 +15,7 @@ package org.legurun.test.fakemailserver.utils;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.springframework.core.convert.converter.Converter;
+package org.legurun.test.fakemailserver.utils;
 
 /**
  * Sort order.
@@ -25,39 +23,28 @@ import org.springframework.core.convert.converter.Converter;
  * @author patlenain
  * @since 2017
  */
-public enum SortOrder {
+public final class SortOrder {
 	/**
-	 * Ascending order.
+	 * Private constructor.
 	 */
-	ASCENDING,
-	/**
-	 * Descending order.
-	 */
-	DESCENDING;
+	private SortOrder() {
+	}
 
 	/**
-	 * Converter for SortOrder.
-	 * @author patlenain
-	 * @since 2017
+	 * Test is sort order is ascending.
+	 * @param order Order
+	 * @return <code>true</code> if it's ascending sort order.
 	 */
-	public static class OrderConverter implements Converter<String, SortOrder> {
-		/**
-		 * Convert order string to enum.
-		 * @param source Order string
-		 * @return Enum
-		 */
-		@SuppressWarnings("checkstyle:returncount")
-		@Override
-		public SortOrder convert(final String source) {
-			if ("asc".equals(source)) {
-				return SortOrder.ASCENDING;
-			}
-			else if ("desc".equals(source)) {
-				return SortOrder.DESCENDING;
-			}
-			else {
-				return null;
-			}
-		}
+	public static boolean isAscending(final String order) {
+		return "asc".equals(order);
+	}
+
+	/**
+	 * Test is sort order is descending.
+	 * @param order Order
+	 * @return <code>true</code> if it's descending sort order.
+	 */
+	public static boolean isDescending(final String order) {
+		return "desc".equals(order);
 	}
 }

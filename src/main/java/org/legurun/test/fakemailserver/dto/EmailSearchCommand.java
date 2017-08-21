@@ -53,6 +53,14 @@ public class EmailSearchCommand implements Serializable {
 	 * Size of the pagination.
 	 */
 	private Integer limit;
+	/**
+	 * Sort property name.
+	 */
+	private String sort;
+	/**
+	 * Order type.
+	 */
+	private String order;
 
 	/**
 	 * Get the sender identifier.
@@ -155,13 +163,45 @@ public class EmailSearchCommand implements Serializable {
 	}
 
 	/**
+	 * Get the sort property name.
+	 * @return Sort property name
+	 */
+	public String getSort() {
+		return sort;
+	}
+
+	/**
+	 * Set the sort property name.
+	 * @param sort Sort property name
+	 */
+	public void setSort(final String sort) {
+		this.sort = sort;
+	}
+
+	/**
+	 * Get the order type.
+	 * @return Order type
+	 */
+	public String getOrder() {
+		return order;
+	}
+
+	/**
+	 * Set the order type.
+	 * @param order Order type
+	 */
+	public void setOrder(final String order) {
+		this.order = order;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
 		return "EmailSearchCommand [senderId=" + senderId
 				+ ", recipient=" + recipient + ", sentSince=" + sentSince
-				+ ", sentBefore=" + sentBefore
+				+ ", sentBefore=" + sentBefore + ", order=" + order
 				+ ", offset=" + offset + ", limit=" + limit + "]";
 	}
 

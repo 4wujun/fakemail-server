@@ -95,7 +95,8 @@ public class EmailServiceTests {
 		pagedList.setTotal(1);
 		when(
 				emailDao.search(sender, "foo@bar.com",
-						dateSince, dateBefore, 0, 25)).thenReturn(pagedList);
+						dateSince, dateBefore, null, null, 0, 25))
+			.thenReturn(pagedList);
 
 		final EmailSearchCommand command = new EmailSearchCommand();
 		command.setSenderId(1L);
@@ -112,7 +113,7 @@ public class EmailServiceTests {
 		verify(senderService, times(1)).get(eq(1L));
 		verify(emailDao, times(1)).search(eq(sender),
 			eq("foo@bar.com"), eq(dateSince),
-			eq(dateBefore), eq(0), eq(25));
+			eq(dateBefore), isNull(), isNull(), eq(0), eq(25));
 		verifyNoMoreInteractions(senderService);
 		verifyNoMoreInteractions(emailDao);
 	}
@@ -128,7 +129,8 @@ public class EmailServiceTests {
 		pagedList.setTotal(0);
 		when(
 				emailDao.search(null, null,
-						null, null, null, null)).thenReturn(pagedList);
+						null, null, null, null, null, null)).
+			thenReturn(pagedList);
 
 		final EmailSearchCommand command = new EmailSearchCommand();
 		command.setSenderId(null);
@@ -139,7 +141,7 @@ public class EmailServiceTests {
 		assertEquals(pagedList, result);
 		verify(senderService, times(0)).get(1L);
 		verify(emailDao, times(1)).search(isNull(),
-				isNull(), isNull(),
+				isNull(), isNull(), isNull(), isNull(),
 				isNull(), isNull(), isNull());
 		verifyNoMoreInteractions(senderService);
 		verifyNoMoreInteractions(emailDao);

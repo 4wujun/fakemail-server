@@ -88,6 +88,7 @@ public class EmailService implements IEmailService {
 		}
 		return emailDao.search(sender, searchCommand.getRecipient(),
 				searchCommand.getSentSince(), searchCommand.getSentBefore(),
+				searchCommand.getSort(), searchCommand.getOrder(),
 				searchCommand.getOffset(), searchCommand.getLimit());
 	}
 

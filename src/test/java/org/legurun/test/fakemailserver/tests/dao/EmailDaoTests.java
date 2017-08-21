@@ -103,7 +103,8 @@ public class EmailDaoTests {
 	@Transactional
 	public void testSearchAll() {
 		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, null, null, null, null, null);
+				emailDao.search(null, null, null, null,
+						null, null, null, null);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotal());
 		assertEquals(4, list.getData().size());
@@ -113,7 +114,8 @@ public class EmailDaoTests {
 	@Transactional
 	public void testSearchBySender() {
 		final PagedList<EmailSearchReport> list =
-				emailDao.search(sender1, null, null, null, null, null);
+				emailDao.search(sender1, null, null, null,
+						null, null, null, null);
 		assertNotNull(list);
 		assertEquals(3L, list.getTotal());
 		assertEquals(3, list.getData().size());
@@ -123,7 +125,8 @@ public class EmailDaoTests {
 	@Transactional
 	public void testSearchByRecipient() {
 		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, "test2", null, null, null, null);
+				emailDao.search(null, "test2", null, null,
+						null, null, null, null);
 		assertNotNull(list);
 		assertEquals(1L, list.getTotal());
 		assertEquals(1, list.getData().size());
@@ -136,7 +139,8 @@ public class EmailDaoTests {
 	public void testSearchBySentSince() {
 		final Date sentSince = DateUtils.addDays(new Date(), -3);
 		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, null, sentSince, null, null, null);
+				emailDao.search(null, null, sentSince, null,
+						null, null, null, null);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotal());
 		assertEquals(4, list.getData().size());
@@ -147,7 +151,8 @@ public class EmailDaoTests {
 	public void testSearchBySentBefore() {
 		final Date sentBefore = DateUtils.addDays(new Date(), -1);
 		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, null, null, sentBefore, null, null);
+				emailDao.search(null, null, null, sentBefore,
+						null, null, null, null);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotal());
 		assertEquals(4, list.getData().size());
@@ -157,7 +162,8 @@ public class EmailDaoTests {
 	@Transactional
 	public void testSearchAllWithOffsetAndLimit() {
 		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, null, null, null, 1, 2);
+				emailDao.search(null, null, null, null,
+						null, null, 1, 2);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotal());
 		assertEquals(2, list.getData().size());
@@ -167,7 +173,8 @@ public class EmailDaoTests {
 	@Transactional
 	public void testSearchAllWithOffsetOnly() {
 		PagedList<EmailSearchReport> list =
-			emailDao.search(null, null, null, null, 1, null);
+			emailDao.search(null, null, null, null,
+					null, null, 1, null);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotal());
 		assertEquals(4, list.getData().size());
@@ -177,7 +184,8 @@ public class EmailDaoTests {
 	@Transactional
 	public void testSearchAllWithLimitOnly() {
 		PagedList<EmailSearchReport> list =
-			emailDao.search(null, null, null, null, null, 2);
+			emailDao.search(null, null, null, null,
+					null, null, null, 2);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotal());
 		assertEquals(4, list.getData().size());
@@ -187,7 +195,8 @@ public class EmailDaoTests {
 	@Transactional
 	public void testSearchBySenderAndRecipient() {
 		final PagedList<EmailSearchReport> list =
-				emailDao.search(sender1, "test3", null, null, null, null);
+				emailDao.search(sender1, "test3", null, null,
+						null, null, null, null);
 		assertNotNull(list);
 		assertEquals(1L, list.getTotal());
 		assertEquals(1, list.getData().size());

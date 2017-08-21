@@ -37,11 +37,15 @@ public interface IEmailDao extends IDao<Email> {
 	 * @param recipient Recipient address
 	 * @param sentSince Date since the email was sent
 	 * @param sentBefore Date before the email was sent
+	 * @param sort Sort property
+	 * @param order Sort order
 	 * @param start Start index for pagination
 	 * @param limit Limit results for pagination
 	 * @return Search result
 	 */
+	@SuppressWarnings("checkstyle:ParameterNumber")
 	PagedList<EmailSearchReport> search(Sender sender,
 		String recipient, Date sentSince, Date sentBefore,
+		String sort, String order,
 		Integer start, Integer limit);
 }
