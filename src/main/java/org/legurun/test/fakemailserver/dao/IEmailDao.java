@@ -27,7 +27,7 @@ import org.legurun.test.fakemailserver.utils.PagedList;
 /**
  * Email DAO.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 public interface IEmailDao extends IDao<Email> {

@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.model;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -16,6 +14,8 @@ package org.legurun.test.fakemailserver.model;
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package org.legurun.test.fakemailserver.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Common class for persisted entities.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 @SuppressWarnings("serial")
@@ -48,9 +48,8 @@ public abstract class AbstractEntity implements Serializable {
 	 * Identifier.
 	 */
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@NotNull
+	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@SuppressWarnings("PMD.ShortVariable")
 	private Long id;
 	/**

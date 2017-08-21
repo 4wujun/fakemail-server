@@ -22,29 +22,23 @@ import static org.junit.Assert.*;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.config.RepositoryConfig;
-import org.legurun.test.fakemailserver.config.RootConfig;
 import org.legurun.test.fakemailserver.dao.IEmailDao;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.utils.PagedList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
-@TestPropertySource(value = "classpath:application-test-h2.properties")
+@RunWith(SpringRunner.class)
+@DataJpaTest
 @SuppressWarnings("checkstyle:MultipleStringLiterals")
 public class EmailDaoTests {
 
@@ -55,8 +49,8 @@ public class EmailDaoTests {
 	private Email email3;
 	private Email email4;
 
-	@PersistenceContext
-	private EntityManager entityManager;
+	@Autowired
+	private TestEntityManager entityManager;
 
 	/**
 	 * DAO to test.

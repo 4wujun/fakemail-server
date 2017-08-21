@@ -25,10 +25,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -37,7 +37,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 /**
  * Sender entity.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 @SuppressWarnings("serial")
@@ -52,7 +52,7 @@ public class Sender extends AbstractEntity {
 	 */
 	@Column(name = "address", nullable = false, unique = true)
 	@NaturalId
-	@javax.validation.constraints.Email
+	@org.hibernate.validator.constraints.Email
 	@NotBlank
 	@Length(max = 250)
 	private String address;

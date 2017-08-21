@@ -22,7 +22,7 @@ import org.springframework.core.convert.converter.Converter;
 /**
  * Sort order.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 public enum SortOrder {
@@ -37,7 +37,7 @@ public enum SortOrder {
 
 	/**
 	 * Converter for SortOrder.
-	 * @author patrice
+	 * @author patlenain
 	 * @since 2017
 	 */
 	public static class OrderConverter implements Converter<String, SortOrder> {

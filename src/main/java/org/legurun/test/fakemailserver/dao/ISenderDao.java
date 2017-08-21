@@ -22,7 +22,7 @@ import org.legurun.test.fakemailserver.model.Sender;
 /**
  * Sender DAO.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 public interface ISenderDao extends IDao<Sender> {

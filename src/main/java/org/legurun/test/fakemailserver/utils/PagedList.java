@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Paginated list.
  *
- * @author patrice
+ * @author patlenain
  * @param <E> Data type
  * @since 2017
  */

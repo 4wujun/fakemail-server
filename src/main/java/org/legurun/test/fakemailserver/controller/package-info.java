@@ -17,6 +17,6 @@
 
 /**
  * Contains the controllers code.
- * @author patrice
+ * @author patlenain
  */
 package org.legurun.test.fakemailserver.controller;

@@ -31,7 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Common class for DAOs.
  *
- * @author patrice
+ * @author patlenain
  * @param <T> Persisted class
  * @since 2017
  */

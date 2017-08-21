@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Tests utils.
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 public abstract class TestUtils {

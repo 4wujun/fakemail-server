@@ -24,7 +24,7 @@ import org.legurun.test.fakemailserver.model.AbstractEntity;
 /**
  * Common DAO interface.
  *
- * @author patrice
+ * @author patlenain
  * @param <T> Entity class
  * @since 2017
  */

@@ -17,6 +17,6 @@
 
 /**
  * Contains the service test code.
- * @author patrice
+ * @author patlenain
  */
 package org.legurun.test.fakemailserver.tests.service;

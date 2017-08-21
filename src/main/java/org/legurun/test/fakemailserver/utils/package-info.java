@@ -17,6 +17,6 @@
 
 /**
  * Contains the utils needed.
- * @author patrice
+ * @author patlenain
  */
 package org.legurun.test.fakemailserver.utils;

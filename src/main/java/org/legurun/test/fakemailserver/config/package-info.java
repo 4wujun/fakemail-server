@@ -17,6 +17,7 @@
 
 /**
  * Contains the configuration in java style.
- * @author patrice
+ * @author patlenain
+ * @since 2017
  */
 package org.legurun.test.fakemailserver.config;

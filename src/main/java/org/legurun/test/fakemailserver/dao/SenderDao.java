@@ -19,6 +19,7 @@ package org.legurun.test.fakemailserver.dao;
 
 import javax.cache.annotation.CachePut;
 import javax.cache.annotation.CacheResult;
+import javax.cache.annotation.CacheValue;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -30,7 +31,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Sender DAO implementation.
  *
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
 @Repository
@@ -57,7 +58,7 @@ public class SenderDao extends AbstractDao<Sender> implements ISenderDao {
 	 */
 	@Override
 	@CachePut(cacheName = "senders")
-	public void persist(final Sender entity) {
+	public void persist(@CacheValue final Sender entity) {
 		super.persist(entity);
 	}
 

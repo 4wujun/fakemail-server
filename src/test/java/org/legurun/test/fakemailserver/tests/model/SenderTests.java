@@ -25,16 +25,15 @@ import javax.validation.Validator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.config.RepositoryConfig;
-import org.legurun.test.fakemailserver.config.RootConfig;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
+@RunWith(SpringRunner.class)
+@ImportAutoConfiguration(ValidationAutoConfiguration.class)
 @TestPropertySource(value = "classpath:application-test-h2.properties")
 public class SenderTests {
 

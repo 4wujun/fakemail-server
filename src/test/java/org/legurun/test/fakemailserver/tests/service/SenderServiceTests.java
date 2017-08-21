@@ -23,42 +23,36 @@ import static org.mockito.ArgumentMatchers.eq;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.config.RepositoryConfig;
-import org.legurun.test.fakemailserver.config.RootConfig;
 import org.legurun.test.fakemailserver.dao.ISenderDao;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.service.ISenderService;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.legurun.test.fakemailserver.service.SenderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.mockito.Mockito.*;
 
 /**
  * Sender service tests.
- * @author patrice
+ * @author patlenain
  * @since 2017
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RootConfig.class, RepositoryConfig.class })
-@TestPropertySource(value = "classpath:application-test-h2.properties")
+@RunWith(SpringRunner.class)
+@TestPropertySource("classpath:application-test-h2.properties")
 public class SenderServiceTests {
 	/**
 	 * Email service to test.
 	 */
 	@Autowired
-	@InjectMocks
 	private ISenderService senderService;
 
-	@Mock
+	@MockBean
 	private ISenderDao senderDao;
 
 	@Test
@@ -91,9 +85,11 @@ public class SenderServiceTests {
 		verify(senderDao, times(1)).get(eq(2L));
 	}
 
-	@Before
-	public void initMockito() {
-		MockitoAnnotations.initMocks(this);
-		ReflectionTestUtils.setField(senderService, "senderDao", senderDao);
+	@TestConfiguration
+	static class TestContextConfiguration {
+		@Bean
+		public ISenderService senderService() {
+			return new SenderService();
+		}
 	}
 }
