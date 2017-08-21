@@ -63,7 +63,7 @@ $(function() {
 	$('#searchForm #senderId').html('<option class="results" value=""/>');
 	$.ajax({
 		url: '<c:url value="/api/sender"/>',
-		type: 'GET',
+		type: 'get',
 		dataType: 'json'
 	})
 	.done(function(data) {

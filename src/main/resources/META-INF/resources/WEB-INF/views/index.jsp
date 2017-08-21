@@ -46,9 +46,8 @@ function queryParams(params) {
 
 $(document).ready(function(){
     $('#results').bootstrapTable({
-    	method: 'POST',
+    	method: 'post',
     	url: '<c:url value="/api/mail"/>',
-//    	contentType: 'application/x-www-form-urlencoded',
     	queryParams: queryParams,
     	columns: [{
     		checkbox: true,
@@ -69,8 +68,8 @@ $(document).ready(function(){
     		field: 'subject',
     		title: 'Subject'
     	}],
-//    	pagination: true,
-//    	pageSize: 10,
+    	pagination: true,
+    	pageSize: 10,
     	clickToSelect: true
     });
 });
