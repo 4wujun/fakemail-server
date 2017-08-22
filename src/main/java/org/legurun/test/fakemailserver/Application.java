@@ -39,7 +39,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableMBeanExport
 @ComponentScan(basePackages = { "org.legurun.test.fakemailserver.dao",
 		"org.legurun.test.fakemailserver.service",
-		"org.legurun.test.fakemailserver.controller" })
+		"org.legurun.test.fakemailserver.controller",
+		"org.legurun.test.fakemailserver.config" })
 @PropertySource(value = "file:${externalConfigurationLocation}",
 		ignoreResourceNotFound = true)
 @EntityScan(basePackages = { "org.legurun.test.fakemailserver.model" })

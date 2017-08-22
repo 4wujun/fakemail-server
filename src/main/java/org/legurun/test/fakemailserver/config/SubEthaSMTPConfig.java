@@ -26,8 +26,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 import org.subethamail.smtp.MessageHandlerFactory;
 import org.subethamail.smtp.helper.SimpleMessageListenerAdapter;
 import org.subethamail.smtp.server.SMTPServer;
@@ -39,7 +39,7 @@ import org.subethamail.smtp.server.SMTPServer;
  * @since 2017
  * @see SMTPServer
  */
-@Component
+@Configuration
 @ConditionalOnProperty(prefix = "app.mail.server",
 	value = "enabled", havingValue = "true", matchIfMissing = false)
 public class SubEthaSMTPConfig {
@@ -73,9 +73,9 @@ public class SubEthaSMTPConfig {
 				new SimpleMessageListenerAdapter(mailService);
 
 		final String listenHost =
-				environment.getRequiredProperty("smtp.listen.host");
+				environment.getRequiredProperty("app.mail.server.host");
 		final int listenPort =
-				environment.getRequiredProperty("smtp.listen.port",
+				environment.getRequiredProperty("app.mail.server.port",
 						Integer.class);
 		LOG.debug("Listening on {}:{}", listenHost, listenPort);
 		final SMTPServer server = new SMTPServer(factory);
