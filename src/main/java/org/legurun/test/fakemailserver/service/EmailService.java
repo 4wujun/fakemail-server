@@ -28,7 +28,6 @@ import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
 import org.legurun.test.fakemailserver.dao.IEmailDao;
-import org.legurun.test.fakemailserver.dao.ISenderDao;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
@@ -68,12 +67,6 @@ public class EmailService implements IEmailService {
 	 */
 	@Autowired
 	private IEmailDao emailDao;
-
-	/**
-	 * Sender DAO.
-	 */
-	@Autowired
-	private ISenderDao senderDao;
 
 	/**
 	 * {@inheritDoc}
@@ -119,12 +112,7 @@ public class EmailService implements IEmailService {
 			final InputStream data) throws TooMuchDataException, IOException {
 		LOG.debug(String.format("Receiving message from %s to %s",
 				from, recipient));
-		Sender sender = senderDao.findByAddress(from);
-		if (sender == null) {
-			sender = new Sender();
-			sender.setAddress(from);
-			senderDao.persist(sender);
-		}
+		final Sender sender = senderService.getOrCreateSender(from);
 		final Email email = new Email();
 		email.setRecipient(recipient);
 		email.setMessage(StreamUtils.copyToByteArray(data));

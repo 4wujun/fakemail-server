@@ -42,4 +42,11 @@ public interface ISenderService {
 	 * @return Senders list.
 	 */
 	List<Sender> list();
+
+	/**
+	 * Get a sender by his address or create a new one.
+	 * @param address Address of the sender
+	 * @return Sender
+	 */
+	Sender getOrCreateSender(String address);
 }

@@ -35,7 +35,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.legurun.test.fakemailserver.dao.IEmailDao;
-import org.legurun.test.fakemailserver.dao.ISenderDao;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
@@ -71,9 +70,6 @@ public class EmailServiceTests {
 
 	@MockBean
 	private IEmailDao emailDao;
-
-	@MockBean
-	private ISenderDao senderDao;
 
 	@MockBean
 	private ISenderService senderService;

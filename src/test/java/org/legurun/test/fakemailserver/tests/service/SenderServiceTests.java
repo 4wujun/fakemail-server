@@ -19,6 +19,7 @@ package org.legurun.test.fakemailserver.tests.service;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +34,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.mockito.Mockito.*;
 
 /**
  * Sender service tests.
@@ -67,6 +67,7 @@ public class SenderServiceTests {
 		assertEquals("Result list must contains only one result",
 				senders, result);
 		verify(senderDao, times(1)).list();
+		verifyNoMoreInteractions(senderDao);
 	}
 
 
@@ -83,6 +84,33 @@ public class SenderServiceTests {
 		assertNotNull("Result must be not null", resultNotNull);
 		verify(senderDao, times(1)).get(eq(1L));
 		verify(senderDao, times(1)).get(eq(2L));
+		verifyNoMoreInteractions(senderDao);
+	}
+
+	@Test
+	public void testGetOrCreateSenderKnown() {
+		final Sender sender = new Sender();
+		when(senderDao.findByAddress("foo@bar.com")).thenReturn(sender);
+
+		final Sender result = senderService.getOrCreateSender("foo@bar.com");
+		assertNotNull("Result must not be null", result);
+		assertSame("Result is different", sender, result);
+		verify(senderDao, times(1)).findByAddress(eq("foo@bar.com"));
+		verifyNoMoreInteractions(senderDao);
+	}
+
+	@Test
+	public void testGetOrCreateSenderUnknown() {
+		when(senderDao.findByAddress("foo@bar.com")).
+			thenThrow(EmptyResultDataAccessException.class);
+		doNothing().when(senderDao).persist(new Sender());
+
+		final Sender result = senderService.getOrCreateSender("foo@bar.com");
+		assertNotNull("Result must not be null", result);
+		assertEquals("Result is different", "foo@bar.com", result.getAddress());
+		verify(senderDao, times(1)).findByAddress(eq("foo@bar.com"));
+		verify(senderDao, times(1)).persist(eq(new Sender()));
+		verifyNoMoreInteractions(senderDao);
 	}
 
 	@TestConfiguration

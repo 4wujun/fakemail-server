@@ -26,6 +26,7 @@ import org.legurun.test.fakemailserver.model.Sender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,5 +70,24 @@ public class SenderService implements ISenderService {
 	public Sender get(final Long id) {
 		LOG.debug("Getting sender id = {}", id);
 		return senderDao.get(id);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	@CacheResult(cacheName = "senders")
+	public Sender getOrCreateSender(final String address) {
+		LOG.debug("Getting sender by address '{}'", address);
+		try {
+			return senderDao.findByAddress(address);
+		}
+		catch (final EmptyResultDataAccessException ex) {
+			LOG.info("No sender, creating a new one");
+			final Sender sender = new Sender();
+			sender.setAddress(address);
+			senderDao.persist(sender);
+			return sender;
+		}
 	}
 }
