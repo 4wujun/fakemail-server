@@ -28,7 +28,7 @@ apply plugin: 'jdepend'
 apply plugin: 'org.hibernate.orm'
 
 group = 'org.legurun.test'
-version = '0.1.1'
+version = '0.2.0-SNAPSHOT'
 description = """Fakemail server aims to act as a "blackhole" mail server.
 	Each mail send to Fakemail is stored into database and never forwarded to legitimate recipients.
 	Those mails can be displayed on a web interface.
