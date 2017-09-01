@@ -29,7 +29,6 @@ import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -51,6 +50,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.StreamUtils;
 
 import static org.mockito.Mockito.*;
 
@@ -159,7 +159,8 @@ public class EmailServiceTests {
 		final Resource testMailFile =
 				new ClassPathResource("testEmailServiceParse.txt");
 		final Email email = new Email();
-		email.setMessage(IOUtils.toByteArray(testMailFile.getInputStream()));
+		email.setMessage(
+				StreamUtils.copyToByteArray(testMailFile.getInputStream()));
 
 		final MimeMessage message =
 				emailService.parse(email);

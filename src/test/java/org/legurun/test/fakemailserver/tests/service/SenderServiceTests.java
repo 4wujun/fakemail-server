@@ -18,15 +18,16 @@
 package org.legurun.test.fakemailserver.tests.service;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.dao.ISenderDao;
+import org.legurun.test.fakemailserver.dao.SenderRepository;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.service.ISenderService;
 import org.legurun.test.fakemailserver.service.SenderService;
@@ -34,7 +35,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -53,7 +53,7 @@ public class SenderServiceTests {
 	private ISenderService senderService;
 
 	@MockBean
-	private ISenderDao senderDao;
+	private SenderRepository senderRepository;
 
 	@Test
 	public void testList() {
@@ -61,56 +61,58 @@ public class SenderServiceTests {
 		final Sender sender = new Sender();
 		sender.setAddress("foo@bar.com");
 		senders.add(sender);
-		when(senderDao.list()).thenReturn(senders);
+		when(senderRepository.list()).thenReturn(senders);
 
 		final List<Sender> result = senderService.list();
 		assertEquals("Result list must contains only one result",
 				senders, result);
-		verify(senderDao, times(1)).list();
-		verifyNoMoreInteractions(senderDao);
+		verify(senderRepository, times(1)).list();
+		verifyNoMoreInteractions(senderRepository);
 	}
 
 
 	@Test
 	public void testGet() {
 		final Sender sender = new Sender();
-		when(senderDao.get(1L)).thenReturn(null);
-		when(senderDao.get(2L)).thenReturn(sender);
+		when(senderRepository.findOne(1L)).thenReturn(null);
+		when(senderRepository.findOne(2L)).thenReturn(sender);
 
 		final Sender resultNull = senderService.get(1L);
 		assertNull("Result must be null", resultNull);
 
 		final Sender resultNotNull = senderService.get(2L);
 		assertNotNull("Result must be not null", resultNotNull);
-		verify(senderDao, times(1)).get(eq(1L));
-		verify(senderDao, times(1)).get(eq(2L));
-		verifyNoMoreInteractions(senderDao);
+		verify(senderRepository, times(1)).findOne(eq(1L));
+		verify(senderRepository, times(1)).findOne(eq(2L));
+		verifyNoMoreInteractions(senderRepository);
 	}
 
 	@Test
 	public void testGetOrCreateSenderKnown() {
 		final Sender sender = new Sender();
-		when(senderDao.findByAddress("foo@bar.com")).thenReturn(sender);
+		when(senderRepository.findByAddress("foo@bar.com")).thenReturn(sender);
 
 		final Sender result = senderService.getOrCreateSender("foo@bar.com");
 		assertNotNull("Result must not be null", result);
 		assertSame("Result is different", sender, result);
-		verify(senderDao, times(1)).findByAddress(eq("foo@bar.com"));
-		verifyNoMoreInteractions(senderDao);
+		verify(senderRepository, times(1)).findByAddress(eq("foo@bar.com"));
+		verifyNoMoreInteractions(senderRepository);
 	}
 
 	@Test
 	public void testGetOrCreateSenderUnknown() {
-		when(senderDao.findByAddress("foo@bar.com")).
-			thenThrow(EmptyResultDataAccessException.class);
-		doNothing().when(senderDao).persist(new Sender());
+		when(senderRepository.findByAddress("foo@bar.com")).
+			thenReturn(null);
+		when(senderRepository.save(any(Sender.class))).
+			thenReturn(new Sender());
 
 		final Sender result = senderService.getOrCreateSender("foo@bar.com");
 		assertNotNull("Result must not be null", result);
-		assertEquals("Result is different", "foo@bar.com", result.getAddress());
-		verify(senderDao, times(1)).findByAddress(eq("foo@bar.com"));
-		verify(senderDao, times(1)).persist(eq(new Sender()));
-		verifyNoMoreInteractions(senderDao);
+		assertEquals("Result is different",
+				"foo@bar.com", result.getAddress());
+		verify(senderRepository, times(1)).findByAddress(eq("foo@bar.com"));
+		verify(senderRepository, times(1)).save(eq(new Sender()));
+		verifyNoMoreInteractions(senderRepository);
 	}
 
 	@TestConfiguration

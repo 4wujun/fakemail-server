@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.service;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,16 +15,15 @@ package org.legurun.test.fakemailserver.service;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package org.legurun.test.fakemailserver.service;
+
 import java.util.List;
 
-import javax.cache.annotation.CacheResult;
-
-import org.legurun.test.fakemailserver.dao.ISenderDao;
+import org.legurun.test.fakemailserver.dao.SenderRepository;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,48 +43,43 @@ public class SenderService implements ISenderService {
 			LoggerFactory.getLogger(SenderService.class);
 
 	/**
-	 * Sender DAO.
+	 * Sender repository.
 	 */
 	@Autowired
-	private ISenderDao senderDao;
+	private SenderRepository senderRepository;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	@CacheResult(cacheName = "senders")
 	public List<Sender> list() {
 		LOG.debug("Getting list of senders");
-		return senderDao.list();
+		return senderRepository.list();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	@CacheResult(cacheName = "senders")
 	@SuppressWarnings("PMD.ShortVariable")
 	public Sender get(final Long id) {
 		LOG.debug("Getting sender id = {}", id);
-		return senderDao.get(id);
+		return senderRepository.findOne(id);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	@CacheResult(cacheName = "senders")
 	public Sender getOrCreateSender(final String address) {
 		LOG.debug("Getting sender by address '{}'", address);
-		try {
-			return senderDao.findByAddress(address);
-		}
-		catch (final EmptyResultDataAccessException ex) {
+		Sender sender = senderRepository.findByAddress(address);
+		if (sender == null) {
 			LOG.info("No sender, creating a new one");
-			final Sender sender = new Sender();
+			sender = new Sender();
 			sender.setAddress(address);
-			senderDao.persist(sender);
-			return sender;
+			senderRepository.save(sender);
 		}
+		return sender;
 	}
 }

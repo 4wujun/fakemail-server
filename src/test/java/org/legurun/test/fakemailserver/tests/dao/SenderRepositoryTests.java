@@ -22,13 +22,12 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.dao.ISenderDao;
+import org.legurun.test.fakemailserver.dao.SenderRepository;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -38,7 +37,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @SuppressWarnings("checkstyle:MultipleStringLiterals")
-public class SenderDaoTests {
+public class SenderRepositoryTests {
 
 	private Sender sender1;
 	private Sender sender2;
@@ -48,30 +47,30 @@ public class SenderDaoTests {
 	private EntityManager entityManager;
 
 	/**
-	 * DAO to test.
+	 * Repository to test.
 	 */
 	@Autowired
-	private ISenderDao senderDao;
+	private SenderRepository senderRepository;
 
 	@Test
 	@Transactional
 	public void testFindByAddress() {
-		final Sender goodSender = senderDao.findByAddress("good@bar.com");
+		final Sender goodSender = senderRepository.findByAddress("good@bar.com");
 		assertNotNull(goodSender);
 		assertEquals("good@bar.com", goodSender.getAddress());
 	}
 
-	@Test(expected = NoResultException.class)
+	@Test
 	@Transactional
 	public void testFindByAddressUnknow() {
-		final Sender badSender = senderDao.findByAddress("unknown@foo.org");
+		final Sender badSender = senderRepository.findByAddress("unknown@foo.org");
 		assertNull(badSender);
 	}
 
 	@Test
 	@Transactional
 	public void testList() {
-		final List<Sender> list = senderDao.list();
+		final List<Sender> list = senderRepository.list();
 		assertNotNull(list);
 		assertEquals(3, list.size());
 	}
@@ -81,7 +80,7 @@ public class SenderDaoTests {
 	public void testPersist() {
 		final Sender sender = new Sender();
 		sender.setAddress("bar@foo.net");
-		senderDao.persist(sender);
+		senderRepository.save(sender);
 
 		final Sender result = entityManager.find(Sender.class, sender.getId());
 		assertNotNull(sender);
@@ -91,7 +90,7 @@ public class SenderDaoTests {
 	@Test
 	@Transactional
 	public void testGet() {
-		final Sender sender = senderDao.get(sender1.getId());
+		final Sender sender = senderRepository.findOne(sender1.getId());
 		assertNotNull(sender);
 		assertEquals(sender1, sender);
 	}
@@ -99,8 +98,8 @@ public class SenderDaoTests {
 	@Test
 	@Transactional
 	public void testDelete() {
-		senderDao.delete(sender1);
-		final List<Sender> list = senderDao.list();
+		senderRepository.delete(sender1);
+		final List<Sender> list = senderRepository.list();
 		assertNotNull(list);
 		assertEquals(2, list.size());
 	}
