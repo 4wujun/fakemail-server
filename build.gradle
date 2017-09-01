@@ -15,6 +15,7 @@ plugins {
 	id 'org.liquibase.gradle' version '1.2.4'
 	id 'org.springframework.boot' version '1.5.6.RELEASE'
 	id 'com.github.ben-manes.versions' version '0.15.0'
+	id 'org.sonarqube' version '1.2'
 }
 
 apply plugin: 'java'
@@ -200,3 +201,11 @@ liquibase {
 	}
 }
 */
+
+sonarqube {
+	properties {
+		property 'sonar.projectName', 'Fakemail server'
+		property 'sonar.projectKey', 'org.legurun:fakemailserver'
+	}
+}
+
