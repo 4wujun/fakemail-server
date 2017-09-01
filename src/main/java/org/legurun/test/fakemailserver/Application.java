@@ -23,8 +23,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -33,13 +34,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @since 2017
  */
 @SpringBootApplication(scanBasePackages = {
-		"org.legurun.test.fakemailserver.dao",
 		"org.legurun.test.fakemailserver.service",
 		"org.legurun.test.fakemailserver.controller",
 		"org.legurun.test.fakemailserver.config" })
 @EnableCaching
 @EnableTransactionManagement
-@EnableMBeanExport
+@EnableJpaAuditing
+@EnableJpaRepositories("org.legurun.test.fakemailserver.dao")
 @PropertySource(value = "file:${externalConfigurationLocation}",
 		ignoreResourceNotFound = true)
 @EntityScan(basePackages = { "org.legurun.test.fakemailserver.model" })

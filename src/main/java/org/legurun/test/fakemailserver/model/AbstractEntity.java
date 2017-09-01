@@ -21,16 +21,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -42,6 +45,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @SuppressWarnings("serial")
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties({ "version", "dateCreated", "lastUpdated" })
 public abstract class AbstractEntity implements Serializable {
 	/**
@@ -62,6 +66,7 @@ public abstract class AbstractEntity implements Serializable {
 	/**
 	 * Creation date.
 	 */
+	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_created", nullable = false, insertable = true,
 		updatable = false)
@@ -70,6 +75,7 @@ public abstract class AbstractEntity implements Serializable {
 	/**
 	 * Last modification date.
 	 */
+	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_updated", nullable = false, insertable = true,
 		updatable = true)
@@ -139,23 +145,6 @@ public abstract class AbstractEntity implements Serializable {
 	 */
 	public void setLastUpdated(final Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
-	}
-
-	/**
-	 * Initialize the timestamp fields on creation.
-	 */
-	@PrePersist
-	public void onCreate() {
-		this.dateCreated = new Date();
-		this.lastUpdated = this.dateCreated;
-	}
-
-	/**
-	 * Modify the last update filed on update.
-	 */
-	@PreUpdate
-	public void onUpdate() {
-		this.lastUpdated = new Date();
 	}
 
 	/**
