@@ -22,8 +22,8 @@ addons:
       - master
 
 after_success:
-  - sonar-scanner
-  #  gradle sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
+        #- sonar-scanner
+  - gradle sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
 
 deploy:
   provider: releases
