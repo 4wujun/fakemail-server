@@ -5,13 +5,9 @@ buildscript {
 		mavenCentral()
 		jcenter()
 	}
-	dependencies {
-		classpath 'org.hibernate:hibernate-gradle-plugin:5.2.10.Final'
-	}
 }
 
 plugins {
-	id 'net.saliman.cobertura' version '2.5.0'
 	id 'org.liquibase.gradle' version '1.2.4'
 	id 'org.springframework.boot' version '1.5.6.RELEASE'
 	id 'com.github.ben-manes.versions' version '0.15.0'
@@ -26,7 +22,7 @@ apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
 apply plugin: 'jdepend'
-apply plugin: 'org.hibernate.orm'
+apply plugin: 'jacoco'
 
 group = 'org.legurun.test'
 version = '0.2.0-SNAPSHOT'
@@ -121,13 +117,6 @@ tomcat {
 	ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
 }
 */
-hibernate {
-	enhance {
-		enableLazyInitialization = true
-		enableDirtyTracking = true
-		enableAssociationManagement = true
-	}
-}
 
 checkstyle {
 	configFile = file("${project.rootDir}/src/config/checkstyle.xml")
@@ -137,7 +126,7 @@ checkstyle {
 }
 tasks.withType(Checkstyle) {
 	reports {
-		xml.enabled = false
+		xml.enabled = true
 		html.enabled = true
 	}
 }
@@ -170,10 +159,13 @@ jdepend {
 	sourceSets = [project.sourceSets.main]
 }
 
-cobertura {
-	coverageFormats = ['html', 'xml']
+jacocoTestReport {
+	reports {
+		xml.enabled = true
+		html.enabled = true
+	}
 }
-check.dependsOn coberturaReport
+check.dependsOn jacocoTestReport
 
 war {
 	baseName = 'fakemailserver'
