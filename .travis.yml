@@ -13,14 +13,15 @@ cache:
 
 addons:
   sonarcloud:
-    organization: patlenain-github
+    organization: "patlenain-github"
     token:
       secure: iw3LJWmWblNt7K4IBuXQW3y2wz30MwMG70IVbqIJpEg8k1eHAtxZo9M7oq/il07zsHG4n6YWB63w2dt9k7bXYWwI3j5//23B3l/xD7rssETFyO3y4LTMiqPWDev7GXdCcwbLKCQAmLvXB359C8vwkL0AMoqFMTBuelRhme1WzLp6oYldsk5nWHWGErH9LghujxLWmbKCcPtlXWvzGXk/nEAlHQSBSE6mET8uWUPusS2d4J0fsYDbiJmz8ucfSNfriy/CjSZWVumH8fm/xtc2dtgU1bWG9XBXHB/ySRnBhV0iepm5oWyjeCdgvC1NUOjJm2bKNxmiqJVgm1dWfL9kgfonZIlPBLnGPditD5y+eVALdgzhbcIYvA/1188484R1kweUMXBdmP4Vm81vpCV1g3nMEEovOl4mylD50nQSLuvcllFpAqz2GVxf7mSsO4aedYbgrrP9wBZREmcYV+adEXrgSklR9AWtKUG33jLBt1EvQh4x/hYvW3eNSZYZNlPY8abxpV2qZP2RteWJGtOMo/eNiOOx2FJpfxHKIIAqw0giBjhMORzqLE12aHkI4Tf/kAf0bnfhgRai7OTpJ6bOLHR0nIuukcuDxkfHOPNCa8fyetiKm9oRI9mKJhWdz0nKC5vPrbs8PX2K3WQrVoBHsyPyf3tdmKlcRI70wdDhEFA=
     branches:
       - master
 
 after_success:
-  sonar-scanner -X
+  - cat /home/travis/.sonarscanner/sonar-scanner-2.8/conf/sonar-scanner.properties
+  - sonar-scanner -X
   #  gradle sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
 
 deploy:
