@@ -23,8 +23,8 @@ addons:
 
 after_success:
         #- sonar-scanner
-  - env | sort
-  - gradle sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
+  - echo $SONAR_TOKEN
+  - gradle sonarqube -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
 
 deploy:
   provider: releases

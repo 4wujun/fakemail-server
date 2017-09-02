@@ -204,8 +204,9 @@ liquibase {
 
 sonarqube {
 	properties {
-		property 'sonar.projectName', 'Fakemail server'
 		property 'sonar.projectKey', 'org.legurun.fakemailserver'
+		property 'sonar.host.url', 'https://sonarcloud.io/'
+		property 'sonar.organization', 'patlenain-github'
 	}
 }
 
