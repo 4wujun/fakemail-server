@@ -61,7 +61,7 @@ public class Sender extends AbstractEntity {
 	 * Emails sent by this sender.
 	 */
 	@OneToMany(mappedBy = "sender")
-	private Set<Email> emails = new HashSet<Email>();
+	private Set<Email> emails = new HashSet<>();
 
 	/**
 	 * Get the address.

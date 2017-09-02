@@ -38,39 +38,34 @@ import org.springframework.data.repository.CrudRepository;
 public interface SenderRepository extends CrudRepository<Sender, Long> {
 
 	/**
-	 * Cache name for senders.
-	 */
-	String CACHE_NAME = "senders";
-
-	/**
 	 * Find a sender by his address.
 	 *
 	 * @param address
 	 *            Adress
 	 * @return Sender or <code>null</code> if not found
 	 */
-	@CacheResult(cacheName = CACHE_NAME)
+	@CacheResult(cacheName = SenderEnums.CACHE_NAME)
 	Sender findByAddress(String address);
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	@CachePut(cacheName = CACHE_NAME)
+	@CachePut(cacheName = SenderEnums.CACHE_NAME)
 	<S extends Sender> S save(@CacheValue S entity);
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	@CacheRemove(cacheName = CACHE_NAME)
+	@CacheRemove(cacheName = SenderEnums.CACHE_NAME)
 	void delete(Sender entity);
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	@CacheRemoveAll(cacheName = CACHE_NAME)
+	@CacheRemoveAll(cacheName = SenderEnums.CACHE_NAME)
 	void deleteAll();
 
 	/**

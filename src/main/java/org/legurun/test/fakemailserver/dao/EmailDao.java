@@ -62,7 +62,7 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 			final Date sentBefore, final String sort, final String order,
 			final Integer start, final Integer limit) {
 		final PagedList<EmailSearchReport> pagedList =
-				new PagedList<EmailSearchReport>();
+				new PagedList<>();
 
 		final CriteriaBuilder builder =
 				this.getEntityManager().getCriteriaBuilder();
@@ -76,7 +76,7 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 						EmailSearchReport.class, rootEmail.get("id"),
 						joinSender.get("address"), rootEmail.get("recipient"),
 						rootEmail.get("sentDate"), rootEmail.get("subject")));
-		final List<Predicate> predicates = new ArrayList<Predicate>();
+		final List<Predicate> predicates = new ArrayList<>();
 		if (sender != null) {
 			predicates.add(builder.equal(rootEmail.get("sender"), sender));
 		}
@@ -99,7 +99,7 @@ public class EmailDao extends AbstractDao<Email> implements IEmailDao {
 							rootEmail.get("sentDate"), sentBefore));
 		}
 		query.where(predicates.toArray(new Predicate[] {}));
-		final List<Order> orders = new ArrayList<Order>();
+		final List<Order> orders = new ArrayList<>();
 		if (sort != null) {
 			String propertyName = sort;
 			if ("sender".equals(sort)) {

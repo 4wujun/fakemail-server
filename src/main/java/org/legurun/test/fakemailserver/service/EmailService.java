@@ -39,7 +39,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StreamUtils;
-import org.subethamail.smtp.TooMuchDataException;
 
 /**
  * Email management service implementation.
@@ -109,9 +108,8 @@ public class EmailService implements IEmailService {
 	 */
 	@Override
 	public void deliver(final String from, final String recipient,
-			final InputStream data) throws TooMuchDataException, IOException {
-		LOG.debug(String.format("Receiving message from %s to %s",
-				from, recipient));
+			final InputStream data) throws IOException {
+		LOG.debug("Receiving message from %s to %s", from, recipient);
 		final Sender sender = senderService.getOrCreateSender(from);
 		final Email email = new Email();
 		email.setRecipient(recipient);
