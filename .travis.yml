@@ -10,18 +10,19 @@ cache:
   directories:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
+  - $HOME/.m2/repository/
+  - $HOME/.sonar/cache
 
 addons:
   sonarcloud:
     organization: "patlenain-github"
     token:
-      secure: iw3LJWmWblNt7K4IBuXQW3y2wz30MwMG70IVbqIJpEg8k1eHAtxZo9M7oq/il07zsHG4n6YWB63w2dt9k7bXYWwI3j5//23B3l/xD7rssETFyO3y4LTMiqPWDev7GXdCcwbLKCQAmLvXB359C8vwkL0AMoqFMTBuelRhme1WzLp6oYldsk5nWHWGErH9LghujxLWmbKCcPtlXWvzGXk/nEAlHQSBSE6mET8uWUPusS2d4J0fsYDbiJmz8ucfSNfriy/CjSZWVumH8fm/xtc2dtgU1bWG9XBXHB/ySRnBhV0iepm5oWyjeCdgvC1NUOjJm2bKNxmiqJVgm1dWfL9kgfonZIlPBLnGPditD5y+eVALdgzhbcIYvA/1188484R1kweUMXBdmP4Vm81vpCV1g3nMEEovOl4mylD50nQSLuvcllFpAqz2GVxf7mSsO4aedYbgrrP9wBZREmcYV+adEXrgSklR9AWtKUG33jLBt1EvQh4x/hYvW3eNSZYZNlPY8abxpV2qZP2RteWJGtOMo/eNiOOx2FJpfxHKIIAqw0giBjhMORzqLE12aHkI4Tf/kAf0bnfhgRai7OTpJ6bOLHR0nIuukcuDxkfHOPNCa8fyetiKm9oRI9mKJhWdz0nKC5vPrbs8PX2K3WQrVoBHsyPyf3tdmKlcRI70wdDhEFA=
+      secure: "UYHkeQljlm1vcQc+MeMInPnsCEErT9suJcckMKbwMcuvPz4H5t6Lx+kB3XloM/Ljx4xUBT1dLrEXm356G8jwzX6PPmPHHXJUWq0iWURQcVLBhdkAKN4NmE7X9Xxn9+9vucUyfISZx1d8QySwKGy7/cg5T3orfTzsFmXrWBEHF6UeuACemcbNTgV8wWPJ2qcDMFmqrXEhNWerJYYB6h/b/Tik1bU+6SSGY5jAq5Az47B9X73jxolg5vGaYd0IA7g1Dr5SoeJizNToj0J2wKNYFxTELJR7YyPzQxY6CApWIP3s/BRxFlNYjlR28TV2lEQoKjk06I+sOneFGRRood0SjAsLSTvhAtczxujVmoINPGqZbjeaErWXgke3O+BBs35B1x3nXqzdjCLiuzUIoq5kKM4IuulGeowTQ/w9zdC7OMuQB6aQkvbhrYHF0m91LYqwv5uhUk9BbFVAu/hTHFpqafrcwn8m2hA6hSDnWCelAxvUpGDZ0vWQn1bmOadIFavVYgr3w9xRKbl5pYaKWHUP3Ux870IroWiaqERNYOk5fLDBQKma/kGjjUrMlGlRsvoEGhbZP9t0e0zydBpxkhpNR0JP6D4pB0XeIj4RKw5Qbqg3ofxdSEPt8Y4x7fgJrwCZLGg0WHPh4YIGcMzQTfc4ont+i6luN38qs3M63llbrP0="
     branches:
       - master
 
 after_success:
-  - cat /home/travis/.sonarscanner/sonar-scanner-2.8/conf/sonar-scanner.properties
-  - sonar-scanner -X
+  - sonar-scanner
   #  gradle sonarqube -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
 
 deploy:
