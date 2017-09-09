@@ -11,6 +11,9 @@
 <module name="Checker">
   <property name="severity" value="warning"/>
   <property name="fileExtensions" value="java, properties, xml"/>
+  <property name="charset" value="UTF-8"/>
+  <property name="localeLanguage" value="en"/>
+  <property name="haltOnException" value="false"/>
   <module name="TreeWalker">
     <module name="FileContentsHolder"/>
     <module name="SuppressWarningsHolder"/>
@@ -166,6 +169,7 @@
     <module name="UncommentedMain"/>
     <module name="OuterTypeFilename"/>
     <module name="AvoidEscapedUnicodeCharacters"/>
+    <module name="OneTopLevelClass"/>
   </module>
   <module name="JavadocPackage"/>
   <module name="NewlineAtEndOfFile"/>
@@ -178,4 +182,7 @@
   <module name="SuppressionCommentFilter"/>
   <module name="UniqueProperties"/>
   <module name="SuppressWarningsFilter"/>
+  <module name="SuppressionFilter">
+    <property name="file" value="${config_loc}/checkstyleSuppression.xml"/>
+  </module>
 </module>
