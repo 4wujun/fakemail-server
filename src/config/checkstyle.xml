@@ -13,7 +13,6 @@
   <property name="fileExtensions" value="java, properties, xml"/>
   <property name="charset" value="UTF-8"/>
   <property name="localeLanguage" value="en"/>
-  <property name="haltOnException" value="false"/>
   <module name="TreeWalker">
     <module name="FileContentsHolder"/>
     <module name="SuppressWarningsHolder"/>
