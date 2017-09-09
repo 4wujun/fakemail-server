@@ -17,6 +17,6 @@
 -->
 <FindBugsFilter>
 	<Match>
-		<Method name="~.*\$\$_hibernate_.*"/>
+		<Class name="~.*^_" />
 	</Match>
 </FindBugsFilter>

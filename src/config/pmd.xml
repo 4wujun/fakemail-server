@@ -21,6 +21,7 @@
 
 	<description>Custom ruleset</description>
 
+	<exclude-pattern>.*/src/jpaModelgen/.*</exclude-pattern>
 	<exclude-pattern>.*/src/test/.*</exclude-pattern>
 
 	<rule ref="rulesets/java/basic.xml" />
