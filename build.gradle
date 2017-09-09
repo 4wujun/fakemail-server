@@ -126,8 +126,7 @@ tomcat {
 */
 
 checkstyle {
-	configFile = file("${project.rootDir}/src/config/checkstyle.xml")
-	ignoreFailures = true
+	configDir = file("${project.rootDir}/src/config")
 	sourceSets = [project.sourceSets.main]
 	
 }
@@ -145,8 +144,8 @@ pmd {
 }
 tasks.withType(Pmd) {
 	reports {
-		xml.enabled = false
-		html.enabled = true
+		xml.enabled = true
+		html.enabled = false
 	}
 }
 
@@ -157,8 +156,8 @@ findbugs {
 }
 tasks.withType(FindBugs) {
 	reports {
-		xml.enabled = false
-		html.enabled = true
+		xml.enabled = true
+		html.enabled = false
 	}
 }
 
@@ -169,7 +168,7 @@ jdepend {
 jacocoTestReport {
 	reports {
 		xml.enabled = true
-		html.enabled = true
+		html.enabled = false
 	}
 }
 check.dependsOn jacocoTestReport
@@ -210,6 +209,14 @@ sonarqube {
 }
 
 eclipse {
+	project {
+		natures 'net.sf.eclipsecs.core.CheckstyleBuilder'
+		natures 'ch.acanda.eclipse.pmd.builder.PMDBuilder'
+		natures 'org.eclipse.buildship.core.gradleprojectnature'
+		buildCommand 'net.sf.eclipsecs.core.CheckstyleNature'
+		buildCommand 'ch.acanda.eclipse.pmd.builder.PMDNature'
+		buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+	}
 	classpath {
 		downloadJavadoc = true
 		downloadSources = true
