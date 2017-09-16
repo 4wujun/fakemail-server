@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry path="bin" kind="output"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/test/java"/>
@@ -7,10 +8,649 @@
 	<classpathentry kind="src" path="src/jpaModelgen/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer">
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web/1.5.7.RELEASE/ed32ab903cfd31b0da82ea29abc0a5d754235fc7/spring-boot-starter-web-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web/1.5.7.RELEASE/a862305be8b7512a41f6768d825ed37251ccbbe0/spring-boot-starter-web-1.5.7.RELEASE.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-cache/1.5.7.RELEASE/61856fb216ae3fba821d256bcc05dcc876aab0f1/spring-boot-starter-cache-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-cache/1.5.7.RELEASE/98480d5e70a79ff279ea0bb156f2d18222ba8211/spring-boot-starter-cache-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-data-jpa/1.5.7.RELEASE/bf412b7be314559bc0b0590c35e56299ce510eaf/spring-boot-starter-data-jpa-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-data-jpa/1.5.7.RELEASE/ccdf14487724b7c1343e5d2605f7170c026e405/spring-boot-starter-data-jpa-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-mail/1.5.7.RELEASE/a607095d195b0c6460458f32ec48cbf61d3cfa72/spring-boot-starter-mail-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-mail/1.5.7.RELEASE/469b7af6bb6058d63d059b9549b5dff1e91a6b0/spring-boot-starter-mail-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-validation/1.5.7.RELEASE/6b7b6d8bade8635a30b6d0a2df01d0c943937136/spring-boot-starter-validation-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-validation/1.5.7.RELEASE/a2e87bf66a1db8037e1feeba7e7063996fa72090/spring-boot-starter-validation-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.liquibase.ext/liquibase-hibernate5/3.6/7f79423def0383440258e0541719fcb2fb831ace/liquibase-hibernate5-3.6-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.liquibase.ext/liquibase-hibernate5/3.6/7cb04b4fdf130e31a3d699a6c7f1011472805933/liquibase-hibernate5-3.6.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.liquibase.ext/liquibase-hibernate5/3.6/ddad2ed97e62f583b6df9e35831bae0651abac27/liquibase-hibernate5-3.6-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.liquibase/liquibase-core/3.5.3/c6aca6942d11688292d5d3de14ab2b7741c7da93/liquibase-core-3.5.3-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.liquibase/liquibase-core/3.5.3/f346404c3876c5bd0e07a7e10b7565bdcd35dbab/liquibase-core-3.5.3.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.liquibase/liquibase-core/3.5.3/baa0e02dc138f6a6370cac3a127ff81e1f784472/liquibase-core-3.5.3-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.liquibase.ext/liquibase-javalogger/3.0/5aad65a5999b3708742372a7c4ac934d821f43a7/liquibase-javalogger-3.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.liquibase.ext/liquibase-javalogger/3.0/d26954f7b9be8264da5fb5385a7cd601e15e1239/liquibase-javalogger-3.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.liquibase.ext/liquibase-javalogger/3.0/5366c4cda44b82c1099608aefbfe7a8709578a67/liquibase-javalogger-3.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bull.javamelody/javamelody-spring-boot-starter/1.69.0/3936c513a650e7a12e06d52c0970a0c3c27d6bbd/javamelody-spring-boot-starter-1.69.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bull.javamelody/javamelody-spring-boot-starter/1.69.0/ab9c169bd3a6c7291075abceaca3c551d4a7fd3e/javamelody-spring-boot-starter-1.69.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/net.bull.javamelody/javamelody-spring-boot-starter/1.69.0/4c31fbd1cd5996d877fd3b3aa4550b881b3411c4/javamelody-spring-boot-starter-1.69.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.subethamail/subethasmtp/3.1.7/998de390236fa5cdb0b3cc82d5fde39d949bc4a5/subethasmtp-3.1.7-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.subethamail/subethasmtp/3.1.7/41381242daa11113c32da5b25d001bfdf4df53fb/subethasmtp-3.1.7.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.subethamail/subethasmtp/3.1.7/dcec340d2793d916a291982a13adac0880e7133e/subethasmtp-3.1.7-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jcache/5.2.11.Final/f45f7a12662c2b609107e96d1a30961370085075/hibernate-jcache-5.2.11.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jcache/5.2.11.Final/4e6b7ccf3740956286c45f4da8cfd452d7418927/hibernate-jcache-5.2.11.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.cache/cache-api/1.0.0/71f0adeaf098d78a17774b11f6c83c8d90c47721/cache-api-1.0.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.cache/cache-api/1.0.0/2b57384801243f387f1a2e7ab8066ac79c2a91d3/cache-api-1.0.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/javax.cache/cache-api/1.0.0/ef3ceb993b40879e9ade10bb8352c3b80830f9ff/cache-api-1.0.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.ehcache/ehcache/3.4.0/45f83bcf2e286a312f13491b03c2b409d0a02984/ehcache-3.4.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.ehcache/ehcache/3.4.0/cac1f0840af0040a81401dfa55fa31a4ccc17932/ehcache-3.4.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.ehcache/ehcache/3.4.0/5b8f155f432caea12a31bf5ca2a6538b8c985484/ehcache-3.4.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jpamodelgen/5.2.11.Final/13561b9d4f3a941a5cdf204e524fbcecbf45ff9b/hibernate-jpamodelgen-5.2.11.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jpamodelgen/5.2.11.Final/5f0dfa1b2c3df2b21931c72924f397c65255e43d/hibernate-jpamodelgen-5.2.11.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-dbcp2/2.1.1/e312d6c766f8b2a95dee5d9335e5dbe40a304621/commons-dbcp2-2.1.1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-dbcp2/2.1.1/c4f4a76171671ccf293be8995a498eab7fa8ed24/commons-dbcp2-2.1.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-dbcp2/2.1.1/75478f3dd6496565641aeb5d9ba5c26e217c854e/commons-dbcp2-2.1.1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.servlet/jstl/1.2/2f5877ef15adb721421e80f5aa2b6fe069eec8ed/jstl-1.2-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.servlet/jstl/1.2/74aca283cd4f4b4f3e425f5820cda58f44409547/jstl-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/taglibs/standard/1.1.2/df8e0d90d896837d12eebaf7abf7bcf07ad0f4e4/standard-1.1.2-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/taglibs/standard/1.1.2/a17e8a4d9a1f7fcc5eed606721c9ed6b7f18acf7/standard-1.1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-devtools/1.5.7.RELEASE/e7126839f680d146c753c8f489c9c0c617dc4dd7/spring-boot-devtools-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-devtools/1.5.7.RELEASE/f433b9ba2fcf598624b5ae930096523f8a22119b/spring-boot-devtools-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-devtools/1.5.7.RELEASE/4fc98c39cd7ecee5270b8c003307aba3ec72c926/spring-boot-devtools-1.5.7.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap/3.3.7-1/60fbc5f757d6a862a6ff0f6f353d2258a07353dc/bootstrap-3.3.7-1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap/3.3.7-1/990657dc94f7921d46aae4e54d46ab76a4d1c3b0/bootstrap-3.3.7-1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap/3.3.7-1/5e5f13312273f2cfc275a6ca6d3266e4d4a4b30e/bootstrap-3.3.7-1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/jquery-dateFormat/1.0.2-1/fa33a3e55e8c7fd0c6f6c594aff5217a01d90ff4/jquery-dateFormat-1.0.2-1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/jquery-dateFormat/1.0.2-1/e46b853989a4e2b3f7b1470076fb6b8b8a71e0b5/jquery-dateFormat-1.0.2-1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/jquery/3.2.1/47fc0cfab4ce5646fd51f685870d35eca1ee3093/jquery-3.2.1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/jquery/3.2.1/3202162bb547fa5a9c97a22b5bbb3b5de7a9e40a/jquery-3.2.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap-table/1.9.1-1/ef5eda6c59f9d798c91d95bc19660e35eb0df089/bootstrap-table-1.9.1-1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap-table/1.9.1-1/ce500e40207cfb44f040c8cee729d5100b56c731/bootstrap-table-1.9.1-1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap-notify/3.1.3-1/4be3c6d072ec11227bb2ba00634cf345a5d341c0/bootstrap-notify-3.1.3-1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap-notify/3.1.3-1/86a9775579523977a83389d3b52dca7b88e07477/bootstrap-notify-3.1.3-1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap-datetimepicker/2.4.2/f065620ce3b8ed6fb7b38c6f2b7f2bccbdd44a36/bootstrap-datetimepicker-2.4.2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap-datetimepicker/2.4.2/a658e2e2e40802fa318ca3aef53f062c9d6c4605/bootstrap-datetimepicker-2.4.2-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/webjars-locator/0.32-1/dd4f02d6c3ea98d8fb2487b9498e2689a3293b8e/webjars-locator-0.32-1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/webjars-locator/0.32-1/89f6c5d22d001aff4aaa4853bb9617207127ea62/webjars-locator-0.32-1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/webjars-locator/0.32-1/d75cab3a80e8ccf1be8c9099070d4c7c7d1b9c75/webjars-locator-0.32-1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/annotations/3.0.1u2/3f8905fee497bc64999ea458285311220cfa92bf/annotations-3.0.1u2-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/annotations/3.0.1u2/89a670596c98e416fb2583c08ae34cc5c3ce2097/annotations-3.0.1u2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/annotations/3.0.1u2/28993775b7cadd50596602772739dcee023733e8/annotations-3.0.1u2-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-aop/1.5.7.RELEASE/e52d2f021e13dc3b2c2b8e0aba24feb1f3b7e15f/spring-boot-starter-aop-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-aop/1.5.7.RELEASE/189098a72ccc0cca07ea42d6715c10524b5a93d1/spring-boot-starter-aop-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/1.5.7.RELEASE/4c95c5a891b2c1ae4740f70e112c258967bd1624/spring-boot-starter-jdbc-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/1.5.7.RELEASE/98c652a5461ccbec70b55fd0f7815d9c9a37a082/spring-boot-starter-jdbc-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/1.5.7.RELEASE/b0ed27f4f27e0cf852588d80e53bc1d7e4b99998/spring-boot-starter-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/1.5.7.RELEASE/b42fe6962dd8b3be4ac8c1d7134d0ca2d0a35c7e/spring-boot-starter-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-tomcat/1.5.7.RELEASE/79e1192dc61159dfddc71707122a181726223a53/spring-boot-starter-tomcat-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-tomcat/1.5.7.RELEASE/eae533e2a0111a51d812912acb3d3e2368736d1b/spring-boot-starter-tomcat-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator/5.3.5.Final/901d21d67b3dfb7a7fdf2cde1bd0eb9ca989f2f3/hibernate-validator-5.3.5.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator/5.3.5.Final/622a9bcef2eed6d41b5b8e0662c36212009e375/hibernate-validator-5.3.5.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.10/def9982a0ee209c6f906cf9119a3f1dc53449a4e/jackson-databind-2.8.10-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.10/f7b83cb2bc4b88d53961e749e1ad32f49ef017b7/jackson-databind-2.8.10.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.10/3fc140d1549aa30819242569d1f37bdaf594dc20/jackson-databind-2.8.10-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.10.RELEASE/8cdffc946fec6396a9781e47c2822c8986c3759e/spring-webmvc-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.10.RELEASE/6809017a5a76bdaf1957f1cc0a892d448fc6f3df/spring-webmvc-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.10.RELEASE/823a1c114dda21be35cdc410c64033b50df755ed/spring-webmvc-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.10.RELEASE/e350109ba4a031049863e3e9d9f3d386ef73cfd9/spring-web-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.10.RELEASE/6344501cb03cb4787c67cf3f820a471e07b9203b/spring-web-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.10.RELEASE/92dad208adb17a252b5c16c61835668a43fb1e52/spring-web-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.3.10.RELEASE/ae071f9b484bb98ac92bd979f70037c367903904/spring-context-support-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.3.10.RELEASE/2c507b7441c428b4702c60be52c0d6446ae72673/spring-context-support-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.3.10.RELEASE/14e4d0b94e5c50ae2865c008678f580bc33e47c9/spring-context-support-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/1.11.7.RELEASE/895798b9f80b1049bde582550b729153906b5194/spring-data-jpa-1.11.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/1.11.7.RELEASE/587051cc7d7a3ddfac6098d623a658abb2f15865/spring-data-jpa-1.11.7.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/1.11.7.RELEASE/8583c6d24c0203e02e27105c287120d7c85d47a9/spring-data-jpa-1.11.7.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/1.5.7.RELEASE/2cf2cfec18d5ab88d9a6c57a2ce1c4e6e8232ff0/spring-boot-autoconfigure-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/1.5.7.RELEASE/e83f1407ff991e9e7eb156f49fa19d868bb73289/spring-boot-autoconfigure-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/1.5.7.RELEASE/d3b142bcd0f864200548370b0abd4e192df0b9a4/spring-boot-autoconfigure-1.5.7.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/1.5.7.RELEASE/b8cc9958676bdeb18f8bd178c779f20d70a97b1/spring-boot-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/1.5.7.RELEASE/1006870df7b3dc203df7ce84463c5dd7049fdaa4/spring-boot-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/1.5.7.RELEASE/79334c64a1441d6c0006f2a67aa5628fad39f514/spring-boot-1.5.7.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.10.RELEASE/b891c5162908b5d092240c24df1b5e972a17768d/spring-context-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.10.RELEASE/645ce6fdba38448d183a1374506fc24036009869/spring-context-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.10.RELEASE/5dce71aa9e0634c7e8460e2114d08e9b55f58db7/spring-context-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-entitymanager/5.2.11.Final/5c7bfd32aa8e03ec8c116be4233ff55debafe589/hibernate-entitymanager-5.2.11.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-entitymanager/5.2.11.Final/5a4e82a2fc99c5b3e07db5d88272364dc27c10dc/hibernate-entitymanager-5.2.11.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-envers/5.2.11.Final/ac2eea3f0acdbbb9f08c44bf3e5c68f0472124f4/hibernate-envers-5.2.11.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-envers/5.2.11.Final/8ef93a75c8a35a4602d40dea4a27af7a3e73d41e/hibernate-envers-5.2.11.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/5.2.11.Final/3f0fba725ea024eaccd7630081d3f8f5694637ee/hibernate-core-5.2.11.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/5.2.11.Final/c7bc35a9caccb66f6b7209849c5feab8241abb76/hibernate-core-5.2.11.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.transaction/javax.transaction-api/1.2/5d1fb3fe056fe51e6f6ed9b4ef4898a774ed69c0/javax.transaction-api-1.2-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.transaction/javax.transaction-api/1.2/d81aff979d603edd90dcd8db2abc1f4ce6479e3e/javax.transaction-api-1.2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/javax.transaction/javax.transaction-api/1.2/6dce121925912a437b0dcc7261e9ca68f8bfbd6f/javax.transaction-api-1.2-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.3.10.RELEASE/20d196a0765bada47a1e93796ac737f9bd579a4e/spring-aspects-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.3.10.RELEASE/5d5fea8e67c93910552741cb5b746625ad546bba/spring-aspects-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.3.10.RELEASE/4648dade39c813168176a2798a785889c87962b1/spring-aspects-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.sun.mail/javax.mail/1.5.6/7a9a2f66d64bed834a9090c4e91e78892e2e67a1/javax.mail-1.5.6-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.sun.mail/javax.mail/1.5.6/ab5daef2f881c42c8e280cbe918ec4d7fdfd7efe/javax.mail-1.5.6.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.sun.mail/javax.mail/1.5.6/7f2f29ea9d096953782a2e78e5a8b41b61f71410/javax.mail-1.5.6-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-el/8.5.20/50fc2f4502d5e54049585b978d576b0ae3920062/tomcat-embed-el-8.5.20-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-el/8.5.20/42960f481a8a80f4ffd3b865c2232820e3565bf1/tomcat-embed-el-8.5.20.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.17/63577e87886c76228db9f8a2c50ea43cde5072eb/snakeyaml-1.17-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.17/7a27ea250c5130b2922b86dea63cbb1cc10a660c/snakeyaml-1.17.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.17/7d487d4d4284b8621c310a3865776dc46befc90c/snakeyaml-1.17-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.h2database/h2/1.4.196/1646e9e294b9c956a441bc383ca17a62c4b52311/h2-1.4.196-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.h2database/h2/1.4.196/dd0034398d593aa3588c6773faac429bbd9aea0e/h2-1.4.196.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.h2database/h2/1.4.196/d9e526afd81136cc12d6783c20e592e0d1fcbb52/h2-1.4.196-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bull.javamelody/javamelody-core/1.69.0/61721500fcaaa410aa255770690f8de664fab0c7/javamelody-core-1.69.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bull.javamelody/javamelody-core/1.69.0/6b5fd37fc1ea44da8b3f0831aac4f2aca49fcc59/javamelody-core-1.69.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/net.bull.javamelody/javamelody-core/1.69.0/c18b20e01f5f9a7e44fb3d2f11b8f8b7d26b04a/javamelody-core-1.69.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.4/9a3edcd52cf891e7492776174e5a26cc7911b26/mail-1.4.4-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.4/b907ef0a02ff6e809392b1e7149198497fcc8e49/mail-1.4.4.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1.1/159e45688875fdabff19c9ceb7335aefe4df8339/activation-1.1.1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1.1/485de3a253e23f645037828c07f1d7f1af40763a/activation-1.1.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/webjars-locator-core/0.32/be7f67c93c4bd4d57bbe02eac312a84394bf7ac4/webjars-locator-core-0.32-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/webjars-locator-core/0.32/4e45393c4f366a5bf3e63ec72b726fd57942ca47/webjars-locator-core-0.32.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.webjars/webjars-locator-core/0.32/be0b7992105b2ba1ec5e9e9455c1856b83590bf9/webjars-locator-core-0.32-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.13.7.RELEASE/2f57d3f01ebd4667a6e8654e7ff7ec66742729be/spring-data-commons-1.13.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.13.7.RELEASE/cf4538abda1f0a9cf2323d6e4204df0130aeec73/spring-data-commons-1.13.7.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.13.7.RELEASE/6409cfd82e695ce9f3c03bedf7fd0eccae133d5d/spring-data-commons-1.13.7.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/1.5.7.RELEASE/345c8ef969bde9e2585396f4825728c4435c1f89/spring-boot-starter-logging-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/1.5.7.RELEASE/c84c4ea09d7f789a0d5e936a961471e5dbd9295e/spring-boot-starter-logging-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.25/ffd0827a7c67d5915b7dc611afbda56a1f247191/jcl-over-slf4j-1.7.25-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.25/f8c32b13ff142a513eeb5b6330b1588dcb2c0461/jcl-over-slf4j-1.7.25.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.25/6ffb2ee76a022f5057517e865360873f483ff594/jcl-over-slf4j-1.7.25-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.11/2a2f78be7ef674b6486f7b5463f05f40da5e163/logback-classic-1.1.11-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.11/ccedfbacef4a6515d2983e3f89ed753d5d4fb665/logback-classic-1.1.11.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.11/730b720fb58e9c56be565c183d5484c8b506a859/logback-classic-1.1.11-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.25/bcea1530927f59b5128841d3571f879ce3af2e86/jul-to-slf4j-1.7.25-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.25/af5364cd6679bfffb114f0dec8a157aaa283b76/jul-to-slf4j-1.7.25.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.25/b30bd7e4ca1582506c4e6f722ed2a4d9dc924a06/jul-to-slf4j-1.7.25-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/log4j-over-slf4j/1.7.25/42a10e06ab88cbe5f31253ffb8c0bca96b34f81d/log4j-over-slf4j-1.7.25-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/log4j-over-slf4j/1.7.25/a87bb47468f47ee7aabbd54f93e133d4215769c3/log4j-over-slf4j-1.7.25.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/log4j-over-slf4j/1.7.25/df4e3dc7dd263346d6a376e742d0f2aeea901ff7/log4j-over-slf4j-1.7.25-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/962153db4a9ea71b79d047dfd1b2a0d80d8f4739/slf4j-api-1.7.25-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/da76ca59f6a57ee3102f8f9bd9cee742973efa8a/slf4j-api-1.7.25.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/f003e89ddebdbaca5cf3fc7cc0c67c88c2ca1a3c/slf4j-api-1.7.25-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.1/a2926c057ca3b662b9db194c869bdbe7d3bb8aef/jsr305-3.0.1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.1/f7be08ec23c21485b9b5a1cf1654c2ec8c58168d/jsr305-3.0.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.1/3d7ec36bbfbf5d7259356a6b8fec0ce4f96e3f47/jsr305-3.0.1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate.common/hibernate-commons-annotations/5.0.1.Final/203038e420aaa3fa6df8bad4fda19ca1e2824005/hibernate-commons-annotations-5.0.1.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate.common/hibernate-commons-annotations/5.0.1.Final/71e1cff3fcb20d3b3af4f3363c3ddb24d33c6879/hibernate-commons-annotations-5.0.1.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.1.Final/9d32b33527abb934fb12035d8849f7b9c4804049/jboss-logging-3.3.1.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.1.Final/c46217ab74b532568c0ed31dc599db3048bd1b67/jboss-logging-3.3.1.Final.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.1.Final/45ec0c9576c2c29bbb8cbf36c5612363074ba2c6/jboss-logging-3.3.1.Final-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.4.2/2c9dcae4975caff05a627b99fae76e6fef2a3a0e/commons-pool2-2.4.2-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.4.2/e5f4f28f19d57716fbc3989d7a357ebf1e454fea/commons-pool2-2.4.2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.4.2/1108fef8f3e5ee2f5f05f1f953d387574839c99e/commons-pool2-2.4.2-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.10.RELEASE/807108d49129a5445be42c9bc543792ad7ade8e0/spring-aop-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.10.RELEASE/3a8c23246045e5e1dbd7d91354741b165e997a88/spring-aop-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.10.RELEASE/4fb7257b6a2df52d25dbc3d106b8063aa76f1196/spring-aop-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/4.3.10.RELEASE/84e6e0356720eb53ef3fd3a2933641e38bc54377/spring-orm-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/4.3.10.RELEASE/6450e007fdf2f9340f33b8d7bddb7f1f139b19d1/spring-orm-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/4.3.10.RELEASE/1f6f5fa22bc9eecd58443157ec9f303686ea0918/spring-orm-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.10.RELEASE/c576aed96473eeeed65403aa0f21e6fc6fb2b4d9/spring-jdbc-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.10.RELEASE/91e2f69e633f8eac5d5ef516595556ab7db87f3d/spring-jdbc-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.10.RELEASE/184a003a1541d0fea8a96e290ead44b7bfdef4e9/spring-jdbc-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.3.10.RELEASE/c66d09f33f6b2e46442f3445f0611efbc421e85/spring-tx-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.3.10.RELEASE/569d30fd8d2050910e0271b838cf927ebb7efcdc/spring-tx-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.3.10.RELEASE/f343d688feeda67f9aa2b46cd99cee8bc73db6be/spring-tx-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.10.RELEASE/eb22a9c7f612da75e9234cf089c2069e32f44b3c/spring-beans-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.10.RELEASE/9d89b786f755f9b1da344f10f6f045f927679a72/spring-beans-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.10.RELEASE/259123e0cd746eff00cf129f4db769bb89f6ea7/spring-beans-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.10.RELEASE/235f4acafda7a7f9a08a9f49f667615641305a11/spring-expression-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.10.RELEASE/4975ab542028945ab98fefba772472a40495d7ca/spring-expression-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.10.RELEASE/59283f1c922daa9ceb37f943a8c886ec906fb101/spring-expression-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.10.RELEASE/74cacfe24c0f88a4577990fb24c9fdf4a73f443c/spring-core-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.10.RELEASE/db1462df62dbedad7244da30ec471390660271c0/spring-core-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.10.RELEASE/f8fc4f402a1b820bca6520a8559ab49010a1ca51/spring-core-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/ecf26c7507d67782a3bbd148d170b31dfad001aa/commons-logging-1.2-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/83033ee697035dfb9ce3503e1ac0c5a33021e503/commons-logging-1.2-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/net.jcip/jcip-annotations/1.0/d853625d8001c00d40abed553e670279504699f9/jcip-annotations-1.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/net.jcip/jcip-annotations/1.0/afba4942caaeaf46aab0b976afd57cc7c181467e/jcip-annotations-1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/8.5.20/b3e1140aca26cdf6ce8c1b7ab228b622e1061a48/tomcat-embed-websocket-8.5.20-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/8.5.20/4df9055507926a2651f691cc9964c50493a0ab29/tomcat-embed-websocket-8.5.20.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/8.5.20/263c2aa3468ac7a2924a462b56ca8e0c0e6a0003/tomcat-embed-core-8.5.20-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/8.5.20/b9026ee20f1f6a2b0fc3e51dd806d800901448b0/tomcat-embed-core-8.5.20.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/7d49b53caed9bd81d172807c3e096d24f3c57090/validation-api-1.1.0.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/9f3d019c10d629fa8259af61ac83e88bb186c4e9/validation-api-1.1.0.Final-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.4/d5aa53c93626884209c1e82fdf44d2ccdaf8e9c2/classmate-1.3.4-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.4/3d5f48f10bbe4eb7bd862f10c0583be2e0053c6/classmate-1.3.4.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.4/3aa1e32c4158e3d2c5ba657d7e1b4fcc87d9e3db/classmate-1.3.4-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/29a1a95363d497e856c0a7d682e4f7973e334068/jackson-annotations-2.8.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/21f8639b30914ae5c31424d0bfc682ac54796c0f/jackson-annotations-2.8.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.10/c9231226e0eb8e90ff73c09ae57487b451d65771/jackson-core-2.8.10-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.10/eb21a035c66ad307e66ec8fce37f5d50fd62d039/jackson-core-2.8.10.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.10/f71ea8838762faa82a9caf2a9aec02ab5f92a2ca/jackson-core-2.8.10-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.10/b06ea75fbe35522c5f43027dda054c99774e6479/aspectjweaver-1.8.10-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.10/e198c5fee28988c355f74e06461614eae36b2032/aspectjweaver-1.8.10.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.10/87eae602f6b6711bb1d4bed2058af1f08bb34d27/aspectjweaver-1.8.10-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-jdbc/8.5.20/e682c2c7ff8b2381ec0369c8f0577599050f9f28/tomcat-jdbc-8.5.20-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-jdbc/8.5.20/10d0d288d837ddfc92096920e4571054a3934160/tomcat-jdbc-8.5.20.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/1.0.0.Final/33fbaa7276b774ef0925f541640f6ff23fbc62dc/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/1.0.0.Final/5e731d961297e5a07290bfaf3db1fbc8bbbf405a/hibernate-jpa-2.1-api-1.0.0.Final.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/1.0.0.Final/1a54ae4d697e1f56cf94e995beafa84f87f20415/hibernate-jpa-2.1-api-1.0.0.Final-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.21.0-GA/81fefbd46ba6a18fc7af83b9c60b28c0862cd492/javassist-3.21.0-GA-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.21.0-GA/598244f595db5c5fb713731eddbb1c91a58d959b/javassist-3.21.0-GA.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.21.0-GA/3fb3d9123e78eb224e3dafe8a6c6f2ed52ebe4af/javassist-3.21.0-GA-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/antlr/antlr/2.7.7/83cd2cd674a217ade95a4bb83a8a14f351f48bd0/antlr-2.7.7.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.jboss.spec.javax.transaction/jboss-transaction-api_1.2_spec/1.0.1.Final/2d0cb1e79e030277b094ef55fcfb97fd0443ee43/jboss-transaction-api_1.2_spec-1.0.1.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.jboss.spec.javax.transaction/jboss-transaction-api_1.2_spec/1.0.1.Final/4441f144a2a1f46ed48fcc6b476a4b6295e6d524/jboss-transaction-api_1.2_spec-1.0.1.Final.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.jboss.spec.javax.transaction/jboss-transaction-api_1.2_spec/1.0.1.Final/936f2fff97e428689867eecfb52d2225641bd653/jboss-transaction-api_1.2_spec-1.0.1.Final-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.jboss/jandex/2.0.3.Final/edc4552ad816df11579a8e02e19f778c77a915b5/jandex-2.0.3.Final-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.jboss/jandex/2.0.3.Final/bfc4d6257dbff7a33a357f0de116be6ff951d849/jandex-2.0.3.Final.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/dom4j/dom4j/1.6.1/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.6.14/59f185ca98044661e587f1685c59dae22a49e1cc/byte-buddy-1.6.14-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.6.14/871c3e49dc6183d0d361601c2f1d11abb1a6b48c/byte-buddy-1.6.14.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.6.14/fc8ead48008a3e7dc69d60f7ec516fa50c751724/byte-buddy-1.6.14-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.jrobin/jrobin/1.5.9/c0252c3fda6e1a7236a5e0dd9cae6b34d051a5e4/jrobin-1.5.9-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.jrobin/jrobin/1.5.9/bd9a84484c67de930fa841f23cd6a93108b05cd0/jrobin-1.5.9.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.jrobin/jrobin/1.5.9/2585c93c691f63e83dbd9e256421a94328d060bf/jrobin-1.5.9-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.1/8d30b90ae8bda4fbac8363161c8a9b5a99e23baf/commons-lang3-3.1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.1/905075e6c80f206bbe6cf1e809d2caa69f420c76/commons-lang3-3.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.1/47910ec28eeca75d4519095a676b6e1f2e89e337/commons-lang3-3.1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.9/24371fe090cb7c9f90ecf297342ce02b8ed15575/commons-compress-1.9-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.9/cc18955ff1e36d5abd39a14bfe82b19154330a34/commons-compress-1.9.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.9/892345b4777010f262e34b0e8257ef60980e88a7/commons-compress-1.9-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-juli/8.5.20/75c017a4c6a2c700f8eda3cc6bbdc4245c3c20c7/tomcat-juli-8.5.20-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-juli/8.5.20/6c0579d329696059f377585d2a51455bf083d9ee/tomcat-juli-8.5.20.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.11/1b6214469321068fe4d58157768e1e039479fa1/logback-core-1.1.11-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.11/88b8df40340eed549fb07e2613879bf6b006704d/logback-core-1.1.11.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.11/464fc4aaa7a2ddaaf231eabf8a8a5903e388c6d/logback-core-1.1.11-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-jasper/8.5.20/5206e4f4f4c5d33933fbf079d546b6d5764b0856/tomcat-embed-jasper-8.5.20-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-jasper/8.5.20/79aa189dbecc919aa9d8d22690c968d9058761b6/tomcat-embed-jasper-8.5.20.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.mariadb.jdbc/mariadb-java-client/2.1.1/9703926bee8d571edaff4e847385e641fe497e10/mariadb-java-client-2.1.1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.mariadb.jdbc/mariadb-java-client/2.1.1/cf8b2e49f507bb92cb10bfec7f35ec3836dfd1df/mariadb-java-client-2.1.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.mariadb.jdbc/mariadb-java-client/2.1.1/19a22d4b422dbb46152779615066ada14c0eb58d/mariadb-java-client-2.1.1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/ecj/3.12.3/bf20169ff6b1df5025c4d27a248f18454220cf32/ecj-3.12.3-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/ecj/3.12.3/ade950992eb3caf6ab4f1a88706c755f0bf213d9/ecj-3.12.3.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/ecj/3.12.3/2c2a032b7a22a018052f37d0661579ac0c7cbf75/ecj-3.12.3-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-test/1.5.7.RELEASE/812ac605bcfb9ebfadf91a73c292a38311fae98/spring-boot-starter-test-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-test/1.5.7.RELEASE/d23f37a72c2d4e46aba66bc69a649213f9cadeee/spring-boot-starter-test-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/2.10.0/2ba7c7553f07747d8b85ce9b2273e5c03217a0d8/mockito-core-2.10.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/2.10.0/871efe6f2607d8c93dd25b8c1fa09851d4286dd6/mockito-core-2.10.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/2.10.0/e456460f89da360519b2d556fbdf646490b9fa88/mockito-core-2.10.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/1.5.7.RELEASE/8bf9ed61dde428e482d8194c8b37090368426d46/spring-boot-test-autoconfigure-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/1.5.7.RELEASE/8bead16b97c9f1b5fe7c47f3e030dd9351a6974d/spring-boot-test-autoconfigure-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/1.5.7.RELEASE/d8dd3948446d93f98270b1d516dfe32dac9e39bd/spring-boot-test-autoconfigure-1.5.7.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/1.5.7.RELEASE/a505c299321609fb5d05e44620bf178051aa7819/spring-boot-test-1.5.7.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/1.5.7.RELEASE/b8d77445d48f4320f404d8f13f4e5cb95bc36b30/spring-boot-test-1.5.7.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/1.5.7.RELEASE/789eeb528dd43bf3866d9a3452708586c9a20ba4/spring-boot-test-1.5.7.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.jayway.jsonpath/json-path/2.2.0/546dfa7cadacf40752c42bfd12af3b7a935920af/json-path-2.2.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.jayway.jsonpath/json-path/2.2.0/22290d17944bd239fabf5ac69005a60a7ecbbbcb/json-path-2.2.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.jayway.jsonpath/json-path/2.2.0/dee95e5d3e8826092e7a85b6ab6d9bdbaf947a5e/json-path-2.2.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/4.3.10.RELEASE/ecac20e95b228f1b9612aacee0787d436d118a59/spring-test-4.3.10.RELEASE-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/4.3.10.RELEASE/e82664ba39497626cd29298cb16c161d901bfbee/spring-test-4.3.10.RELEASE.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.springframework/spring-test/4.3.10.RELEASE/2d5b3dbd111d645df4180504ae8fee3ba24d617a/spring-test-4.3.10.RELEASE-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/941a8be4506c65f0a9001c08812fb7da1e505e21/junit-4.12-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.assertj/assertj-core/2.6.0/86e8fd98e5ec52e93e3fa46d9bf5df7cca6d1bce/assertj-core-2.6.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.assertj/assertj-core/2.6.0/b532c3fc4f66bcfee4989a3514f1cd56203a33ad/assertj-core-2.6.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.assertj/assertj-core/2.6.0/60b70cda15b73d9b4a55a286559d169b62697829/assertj-core-2.6.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/47a7ee46628ab7133129cd7cef1e92657bc275e/hamcrest-library-1.3-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4324046c5f99f3dc91b5370899fa3ae65fd137d2/hamcrest-library-1.3-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/ad09811315f1d4f5756986575b0ea16b99cd686f/hamcrest-core-1.3-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.skyscreamer/jsonassert/1.4.0/49efe8c34f11f1c0e2a1d8e297f59ec84adcdf6d/jsonassert-1.4.0-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.skyscreamer/jsonassert/1.4.0/9cdbb373a06f6513e51e8c545ee6a5e981463edb/jsonassert-1.4.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.skyscreamer/jsonassert/1.4.0/f68539da12d4002f3f68de97da45eb3085cb32b0/jsonassert-1.4.0-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.7.4/c5c304e6b44947e523c8467c39ad24fef616fab9/byte-buddy-1.7.4-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.7.4/d0e77888485e1683057f8399f916eda6049c4acf/byte-buddy-1.7.4.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.7.4/aaa4ee5632632d05b97e48c227e606b190e2a280/byte-buddy-1.7.4-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.7.4/c187323701d5e7e335711f7573170d79c86c25d2/byte-buddy-agent-1.7.4-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.7.4/66286677db75148b3c2fb94e72f1c61aceb20e33/byte-buddy-agent-1.7.4.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.7.4/15dd05eafd2f8e48570c5d5633bfe4e109425839/byte-buddy-agent-1.7.4-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/2.6/96614f514a1031296657bf0dde452dc15e42fcb8/objenesis-2.6-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/2.6/639033469776fd37c08358c6b92a4761feb2af4b/objenesis-2.6.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/2.6/27c490ca18fcdfb94e28387e04ae37c4aa1abb23/objenesis-2.6-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/net.minidev/json-smart/2.2.1/fe70f8807c06ef9dd27b695830149c118010308f/json-smart-2.2.1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/net.minidev/json-smart/2.2.1/5b9e5df7a62d1279b70dc882b041d249c4f0b002/json-smart-2.2.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/net.minidev/json-smart/2.2.1/c427620824a6e6a6ef98dbed38ca0e951e6dcb68/json-smart-2.2.1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/bf42d7e47a3228513b626dd7d37ac6f072aeca4f/android-json-0.0.20131108.vaadin1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/a65eb5b1114f68e57996a48a05997708aa9f78b4/android-json-0.0.20131108.vaadin1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/net.minidev/accessors-smart/1.1/b5c478091ad2bfd497758094b00936543393415b/accessors-smart-1.1-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/net.minidev/accessors-smart/1.1/a527213f2fea112a04c9bdf0ec0264e34104cd08/accessors-smart-1.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/net.minidev/accessors-smart/1.1/a6ed7ccb710683fee1732e5b2a036cb2900f22c7/accessors-smart-1.1-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/patrice/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/f0f24f6666c1a15c7e202e91610476bd4ce59368/asm-5.0.3-sources.jar" kind="lib" path="/home/patrice/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/patrice/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/c87547fa477f7dc22c5e3c5ddfc6dfac726e5b15/asm-5.0.3-javadoc.jar!/"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
 </classpath>

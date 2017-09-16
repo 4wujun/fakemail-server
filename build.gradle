@@ -9,7 +9,7 @@ buildscript {
 
 plugins {
 	id 'org.liquibase.gradle' version '1.2.4'
-	id 'org.springframework.boot' version '1.5.6.RELEASE'
+	id 'org.springframework.boot' version '1.5.7.RELEASE'
 	id 'com.github.ben-manes.versions' version '0.15.0'
 	id 'org.sonarqube' version '2.5'
 	id 'at.comm_unity.gradle.plugins.jpamodelgen' version '1.1.4'
@@ -36,7 +36,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 ext['spring.version'] = '4.3.10.RELEASE'
-ext['hibernate.version'] = '5.2.10.Final'
+ext['hibernate.version'] = '5.2.11.Final'
 ext['tomcat.version'] = '8.5.20'
 
 tasks.withType(JavaCompile) {
@@ -93,7 +93,7 @@ dependencies {
 }
 
 jpaModelgen {
-	library "org.hibernate:hibernate-jpamodelgen:5.2.10.Final"
+	library "org.hibernate:hibernate-jpamodelgen:5.2.11.Final"
 }
 compileJava.options.compilerArgs += [ "-proc:none" ]
 
