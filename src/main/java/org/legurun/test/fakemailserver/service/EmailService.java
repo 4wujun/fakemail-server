@@ -37,6 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StreamUtils;
 
@@ -71,6 +72,7 @@ public class EmailService implements IEmailService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public PagedList<EmailSearchReport> search(
 			final EmailSearchCommand searchCommand) {
 		LOG.debug("Getting list of emails");
@@ -88,6 +90,7 @@ public class EmailService implements IEmailService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public MimeMessage parse(final Email email) throws MessagingException {
 		final Session session = Session.getDefaultInstance(new Properties());
 		final ByteArrayInputStream inputStream =
@@ -99,6 +102,7 @@ public class EmailService implements IEmailService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public boolean accept(final String from, final String recipient) {
 		return true;
 	}
@@ -107,6 +111,7 @@ public class EmailService implements IEmailService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public void deliver(final String from, final String recipient,
 			final InputStream data) throws IOException {
 		LOG.debug("Receiving message from %s to %s", from, recipient);

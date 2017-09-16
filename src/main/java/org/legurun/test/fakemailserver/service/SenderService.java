@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -52,6 +53,7 @@ public class SenderService implements ISenderService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public List<Sender> list() {
 		LOG.debug("Getting list of senders");
 		return senderRepository.list();
@@ -61,6 +63,7 @@ public class SenderService implements ISenderService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional(propagation=Propagation.SUPPORTS)
 	@SuppressWarnings("PMD.ShortVariable")
 	public Sender get(final Long id) {
 		LOG.debug("Getting sender id = {}", id);
@@ -71,6 +74,7 @@ public class SenderService implements ISenderService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public Sender getOrCreateSender(final String address) {
 		LOG.debug("Getting sender by address '{}'", address);
 		Sender sender = senderRepository.findByAddress(address);
