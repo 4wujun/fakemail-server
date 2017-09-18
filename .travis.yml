@@ -23,7 +23,6 @@ addons:
 
 after_success:
         #- sonar-scanner
-  - echo $SONAR_TOKEN
   - gradle sonarqube -Dsonar.login=$SONAR_TOKEN -Dsonar.verbose=true
 
 deploy:
