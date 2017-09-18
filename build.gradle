@@ -35,7 +35,7 @@ description = """Fakemail server aims to act as a "blackhole" mail server.
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-ext['spring.version'] = '4.3.10.RELEASE'
+ext['spring.version'] = '4.3.11.RELEASE'
 ext['hibernate.version'] = '5.2.11.Final'
 ext['tomcat.version'] = '8.5.20'
 
