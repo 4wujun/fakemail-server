@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Fakemail Server</name>
+	<name>FakemailServer</name>
 	<comment>Fakemail server aims to act as a "blackhole" mail server.
 	Each mail send to Fakemail is stored into database and never forwarded to legitimate recipients.
 	Those mails can be displayed on a web interface.
