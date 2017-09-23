@@ -54,11 +54,13 @@ public class MailController {
 	/**
 	 * Search the emails.
 	 * @param searchCommand Search criteria
+	 * @param pageable Pagination information
 	 * @return Search result
 	 */
 	@PostMapping
 	public Page<EmailSearchReport> search(
-			@RequestBody(required = false) final EmailSearchCommand searchCommand,
+			@RequestBody(required = false)
+			final EmailSearchCommand searchCommand,
 			final Pageable pageable) {
 		LOG.debug("Params : {} - {}", searchCommand, pageable);
 		return emailService.search(searchCommand, pageable);
