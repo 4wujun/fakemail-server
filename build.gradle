@@ -209,12 +209,12 @@ sonarqube {
 
 eclipse {
 	project {
-		natures 'net.sf.eclipsecs.core.CheckstyleBuilder'
-		natures 'ch.acanda.eclipse.pmd.builder.PMDBuilder'
 		natures 'org.eclipse.buildship.core.gradleprojectnature'
-		buildCommand 'net.sf.eclipsecs.core.CheckstyleNature'
-		buildCommand 'ch.acanda.eclipse.pmd.builder.PMDNature'
+		natures 'net.sf.eclipsecs.core.CheckstyleNature'
+		natures 'ch.acanda.eclipse.pmd.builder.PMDNature'
 		buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+		buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
+		buildCommand 'ch.acanda.eclipse.pmd.builder.PMDBuilder'
 	}
 	classpath {
 		downloadJavadoc = true
