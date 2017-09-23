@@ -20,6 +20,9 @@ package org.legurun.test.fakemailserver.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
@@ -30,7 +33,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 @SuppressWarnings("serial")
 public class EmailSearchCommand implements Serializable {
 	/**
-	 * Sender identifier.
+	 * Sender id.
 	 */
 	private Long senderId;
 	/**
@@ -45,34 +48,18 @@ public class EmailSearchCommand implements Serializable {
 	 * Date before the mails was sent.
 	 */
 	private Date sentBefore;
-	/**
-	 * Start of the pagination.
-	 */
-	private Integer offset;
-	/**
-	 * Size of the pagination.
-	 */
-	private Integer limit;
-	/**
-	 * Sort property name.
-	 */
-	private String sort;
-	/**
-	 * Order type.
-	 */
-	private String order;
 
 	/**
-	 * Get the sender identifier.
-	 * @return Sender identifier
+	 * Get the sender id.
+	 * @return Sender id
 	 */
 	public Long getSenderId() {
 		return senderId;
 	}
 
 	/**
-	 * Set the sender identifier.
-	 * @param senderId Sender identifier
+	 * Set the sender id.
+	 * @param senderId Sender id
 	 */
 	public void setSenderId(final Long senderId) {
 		this.senderId = senderId;
@@ -131,112 +118,32 @@ public class EmailSearchCommand implements Serializable {
 	}
 
 	/**
-	 * Get the start of the pagination.
-	 * @return Start of the pagination
-	 */
-	public Integer getOffset() {
-		return offset;
-	}
-
-	/**
-	 * Set the start of the pagination.
-	 * @param offset Start of the pagination
-	 */
-	public void setOffset(final Integer offset) {
-		this.offset = offset;
-	}
-
-	/**
-	 * Get the size of the pagination.
-	 * @return Size of the pagination
-	 */
-	public Integer getLimit() {
-		return limit;
-	}
-
-	/**
-	 * Set the size of the pagination.
-	 * @param limit Size of the pagination
-	 */
-	public void setLimit(final Integer limit) {
-		this.limit = limit;
-	}
-
-	/**
-	 * Get the sort property name.
-	 * @return Sort property name
-	 */
-	public String getSort() {
-		return sort;
-	}
-
-	/**
-	 * Set the sort property name.
-	 * @param sort Sort property name
-	 */
-	public void setSort(final String sort) {
-		this.sort = sort;
-	}
-
-	/**
-	 * Get the order type.
-	 * @return Order type
-	 */
-	public String getOrder() {
-		return order;
-	}
-
-	/**
-	 * Set the order type.
-	 * @param order Order type
-	 */
-	public void setOrder(final String order) {
-		this.order = order;
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
 		return "EmailSearchCommand [senderId=" + senderId
 				+ ", recipient=" + recipient + ", sentSince=" + sentSince
-				+ ", sentBefore=" + sentBefore + ", order=" + order
-				+ ", offset=" + offset + ", limit=" + limit + "]";
+				+ ", sentBefore=" + sentBefore + "]";
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings({ "PMD.NPathComplexity",
-		"checkstyle:AvoidInlineConditionals" })
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((limit == null) ? 0 : limit.hashCode());
-		result = prime * result
-				+ ((offset == null) ? 0 : offset.hashCode());
-		result = prime * result
-				+ ((recipient == null) ? 0 : recipient.hashCode());
-		result = prime * result
-				+ ((senderId == null) ? 0 : senderId.hashCode());
-		result = prime * result
-				+ ((sentBefore == null) ? 0 : sentBefore.hashCode());
-		result = prime * result
-				+ ((sentSince == null) ? 0 : sentSince.hashCode());
-		return result;
+		final HashCodeBuilder builder = new HashCodeBuilder();
+		builder.append(senderId);
+		builder.append(recipient);
+		builder.append(sentBefore);
+		builder.append(sentSince);
+		return builder.hashCode();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings({ "PMD.CyclomaticComplexity",
-		"PMD.StdCyclomaticComplexity", "PMD.ModifiedCyclomaticComplexity",
-		"PMD.NPathComplexity", "checkstyle:CyclomaticComplexity",
-		"checkstyle:NPathComplexity"})
 	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
@@ -248,54 +155,11 @@ public class EmailSearchCommand implements Serializable {
 			return false;
 		}
 		final EmailSearchCommand other = (EmailSearchCommand) obj;
-		if (limit == null) {
-			if (other.limit != null) {
-				return false;
-			}
-		}
-		else if (!limit.equals(other.limit)) {
-			return false;
-		}
-		if (offset == null) {
-			if (other.offset != null) {
-				return false;
-			}
-		}
-		else if (!offset.equals(other.offset)) {
-			return false;
-		}
-		if (recipient == null) {
-			if (other.recipient != null) {
-				return false;
-			}
-		}
-		else if (!recipient.equals(other.recipient)) {
-			return false;
-		}
-		if (senderId == null) {
-			if (other.senderId != null) {
-				return false;
-			}
-		}
-		else if (!senderId.equals(other.senderId)) {
-			return false;
-		}
-		if (sentBefore == null) {
-			if (other.sentBefore != null) {
-				return false;
-			}
-		}
-		else if (!sentBefore.equals(other.sentBefore)) {
-			return false;
-		}
-		if (sentSince == null) {
-			if (other.sentSince != null) {
-				return false;
-			}
-		}
-		else if (!sentSince.equals(other.sentSince)) {
-			return false;
-		}
-		return true;
+		final EqualsBuilder builder = new EqualsBuilder();
+		builder.append(senderId, other.senderId);
+		builder.append(recipient, other.recipient);
+		builder.append(sentBefore, other.sentBefore);
+		builder.append(sentSince, other.sentSince);
+		return builder.isEquals();
 	}
 }

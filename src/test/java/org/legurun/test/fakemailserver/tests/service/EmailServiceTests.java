@@ -21,6 +21,7 @@ import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.dao.IEmailDao;
+import org.legurun.test.fakemailserver.dao.EmailRepository;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
@@ -41,13 +42,14 @@ import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.service.EmailService;
 import org.legurun.test.fakemailserver.service.IEmailService;
 import org.legurun.test.fakemailserver.service.ISenderService;
-import org.legurun.test.fakemailserver.utils.PagedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StreamUtils;
@@ -69,7 +71,7 @@ public class EmailServiceTests {
 	private IEmailService emailService;
 
 	@MockBean
-	private IEmailDao emailDao;
+	private EmailRepository emailRepository;
 
 	@MockBean
 	private ISenderService senderService;
@@ -78,40 +80,31 @@ public class EmailServiceTests {
 	public void testSearchWithSender() {
 		final Sender sender = new Sender();
 		sender.setId(1L);
-		when(senderService.get(1L)).thenReturn(sender);
 		final Date dateBefore = DateUtils.addDays(new Date(), 1);
 		final Date dateSince = DateUtils.addDays(new Date(), -1);
 		final EmailSearchReport email = new EmailSearchReport();
 		final List<EmailSearchReport> listEmails =
 				new ArrayList<EmailSearchReport>();
 		listEmails.add(email);
-		final PagedList<EmailSearchReport> pagedList =
-				new PagedList<EmailSearchReport>();
-		pagedList.setData(listEmails);
-		pagedList.setTotal(1);
-		when(
-				emailDao.search(sender, "foo@bar.com",
-						dateSince, dateBefore, null, null, 0, 25))
-			.thenReturn(pagedList);
-
+		final Page<EmailSearchReport> pagedList =
+				new PageImpl<EmailSearchReport>(listEmails);
 		final EmailSearchCommand command = new EmailSearchCommand();
-		command.setSenderId(1L);
+		command.setSenderId(sender.getId());
 		command.setRecipient("foo@bar.com");
 		command.setSentSince(dateSince);
 		command.setSentBefore(dateBefore);
-		command.setOffset(0);
-		command.setLimit(25);
 
-		final PagedList<EmailSearchReport> result =
-				emailService.search(command);
+		when(
+			emailRepository.search(command, null))
+			.thenReturn(pagedList);
+
+		final Page<EmailSearchReport> result =
+				emailService.search(command, null);
 		assertNotNull("search() must return a result", result);
 		assertEquals(pagedList, result);
-		verify(senderService, times(1)).get(eq(1L));
-		verify(emailDao, times(1)).search(eq(sender),
-			eq("foo@bar.com"), eq(dateSince),
-			eq(dateBefore), isNull(), isNull(), eq(0), eq(25));
+		verify(emailRepository, times(1)).search(eq(command), isNull());
 		verifyNoMoreInteractions(senderService);
-		verifyNoMoreInteractions(emailDao);
+		verifyNoMoreInteractions(emailRepository);
 	}
 
 	@Test
@@ -119,28 +112,23 @@ public class EmailServiceTests {
 		final Sender sender = new Sender();
 		sender.setId(1L);
 		when(senderService.get(1L)).thenReturn(sender);
-		final PagedList<EmailSearchReport> pagedList =
-				new PagedList<EmailSearchReport>();
-		pagedList.setData(new ArrayList<EmailSearchReport>());
-		pagedList.setTotal(0);
-		when(
-				emailDao.search(null, null,
-						null, null, null, null, null, null)).
-			thenReturn(pagedList);
+		final Page<EmailSearchReport> pagedList =
+				new PageImpl<EmailSearchReport>(Collections.emptyList());
 
 		final EmailSearchCommand command = new EmailSearchCommand();
-		command.setSenderId(null);
 
-		final PagedList<EmailSearchReport> result =
-				emailService.search(command);
+		when(
+			emailRepository.search(command, null)).
+			thenReturn(pagedList);
+
+		final Page<EmailSearchReport> result =
+				emailService.search(command, null);
 		assertNotNull("search() must return a result", result);
 		assertEquals(pagedList, result);
 		verify(senderService, times(0)).get(1L);
-		verify(emailDao, times(1)).search(isNull(),
-				isNull(), isNull(), isNull(), isNull(),
-				isNull(), isNull(), isNull());
+		verify(emailRepository, times(1)).search(eq(command), isNull());
 		verifyNoMoreInteractions(senderService);
-		verifyNoMoreInteractions(emailDao);
+		verifyNoMoreInteractions(emailRepository);
 	}
 
 	/**

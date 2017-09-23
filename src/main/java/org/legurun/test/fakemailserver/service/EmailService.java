@@ -27,15 +27,16 @@ import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
-import org.legurun.test.fakemailserver.dao.IEmailDao;
+import org.legurun.test.fakemailserver.dao.EmailRepository;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
-import org.legurun.test.fakemailserver.utils.PagedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,34 +64,28 @@ public class EmailService implements IEmailService {
 	private ISenderService senderService;
 
 	/**
-	 * Email DAO.
+	 * Email Repository.
 	 */
 	@Autowired
-	private IEmailDao emailDao;
+	private EmailRepository emailRepository;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
-	public PagedList<EmailSearchReport> search(
-			final EmailSearchCommand searchCommand) {
+	public Page<EmailSearchReport> search(
+			final EmailSearchCommand searchCommand,
+			final Pageable pageable) {
 		LOG.debug("Getting list of emails");
-		Sender sender = null;
-		if (searchCommand.getSenderId() != null) {
-			sender = senderService.get(searchCommand.getSenderId());
-		}
-		return emailDao.search(sender, searchCommand.getRecipient(),
-				searchCommand.getSentSince(), searchCommand.getSentBefore(),
-				searchCommand.getSort(), searchCommand.getOrder(),
-				searchCommand.getOffset(), searchCommand.getLimit());
+		return emailRepository.search(searchCommand, pageable);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(propagation=Propagation.SUPPORTS)
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public MimeMessage parse(final Email email) throws MessagingException {
 		final Session session = Session.getDefaultInstance(new Properties());
 		final ByteArrayInputStream inputStream =
@@ -102,7 +97,7 @@ public class EmailService implements IEmailService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(propagation=Propagation.SUPPORTS)
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public boolean accept(final String from, final String recipient) {
 		return true;
 	}
@@ -111,7 +106,7 @@ public class EmailService implements IEmailService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED)
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deliver(final String from, final String recipient,
 			final InputStream data) throws IOException {
 		LOG.debug("Receiving message from %s to %s", from, recipient);
@@ -135,6 +130,6 @@ public class EmailService implements IEmailService {
 			LOG.error("Cannot analyze mail content", ex);
 		}
 		sender.addEmail(email);
-		emailDao.persist(email);
+		emailRepository.save(email);
 	}
 }

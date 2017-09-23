@@ -28,6 +28,7 @@ import javax.cache.annotation.CacheValue;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * Sender repository.
@@ -35,6 +36,7 @@ import org.springframework.data.repository.CrudRepository;
  * @author patlenain
  * @since 2017
  */
+@Repository
 public interface SenderRepository extends CrudRepository<Sender, Long> {
 
 	/**

@@ -18,52 +18,67 @@
 package org.legurun.test.fakemailserver.tests.controller;
 
 import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.Arrays;
 import java.util.Date;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.legurun.test.fakemailserver.controller.MailController;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
-import org.legurun.test.fakemailserver.service.EmailService;
 import org.legurun.test.fakemailserver.service.IEmailService;
-import org.legurun.test.fakemailserver.tests.utils.TestUtils;
-import org.legurun.test.fakemailserver.utils.PagedList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableArgumentResolver;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.mockito.Mockito.*;
 
+
 @RunWith(SpringRunner.class)
-@Transactional
-@AutoConfigureCache
 @AutoConfigureDataJpa
-@AutoConfigureTestDatabase
-@AutoConfigureTestEntityManager
 @WebMvcTest(MailController.class)
 public class MailControllerTests {
 
-	@Autowired
 	private MockMvc mockMvc;
+
+	@Autowired
+	private MailController mailController;
+
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	@MockBean
 	private IEmailService emailService;
+
+	@Before
+	public void setUp() {
+		final PageableArgumentResolver pageableResolver =
+				new PageableHandlerMethodArgumentResolver();
+		this.mockMvc = MockMvcBuilders.standaloneSetup(mailController).
+				setCustomArgumentResolvers(pageableResolver).
+				setMessageConverters(new MappingJackson2HttpMessageConverter()).
+				build();
+	}
 
 	@Test
 	public void testSearchByGet() throws Exception {
@@ -79,8 +94,6 @@ public class MailControllerTests {
 		command.setRecipient("test@foo.org");
 		command.setSentSince(new Date());
 		command.setSentBefore(new Date());
-		command.setOffset(10);
-		command.setLimit(20);
 		final EmailSearchReport report =
 				new EmailSearchReport();
 		report.setId(1L);
@@ -88,39 +101,34 @@ public class MailControllerTests {
 		report.setRecipient("test@foo.org");
 		report.setSentDate(new Date());
 		report.setSubject("Test mail controller");
-		final PagedList<EmailSearchReport> list =
-				new PagedList<EmailSearchReport>();
-		list.setData(Arrays.asList(report));
-		list.setTotal(5);
+		final Page<EmailSearchReport> list =
+				new PageImpl<EmailSearchReport>(
+						Arrays.asList(report), null, 5);
 
-		when(emailService.search(command)).thenReturn(list);
+		when(
+			emailService.search(
+				eq(command), any(Pageable.class))).
+			thenReturn(list);
 
 		final MockHttpServletRequestBuilder postBuilder =
-				post("/api/mail");
-		postBuilder.accept(MediaType.APPLICATION_JSON_UTF8)
-			.contentType(MediaType.APPLICATION_JSON_UTF8)
-			.content(TestUtils.convertObjectToJson(command));
+				post("/api/mail")
+				.accept(MediaType.APPLICATION_JSON_UTF8)
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(objectMapper.writeValueAsBytes(command));
 		mockMvc.perform(postBuilder)
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-			.andExpect(jsonPath("total", is(5)))
-			.andExpect(jsonPath("data", hasSize(1)))
-			.andExpect(jsonPath("data[0].id", is(report.getId().intValue())))
-			.andExpect(jsonPath("data[0].recipient",
+			.andExpect(jsonPath("totalElements", is(5)))
+			.andExpect(jsonPath("content", hasSize(1)))
+			.andExpect(jsonPath("content[0].id", is(report.getId().intValue())))
+			.andExpect(jsonPath("content[0].recipient",
 					is(report.getRecipient())))
-			.andExpect(jsonPath("data[0].sentDate",
+			.andExpect(jsonPath("content[0].sentDate",
 					is(report.getSentDate().getTime())))
-			.andExpect(jsonPath("data[0].subject", is(report.getSubject())))
+			.andExpect(jsonPath("content[0].subject", is(report.getSubject())))
 			;
-		verify(emailService, times(1)).search(command);
+		verify(emailService, times(1)).search(
+				eq(command), any(Pageable.class));
 		verifyNoMoreInteractions(emailService);
-	}
-
-	@TestConfiguration
-	static class TestContextConfiguration {
-		@Bean
-		public IEmailService emailService() {
-			return new EmailService();
-		}
 	}
 }

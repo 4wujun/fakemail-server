@@ -53,7 +53,7 @@ public class SenderService implements ISenderService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(propagation=Propagation.SUPPORTS)
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public List<Sender> list() {
 		LOG.debug("Getting list of senders");
 		return senderRepository.list();
@@ -63,7 +63,7 @@ public class SenderService implements ISenderService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(propagation=Propagation.SUPPORTS)
+	@Transactional(propagation = Propagation.SUPPORTS)
 	@SuppressWarnings("PMD.ShortVariable")
 	public Sender get(final Long id) {
 		LOG.debug("Getting sender id = {}", id);
@@ -74,7 +74,7 @@ public class SenderService implements ISenderService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED)
+	@Transactional(propagation = Propagation.REQUIRED)
 	public Sender getOrCreateSender(final String address) {
 		LOG.debug("Getting sender by address '{}'", address);
 		Sender sender = senderRepository.findByAddress(address);

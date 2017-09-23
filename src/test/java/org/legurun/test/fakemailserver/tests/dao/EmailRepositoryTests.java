@@ -20,21 +20,23 @@ package org.legurun.test.fakemailserver.tests.dao;
 import static org.junit.Assert.*;
 
 import java.util.Date;
-import java.util.List;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.legurun.test.fakemailserver.dao.IEmailDao;
+import org.legurun.test.fakemailserver.dao.EmailRepository;
+import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
 import org.legurun.test.fakemailserver.model.Sender;
-import org.legurun.test.fakemailserver.utils.PagedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +44,7 @@ import org.springframework.transaction.annotation.Transactional;
 @DataJpaTest
 @ComponentScan("org.legurun.test.fakemailserver.dao")
 @SuppressWarnings("checkstyle:MultipleStringLiterals")
-public class EmailDaoTests {
+public class EmailRepositoryTests {
 
 	private Sender sender1;
 	private Sender sender2;
@@ -58,150 +60,94 @@ public class EmailDaoTests {
 	 * DAO to test.
 	 */
 	@Autowired
-	private IEmailDao emailDao;
-
-	@Test
-	@Transactional
-	public void testList() {
-		final List<Email> list = emailDao.list();
-		assertNotNull(list);
-		assertEquals(4, list.size());
-	}
-
-	@Test
-	@Transactional
-	public void testGet() {
-		final Email email = emailDao.get(email1.getId());
-		assertNotNull(email);
-		assertEquals(email1, email);
-	}
-
-	@Test
-	@Transactional
-	public void testPersist() {
-		final Email email = new Email();
-		email.setSender(sender1);
-		email.setRecipient("test4@bar.com");
-		email.setSentDate(new Date());
-		email.setSubject("Test 4");
-		email.setMessage(new byte[] {});
-		emailDao.persist(email);
-
-		final Email result = entityManager.find(Email.class, email.getId());
-		assertNotNull(email);
-		assertEquals(email, result);
-	}
-
-	@Test
-	@Transactional
-	public void testDelete() {
-		emailDao.delete(email1);
-		final List<Email> list = emailDao.list();
-		assertNotNull(list);
-		assertEquals(3, list.size());
-	}
+	private EmailRepository emailRepository;
 
 	@Test
 	@Transactional
 	public void testSearchAll() {
-		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, null, null, null,
-						null, null, null, null);
+		final EmailSearchCommand command = new EmailSearchCommand();
+		final Page<EmailSearchReport> list =
+				emailRepository.search(command, null);
 		assertNotNull(list);
-		assertEquals(4L, list.getTotal());
-		assertEquals(4, list.getData().size());
+		assertEquals(4L, list.getTotalElements());
+		assertEquals(4, list.getNumberOfElements());
 	}
 
 	@Test
 	@Transactional
 	public void testSearchBySender() {
-		final PagedList<EmailSearchReport> list =
-				emailDao.search(sender1, null, null, null,
-						null, null, null, null);
+		final EmailSearchCommand command = new EmailSearchCommand();
+		command.setSenderId(sender1.getId());
+		final Page<EmailSearchReport> list =
+				emailRepository.search(command, null);
 		assertNotNull(list);
-		assertEquals(3L, list.getTotal());
-		assertEquals(3, list.getData().size());
+		assertEquals(3L, list.getTotalElements());
+		assertEquals(3, list.getNumberOfElements());
 	}
 
 	@Test
 	@Transactional
 	public void testSearchByRecipient() {
-		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, "test2", null, null,
-						null, null, null, null);
+		final EmailSearchCommand command = new EmailSearchCommand();
+		command.setRecipient("test2");
+		final Page<EmailSearchReport> list =
+				emailRepository.search(command, null);
 		assertNotNull(list);
-		assertEquals(1L, list.getTotal());
-		assertEquals(1, list.getData().size());
-		final EmailSearchReport result = list.getData().get(0);
+		assertEquals(1L, list.getTotalElements());
+		assertEquals(1, list.getNumberOfElements());
+		final EmailSearchReport result = list.getContent().get(0);
 		assertEquals(email2.getId(), result.getId());
 	}
 
 	@Test
 	@Transactional
 	public void testSearchBySentSince() {
+		final EmailSearchCommand command = new EmailSearchCommand();
 		final Date sentSince = DateUtils.addDays(new Date(), -3);
-		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, null, sentSince, null,
-						null, null, null, null);
+		command.setSentSince(sentSince);
+		final Page<EmailSearchReport> list =
+				emailRepository.search(command, null);
 		assertNotNull(list);
-		assertEquals(4L, list.getTotal());
-		assertEquals(4, list.getData().size());
+		assertEquals(4L, list.getTotalElements());
+		assertEquals(4, list.getNumberOfElements());
 	}
 
 	@Test
 	@Transactional
 	public void testSearchBySentBefore() {
+		final EmailSearchCommand command = new EmailSearchCommand();
 		final Date sentBefore = DateUtils.addDays(new Date(), -1);
-		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, null, null, sentBefore,
-						null, null, null, null);
+		command.setSentBefore(sentBefore);
+		final Page<EmailSearchReport> list =
+				emailRepository.search(command, null);
 		assertNotNull(list);
-		assertEquals(4L, list.getTotal());
-		assertEquals(4, list.getData().size());
+		assertEquals(4L, list.getTotalElements());
+		assertEquals(4, list.getNumberOfElements());
 	}
 
 	@Test
 	@Transactional
 	public void testSearchAllWithOffsetAndLimit() {
-		final PagedList<EmailSearchReport> list =
-				emailDao.search(null, null, null, null,
-						null, null, 1, 2);
+		final EmailSearchCommand command = new EmailSearchCommand();
+		final Pageable pageable = new PageRequest(1, 2);
+		final Page<EmailSearchReport> list =
+				emailRepository.search(command, pageable);
 		assertNotNull(list);
-		assertEquals(4L, list.getTotal());
-		assertEquals(2, list.getData().size());
-	}
-
-	@Test
-	@Transactional
-	public void testSearchAllWithOffsetOnly() {
-		PagedList<EmailSearchReport> list =
-			emailDao.search(null, null, null, null,
-					null, null, 1, null);
-		assertNotNull(list);
-		assertEquals(4L, list.getTotal());
-		assertEquals(4, list.getData().size());
-	}
-
-	@Test
-	@Transactional
-	public void testSearchAllWithLimitOnly() {
-		PagedList<EmailSearchReport> list =
-			emailDao.search(null, null, null, null,
-					null, null, null, 2);
-		assertNotNull(list);
-		assertEquals(4L, list.getTotal());
-		assertEquals(4, list.getData().size());
+		assertEquals(4L, list.getTotalElements());
+		assertEquals(2, list.getSize());
 	}
 
 	@Test
 	@Transactional
 	public void testSearchBySenderAndRecipient() {
-		final PagedList<EmailSearchReport> list =
-				emailDao.search(sender1, "test3", null, null,
-						null, null, null, null);
+		final EmailSearchCommand command = new EmailSearchCommand();
+		command.setSenderId(sender1.getId());
+		command.setRecipient("test3");
+		final Page<EmailSearchReport> list =
+				emailRepository.search(command, null);
 		assertNotNull(list);
-		assertEquals(1L, list.getTotal());
-		assertEquals(1, list.getData().size());
+		assertEquals(1L, list.getTotalElements());
+		assertEquals(1, list.getNumberOfElements());
 	}
 
 

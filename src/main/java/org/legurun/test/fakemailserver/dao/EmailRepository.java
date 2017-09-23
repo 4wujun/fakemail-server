@@ -15,29 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.legurun.test.fakemailserver.tests.utils;
+package org.legurun.test.fakemailserver.dao;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.legurun.test.fakemailserver.model.Email;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Tests utils.
+ * Email repository.
+ *
  * @author patlenain
  * @since 2017
  */
-public abstract class TestUtils {
+public interface EmailRepository
+	extends JpaRepository<Email, Long>, EmailRepositoryCustom {
 
-	/**
-	 * Convert an object to JSON bytes.
-	 * @param object Object
-	 * @return JSON bytes
-	 * @throws JsonProcessingException
-	 */
-	public static byte[] convertObjectToJson(final Object object)
-			throws JsonProcessingException {
-		final ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		return objectMapper.writeValueAsBytes(object);
-	}
 }

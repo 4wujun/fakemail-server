@@ -20,8 +20,8 @@
 
 	$.extend($.fn.bootstrapTable.defaults, {
 		silentSort: true,
-    	dataField: 'data',
-    	totalField: 'total',
+    	dataField: 'content',
+    	totalField: 'totalElements',
     	sidePagination: 'server',
     	showColumns: true,
     	showRefresh: true,

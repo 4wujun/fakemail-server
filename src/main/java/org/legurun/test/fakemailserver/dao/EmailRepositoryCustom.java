@@ -1,5 +1,3 @@
-package org.legurun.test.fakemailserver.dao;
-
 /*
  * Copyright (C) 2017 Patrice Le Gurun
  *
@@ -17,35 +15,28 @@ package org.legurun.test.fakemailserver.dao;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import java.util.Date;
+package org.legurun.test.fakemailserver.dao;
 
+import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
-import org.legurun.test.fakemailserver.model.Email;
-import org.legurun.test.fakemailserver.model.Sender;
-import org.legurun.test.fakemailserver.utils.PagedList;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
- * Email DAO.
+ * Email repository custom interface.
  *
  * @author patlenain
  * @since 2017
  */
-public interface IEmailDao extends IDao<Email> {
+public interface EmailRepositoryCustom {
+
 	/**
 	 * Search emails.
-	 * @param sender Sender
-	 * @param recipient Recipient address
-	 * @param sentSince Date since the email was sent
-	 * @param sentBefore Date before the email was sent
-	 * @param sort Sort property
-	 * @param order Sort order
-	 * @param start Start index for pagination
-	 * @param limit Limit results for pagination
-	 * @return Search result
+	 *
+	 * @param command Search params
+	 * @param pageable Pagination
+	 * @return List of Emails or empty list
 	 */
-	@SuppressWarnings("checkstyle:ParameterNumber")
-	PagedList<EmailSearchReport> search(Sender sender,
-		String recipient, Date sentSince, Date sentBefore,
-		String sort, String order,
-		Integer start, Integer limit);
+	Page<EmailSearchReport> search(
+			EmailSearchCommand command, Pageable pageable);
 }

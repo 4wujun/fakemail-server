@@ -23,7 +23,8 @@ import javax.mail.internet.MimeMessage;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.model.Email;
-import org.legurun.test.fakemailserver.utils.PagedList;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.subethamail.smtp.helper.SimpleMessageListener;
 
 /**
@@ -37,9 +38,11 @@ public interface IEmailService extends SimpleMessageListener {
 	/**
 	 * Search emails.
 	 * @param searchCommand Search parameters
+	 * @param pageable Pageable
 	 * @return Search results
 	 */
-	PagedList<EmailSearchReport> search(EmailSearchCommand searchCommand);
+	Page<EmailSearchReport> search(
+			EmailSearchCommand searchCommand, Pageable pageable);
 
 	/**
 	 * Parse email contents.

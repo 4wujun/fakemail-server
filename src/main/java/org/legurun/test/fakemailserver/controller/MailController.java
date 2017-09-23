@@ -20,10 +20,11 @@ package org.legurun.test.fakemailserver.controller;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.legurun.test.fakemailserver.service.IEmailService;
-import org.legurun.test.fakemailserver.utils.PagedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,10 +57,10 @@ public class MailController {
 	 * @return Search result
 	 */
 	@PostMapping
-	public PagedList<EmailSearchReport> search(
-			@RequestBody(required = false)
-			final EmailSearchCommand searchCommand) {
-		LOG.debug("Params : {}", searchCommand);
-		return emailService.search(searchCommand);
+	public Page<EmailSearchReport> search(
+			@RequestBody(required = false) final EmailSearchCommand searchCommand,
+			final Pageable pageable) {
+		LOG.debug("Params : {} - {}", searchCommand, pageable);
+		return emailService.search(searchCommand, pageable);
 	}
 }
