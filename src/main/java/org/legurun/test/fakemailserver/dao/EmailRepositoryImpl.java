@@ -42,7 +42,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.query.QueryUtils;
 import org.springframework.data.repository.support.PageableExecutionUtils;
-import org.springframework.data.repository.support.PageableExecutionUtils.TotalSupplier;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -102,12 +101,14 @@ public class EmailRepositoryImpl
 				builder.equal(rootEmail.get(Email_.sender), sender));
 		}
 		if (StringUtils.hasText(command.getRecipient())) {
+			// CHECKSTYLE:OFF
 			predicates.add(
 				builder.like(
 					builder.upper(
 							rootEmail.get(Email_.recipient)),
 					"%" + command.getRecipient().trim().
 						toUpperCase(Locale.ENGLISH) + "%"));
+			// CHECKSTYLE:ON
 		}
 		if (command.getSentSince() != null) {
 			predicates.add(
@@ -132,16 +133,7 @@ public class EmailRepositoryImpl
 			typedQuery.setFirstResult(pageable.getOffset());
 			typedQuery.setMaxResults(pageable.getPageSize());
 			return PageableExecutionUtils.getPage(typedQuery.getResultList(),
-					pageable, new TotalSupplier() {
-				/**
-				 * {@inheritDoc}
-				 */
-				@Override
-				@SuppressWarnings("PMD.AccessorMethodGeneration")
-				public long get() {
-					return executeCountQuery(query);
-				}
-			});
+					pageable, () -> executeCountQuery(query));
 		}
 		return new PageImpl<>(typedQuery.getResultList());
 	}
