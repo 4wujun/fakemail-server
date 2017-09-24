@@ -20,6 +20,7 @@ package org.legurun.test.fakemailserver.tests.service;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -28,6 +29,7 @@ import java.util.List;
 import javax.mail.Address;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MailDateFormat;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.lang3.time.DateUtils;
@@ -42,6 +44,7 @@ import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.service.EmailService;
 import org.legurun.test.fakemailserver.service.IEmailService;
 import org.legurun.test.fakemailserver.service.ISenderService;
+import org.mockito.internal.matchers.CapturingMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -162,7 +165,46 @@ public class EmailServiceTests {
 				new Address[] { recipientAddress },
 				message.getRecipients(RecipientType.TO));
 		Assert.assertEquals("Test", message.getSubject());
-		//Sat, 17 Jun 2017 19:06:06 +0200 (CEST)
+		final DateFormat dateFormat = new MailDateFormat();
+		final Date expectedDate =
+				dateFormat.parse("Sat, 17 Jun 2017 19:06:06 +0200 (CEST)");
+		Assert.assertEquals(expectedDate, message.getSentDate());
+	}
+
+	@Test
+	public void testDeliver() throws Exception {
+		final Sender sender = new Sender();
+		sender.setId(1L);		
+		when(senderService.getOrCreateSender("sender@foobar.org"))
+			.thenReturn(sender);
+		CapturingMatcher<Email> emailCapturing = new CapturingMatcher<Email>();
+		when(emailRepository.save(any(Email.class)))
+			.thenAnswer((i) -> {
+				emailCapturing.captureFrom(i.getArgument(0));
+				return i.getArgument(0);
+			});
+
+		final Resource testMailFile =
+				new ClassPathResource("testEmailServiceDeliver.txt");
+		emailService.deliver("sender@foobar.org", "recipient@bar.com",
+				testMailFile.getInputStream());
+
+		final Email email = emailCapturing.getLastValue();
+
+		Assert.assertNotNull(email);
+		Assert.assertEquals(sender, email.getSender());
+		Assert.assertEquals("recipient@bar.com", email.getRecipient());
+		final DateFormat dateFormat = new MailDateFormat();
+		final Date expectedDate =
+				dateFormat.parse("Sat, 17 Jun 2017 19:06:06 +0200 (CEST)");
+		Assert.assertEquals(expectedDate, email.getSentDate());
+		
+		verify(senderService, times(1))
+			.getOrCreateSender(eq("sender@foobar.org"));
+		verify(emailRepository, times(1))
+			.save(any(Email.class));
+		verifyNoMoreInteractions(senderService);
+		verifyNoMoreInteractions(emailRepository);
 	}
 
 

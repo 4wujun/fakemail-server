@@ -1,0 +1,12 @@
+Return-Path: <sender@foobar.org>
+Delivered-To: recipient@bar.com
+Received: from sender.foobar.org (sender.foobar.org [10.0.0.1])
+	by server.bar.com (ip6-localhost [127.0.0.1]) (Postfix) with ESMTP id A77AC19609CB
+	for <recipient@bar.com>; Sat, 17 Jun 2017 19:06:18 +0200 (CEST)
+To: recipient@bar.com
+From: sender@foobar.org
+Message-Id: <1750311230_9b287140a22bc6f01a8f2925816968b8@foobar.org>
+Date: Sat, 17 Jun 2017 19:06:06 +0200 (CEST)
+Subject: Test
+
+This is the parse test
