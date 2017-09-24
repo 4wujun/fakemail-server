@@ -109,7 +109,7 @@ public class EmailService implements IEmailService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void deliver(final String from, final String recipient,
 			final InputStream data) throws IOException {
-		LOG.debug("Receiving message from %s to %s", from, recipient);
+		LOG.debug("Receiving message from {} to {}", from, recipient);
 		final Sender sender = senderService.getOrCreateSender(from);
 		final Email email = new Email();
 		email.setRecipient(recipient);
