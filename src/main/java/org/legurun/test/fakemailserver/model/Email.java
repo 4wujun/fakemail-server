@@ -112,6 +112,7 @@ public class Email extends AbstractEntity {
 	 * Get the sent date.
 	 * @return Sent date
 	 */
+	@SuppressFBWarnings({ "EI_EXPOSE_REP", "EI_EXPOSE_REP2" })
 	public Date getSentDate() {
 		return sentDate;
 	}
@@ -120,6 +121,7 @@ public class Email extends AbstractEntity {
 	 * Set the sent date.
 	 * @param sentDate Sent date
 	 */
+	@SuppressFBWarnings({ "EI_EXPOSE_REP", "EI_EXPOSE_REP2" })
 	public void setSentDate(final Date sentDate) {
 		this.sentDate = sentDate;
 	}

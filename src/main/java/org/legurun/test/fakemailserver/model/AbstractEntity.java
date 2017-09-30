@@ -37,6 +37,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Common class for persisted entities.
  *
@@ -119,6 +121,7 @@ public abstract class AbstractEntity implements Serializable {
 	 * Get the creation date.
 	 * @return Creation date
 	 */
+	@SuppressFBWarnings({ "EI_EXPOSE_REP", "EI_EXPOSE_REP2" })
 	public Date getDateCreated() {
 		return dateCreated;
 	}
@@ -127,6 +130,7 @@ public abstract class AbstractEntity implements Serializable {
 	 * Set the creation date.
 	 * @param dateCreated Creation date
 	 */
+	@SuppressFBWarnings({ "EI_EXPOSE_REP", "EI_EXPOSE_REP2" })
 	public void setDateCreated(final Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
@@ -135,6 +139,7 @@ public abstract class AbstractEntity implements Serializable {
 	 * Get the last modification date.
 	 * @return Last modification date
 	 */
+	@SuppressFBWarnings({ "EI_EXPOSE_REP", "EI_EXPOSE_REP2" })
 	public Date getLastUpdated() {
 		return lastUpdated;
 	}
@@ -143,6 +148,7 @@ public abstract class AbstractEntity implements Serializable {
 	 * Set the modification date.
 	 * @param lastUpdated Modification date
 	 */
+	@SuppressFBWarnings({ "EI_EXPOSE_REP", "EI_EXPOSE_REP2" })
 	public void setLastUpdated(final Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}

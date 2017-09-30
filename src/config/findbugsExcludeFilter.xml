@@ -17,6 +17,6 @@
 -->
 <FindBugsFilter>
 	<Match>
-		<Class name="~.*^_" />
+		<Class name="~.*_" />
 	</Match>
 </FindBugsFilter>
