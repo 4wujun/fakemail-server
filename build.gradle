@@ -16,9 +16,10 @@ plugins {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse-wtp'
-apply plugin: 'war'
-//apply plugin: 'application'
+apply plugin: 'application'
+//apply plugin: 'war'
+apply plugin: 'eclipse'
+//apply plugin: 'eclipse-wtp'
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
@@ -37,7 +38,7 @@ targetCompatibility = 1.8
 
 ext['spring.version'] = '4.3.11.RELEASE'
 ext['hibernate.version'] = '5.2.11.Final'
-ext['tomcat.version'] = '8.5.20'
+ext['tomcat.version'] = '8.5.21'
 
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
@@ -48,7 +49,7 @@ task wrapper(type: Wrapper) {
 }
 
 configurations {
-	providedCompile
+	providedRuntime
 }
 
 repositories {
@@ -84,8 +85,8 @@ dependencies {
 	compile "org.webjars:bootstrap-datetimepicker:2.4.2"
 	compile "org.webjars:webjars-locator:0.32-1"
 	runtime "com.h2database:h2:1.4.196"
-	runtime "org.mariadb.jdbc:mariadb-java-client:2.1.1"
-	compile "com.google.code.findbugs:annotations:3.0.1u2"
+	runtime "org.mariadb.jdbc:mariadb-java-client:2.1.2"
+	compile "com.google.code.findbugs:annotations:3.0.1"
 	providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
 
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
@@ -172,7 +173,7 @@ jacocoTestReport {
 }
 check.dependsOn jacocoTestReport
 
-war {
+jar {
 	baseName = 'fakemailserver'
 	manifest {
 		attributes('Implementation-Title': project.name,
