@@ -45,7 +45,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * @author patlenain
  * @since 2017
  */
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "PMD.AvoidDuplicateLiterals" })
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties({ "version", "dateCreated", "lastUpdated" })
