@@ -38,7 +38,7 @@ targetCompatibility = 1.8
 
 ext['spring.version'] = '4.3.11.RELEASE'
 ext['hibernate.version'] = '5.2.11.Final'
-ext['tomcat.version'] = '8.5.21'
+ext['tomcat.version'] = '8.5.23'
 
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
