@@ -18,19 +18,25 @@
 (function($) {
 	'use strict';
 
-	$.extend($.fn.bootstrapTable.defaults, {
-		silentSort: true,
-    	dataField: 'content',
-    	totalField: 'totalElements',
-    	sidePagination: 'server',
-    	showColumns: true,
-    	showRefresh: true,
-    	idField: 'id',
-    	uniqueId: 'id',
-    	escape: true,
-    	cache: true
+	$.extend($.fn.dataTable.defaults, {
+		'processing': true,
+		'searching': false,
+		'ajax': {
+			'contentType': 'application/json',
+			'dataSrc': 'content',
+			'dataType': 'json',
+		}
+//    	dataField: 'content',
+//    	totalField: 'totalElements',
+//    	sidePagination: 'server',
+//    	showColumns: true,
+//    	showRefresh: true,
+//    	idField: 'id',
+//    	uniqueId: 'id',
+//    	escape: true,
+//    	cache: true
 	});
-	$.extend($.fn.bootstrapTable.columnDefaults, {
-		sortable: true
-	});
+//	$.extend($.fn.bootstrapTable.columnDefaults, {
+//		sortable: true
+//	});
 })(jQuery);

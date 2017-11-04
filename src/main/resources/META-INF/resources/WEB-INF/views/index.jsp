@@ -28,7 +28,7 @@
 	<div class="container">
 		<%@ include file="searchForm.jsp" %>
 
-		<table id="results"></table>
+		<table id="results" class="table table-stripped table-bordered"></table>
 	</div>
 
 	<%@ include file="initGlobals.jsp" %>
@@ -45,33 +45,56 @@ function queryParams(params) {
 }
 
 $(document).ready(function(){
-    $('#results').bootstrapTable({
-    	method: 'post',
-    	url: '<c:url value="/api/mail"/>',
-    	queryParams: queryParams,
-    	columns: [{
-    		checkbox: true,
-    		sortable: false
-    	}, {
-    		field: 'sender',
-    		title: 'Sender'
-    	}, {
-    		field: 'recipient',
-    		title: 'Recipient'
-    	}, {
-    		field: 'sentDate',
-    		title: 'Sent date',
-    		formatter: function(value, row, index) {
-    			return $.format.date(value, "dd/MM/yyyy HH:mm:ss")
-    		}
-    	}, {
-    		field: 'subject',
-    		title: 'Subject'
-    	}],
-    	pagination: true,
-    	pageSize: 10,
-    	clickToSelect: true
-    });
+	$('#results').DataTable({
+		'columns': [{
+			'data': 'sender',
+			'title': 'Sender'
+		}, {
+			'data': 'recipient',
+			'title': 'Recipient'
+		}, {
+			'data': 'sentDate',
+			'title': 'Sent date',
+			'type': 'date'
+		}, {
+			'data': 'subject',
+			'title': 'Subject'
+		}],
+		'serverSide': true,
+		'ajax': {
+			'url': '<c:url value="/api/mail"/>',
+			'type': 'POST',
+			'data': function(d) {
+				return JSON.stringify(d);
+			}
+		}
+	}
+/*		method: 'post',
+		url: '<c:url value="/api/mail"/>',
+		queryParams: queryParams,
+		columns: [{
+			checkbox: true,
+			sortable: false
+		}, {
+			field: 'sender',
+			title: 'Sender'
+		}, {
+			field: 'recipient',
+			title: 'Recipient'
+		}, {
+			field: 'sentDate',
+			title: 'Sent date',
+			formatter: function(value, row, index) {
+				return $.format.date(value, "dd/MM/yyyy HH:mm:ss")
+			}
+		}, {
+			field: 'subject',
+			title: 'Subject'
+		}],
+		pagination: true,
+		pageSize: 10,
+		clickToSelect: true
+	}*/);
 });
 
 $(function () {
@@ -84,7 +107,7 @@ $(function () {
 			}
 		}
 		$('#searchForm').data('searchParams', searchParams);
-	    $('#results').bootstrapTable('refresh');
+		$('#results').bootstrapTable('refresh');
 		event.preventDefault();
 	});
 });

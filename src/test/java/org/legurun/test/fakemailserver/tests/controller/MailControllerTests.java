@@ -111,7 +111,7 @@ public class MailControllerTests {
 			thenReturn(list);
 
 		final MockHttpServletRequestBuilder postBuilder =
-				post("/api/mail")
+				post("/api/mail").param("page", "0").param("size", "50")
 				.accept(MediaType.APPLICATION_JSON_UTF8)
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(objectMapper.writeValueAsBytes(command));
