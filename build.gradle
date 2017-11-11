@@ -11,7 +11,7 @@ plugins {
 	id 'org.liquibase.gradle' version '1.2.4'
 	id 'org.springframework.boot' version '1.5.8.RELEASE'
 	id 'com.github.ben-manes.versions' version '0.17.0'
-	id 'org.sonarqube' version '2.5'
+	id 'org.sonarqube' version '2.6'
 	id 'at.comm_unity.gradle.plugins.jpamodelgen' version '1.1.4'
 }
 
@@ -39,14 +39,14 @@ targetCompatibility = 1.8
 ext['hibernate.version'] = '5.2.12.Final'
 ext['mockito.version'] = '2.11.0'
 ext['ehcache3.version'] = '3.4.0'
-ext['mariadb.version'] = '2.1.2'
+ext['mariadb.version'] = '2.2.0'
 
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '4.3'
+	gradleVersion = '4.3.1'
 }
 
 configurations {
