@@ -13,10 +13,9 @@ node {
 
 clean {
 	delete 'coverage'
+	delete 'TEST*.xml'
+	delete 'ut_report-*.xml'
 }
-
-build.dependsOn 'buildClient'
-check.dependsOn 'testNpm'
 
 task buildClientDev(type: NpmTask, dependsOn: 'npmInstall') {
 	group = 'build'

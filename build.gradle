@@ -225,3 +225,5 @@ eclipse {
 
 bootRun.dependsOn('frontend:buildClientDev')
 jar.dependsOn('frontend:buildClient')
+test.dependsOn('frontend:testNpm')
+
