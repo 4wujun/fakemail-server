@@ -11,15 +11,13 @@ plugins {
 	id 'org.liquibase.gradle' version '1.2.4'
 	id 'org.springframework.boot' version '1.5.8.RELEASE'
 	id 'com.github.ben-manes.versions' version '0.17.0'
-	id 'org.sonarqube' version '2.6'
+	id 'org.sonarqube' version '2.6.1'
 	id 'at.comm_unity.gradle.plugins.jpamodelgen' version '1.1.4'
 }
 
 apply plugin: 'java'
 apply plugin: 'application'
-//apply plugin: 'war'
 apply plugin: 'eclipse'
-//apply plugin: 'eclipse-wtp'
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
@@ -225,3 +223,5 @@ eclipse {
 	}
 }
 
+bootRun.dependsOn('frontend:buildClientDev')
+jar.dependsOn('frontend:buildClient')

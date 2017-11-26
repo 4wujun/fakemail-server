@@ -1,0 +1,49 @@
+<p-panel header="Search mails">
+	<div class="ui-g">
+		<div class="ui-g-2">
+			<label class="ui-g-12" for="senderId">Sender</label>
+		</div>
+		<div class="ui-g-2">
+			<p-dropdown name="senderId" [autoWidth]="false"
+				[options]="senders" [(ngModel)]="senderId">
+			</p-dropdown>
+		</div>
+	</div>
+	<div class="ui-g">
+		<div class="ui-g-2">
+			<label class="ui-g-12" for="recipient">Recipient</label>
+		</div>
+		<div class="ui-g-2">
+			<input pInputText type="text"
+				name="recipient" [(ngModel)]="recipient">
+		</div>
+	</div>
+	<div class="ui-g">
+		<div class="ui-g-2">
+			<label class="ui-g-12" for="sentSince">Sent since</label>
+		</div>
+		<div class="ui-g-2">
+			<p-calendar name="sentSince" [(ngModel)]="sentSince"
+				dateFormat="dd/mm/yy" showTime="showTime" showIcon="true">
+			</p-calendar>
+		</div>
+	</div>
+	<div class="ui-g">
+		<div class="ui-g-2">
+			<label class="ui-g-12" for="sentBefore">Sent before</label>
+		</div>
+		<div class="ui-g-2">
+			<p-calendar name="sentBefore" [(ngModel)]="sentBefore"
+				dateFormat="dd/mm/yy" showTime="showTime" showIcon="true">
+			</p-calendar>
+		</div>
+	</div>
+	<p-toolbar>
+		<div class="ui-toolbar-group-right">
+			<button pButton type="submit" (click)="fireSearch()"
+				label="Search" icon="fa-search"></button>
+			<button pButton type="reset" (click)="fireReset()"
+				label="Reset" icon="fa-recycle"></button>
+		</div>
+	</p-toolbar>
+</p-panel>

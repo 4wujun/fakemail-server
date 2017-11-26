@@ -1,1 +1,3 @@
 rootProject.name = 'FakemailServer'
+
+include 'frontend'

@@ -1,4 +1,5 @@
-/*******************************************************************************
+/**
+ * @license
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -13,30 +14,12 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
+import { SelectItem } from 'primeng/primeng';
 
-(function($) {
-	'use strict';
-
-	$.extend($.fn.dataTable.defaults, {
-		'processing': true,
-		'searching': false,
-		'ajax': {
-			'contentType': 'application/json',
-			'dataSrc': 'content',
-			'dataType': 'json',
-		}
-//    	dataField: 'content',
-//    	totalField: 'totalElements',
-//    	sidePagination: 'server',
-//    	showColumns: true,
-//    	showRefresh: true,
-//    	idField: 'id',
-//    	uniqueId: 'id',
-//    	escape: true,
-//    	cache: true
-	});
-//	$.extend($.fn.bootstrapTable.columnDefaults, {
-//		sortable: true
-//	});
-})(jQuery);
+export class MailCriteria {
+    senderId: number;
+    recipient: string;
+    sentSince: Date;
+    sentBefore: Date;
+}

@@ -1,0 +1,17 @@
+#-------------------------------------------------------------------------------
+/* You can add global styles to this file, and also import other style files */
+.ui-g label {
+	width: 100%;
+}
+
+.ui-g .ui-inputtext {
+	width: 100%;
+}
+
+.ui-g .ui-dropdown {
+	width: 100%;
+}
+
+.ui-g span.ui-calendar {
+	width: 100%;
+}

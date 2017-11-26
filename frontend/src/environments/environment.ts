@@ -1,4 +1,5 @@
-/*******************************************************************************
+/**
+ * @license
  * Copyright (C) 2017 Patrice Le Gurun
  *
  * This program is free software: you can redistribute it and/or modify
@@ -13,20 +14,13 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
+ */
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
 
-@CHARSET "UTF-8";
-
-.spinner {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.8) url(../images/ajax-loader.gif) center center no-repeat;
-	opacity: 0.80;
-	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 80);
-	filter: alpha(opacity = 80);
-	z-index: 9999;
-	display: none;
-}
+export const environment = {
+    production: false,
+    proxyApi: false
+};
