@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Mail } from '../common/mail';
 
@@ -23,8 +23,14 @@ import { Mail } from '../common/mail';
     selector: 'app-search-results',
     templateUrl: './searchResults.component.html'
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnInit {
+    loading: boolean;
+
     @Input() mails: Mail[];
 
     constructor( ) { }
+
+    ngOnInit() {
+        this.loading = false;
+    }
 }

@@ -21,7 +21,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PanelModule, ButtonModule, InputTextModule} from 'primeng/primeng';
+import { SharedModule } from 'primeng/primeng';
+import { PanelModule, ButtonModule, InputTextModule } from 'primeng/primeng';
 import { DropdownModule, ToolbarModule } from 'primeng/primeng';
 import { CalendarModule, DataTableModule } from 'primeng/primeng';
 
@@ -47,6 +48,7 @@ import { environment } from '../environments/environment';
         HttpModule,
         BrowserAnimationsModule,
         ( !environment.production && !environment.proxyApi ) ? InMemoryWebApiModule.forRoot( SenderData ) : [],
+	SharedModule,
         PanelModule,
         ButtonModule,
         InputTextModule,
