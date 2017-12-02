@@ -9,6 +9,7 @@
     "buildDevClient": "ng build",
     "buildWatch": "ng build --watch",
     "test": "ng test",
+    "testCoverage": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

@@ -129,7 +129,7 @@ tomcat {
 */
 
 checkstyle {
-	configDir = file("${project.rootDir}/src/config")
+	configDir = file("${projectDir}/src/config")
 	sourceSets = [project.sourceSets.main]
 	
 }
@@ -141,7 +141,7 @@ tasks.withType(Checkstyle) {
 }
 
 pmd {
-	ruleSetFiles = files("${project.rootDir}/src/config/pmd.xml")
+	ruleSetFiles = files("${projectDir}/src/config/pmd.xml")
 	ignoreFailures = true
 	sourceSets = [project.sourceSets.main]
 }
@@ -153,7 +153,7 @@ tasks.withType(Pmd) {
 }
 
 findbugs {
-	excludeFilter = file("${project.rootDir}/src/config/findbugsExcludeFilter.xml")
+	excludeFilter = file("${projectDir}/src/config/findbugsExcludeFilter.xml")
 	ignoreFailures = true
 	sourceSets = [project.sourceSets.main]
 }
@@ -229,4 +229,5 @@ eclipse {
 bootRun.dependsOn('frontend:buildClientDev')
 jar.dependsOn('frontend:buildClient')
 test.dependsOn('frontend:testNpm')
+check.dependsOn('frontend:testCoverage')
 

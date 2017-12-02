@@ -41,3 +41,9 @@ task testNpm(type: NpmTask, dependsOn: 'npmInstall') {
 	args = ['run', 'test']
 }
 
+task testCoverage(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'verification'
+	description = 'Launch coverage analysis'
+	args = ['run', 'testCoverage']
+}
+
