@@ -6,10 +6,16 @@
 	"apps": [
 		{
 			"root": "src",
-			"outDir": "dist",
+			"outDir": "../src/main/resources/static",
 			"assets": [
-				"assets",
-				"favicon.ico"
+				{
+					"glob": "assets",
+					"allowOutsideOutDir": true
+				},
+				{
+					"glob": "favicon.ico",
+					"allowOutsideOutDir": true
+				}
 			],
 			"index": "index.html",
 			"main": "main.ts",

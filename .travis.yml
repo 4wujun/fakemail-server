@@ -12,6 +12,8 @@ cache:
   - $HOME/.gradle/wrapper/
   - $HOME/.m2/repository/
   - $HOME/.sonar/cache
+  - frontend/.gradle/nodejs
+  - frontend/node_modules
 
 addons:
   sonarcloud:
@@ -30,7 +32,7 @@ deploy:
   api_key:
     secure: UP2x7EZAppNqyZEAVp8hydX2l27d2RPk/i3BC6HuDGLCmaLJn0iEdhTCC+KT1HwIrbu7b8Pbv2xiLMdlNHSa7ZUP5OeFR9VUAW0uwBiU1hLSJdO3OkWz763bCUm0CI9uVzBq05hcXNOkEmYvemSgL7p7WngLeEoM/nDr8iKQ5dNNE67F7w08Ik4e4rILRM5A7it6EJUgKxkK4OoxYJzVZc3dUWn072VBuI48vzOA3VP2C/qibzLoDJMe7KB4TNONY8OFcfhbqWEg1htNLfR5QK2qPaRi5u6XfDNeCcTOu/UHQVnVnQIiylQgyy18rGh8o9UuuUp+kUvCoLZmsJJvxwhqlWQiEn5U1EIJ5JLmEKtdJLVH8eg+6zlAaNujAnBRxZj/XJuUJ7QLW34WAwA6oI7rpKEd6id8N1l8mLLVd11cKBBMvYydSSGNdccemGV+3XIkFq82FGmwH3+LpoDvXnixgb1OThn5OweC2pls+FpvhlHJC6+ZF0LhvTJvnQgPgPAausPFIeLFUSsJ1Cid9Zpiq5vlKAVXTwkd3AY7m8cQCORf+7wbsGPOTRHRnQT8CeQZ48WIoFdy6uFVzP89d7qNZmGiKzLpHXP1bL3iwZNPmzZQvBGcWrsCRoVhRxM3btxIP8dsIcYTc3x0BJ1DRBzITt20kjKcpTo0GfZ/1p4=
   file_glob: true
-  file: build/libs/fakemailserver*.war
+  file: build/distributions/FakemailServer-*.*
   skip_cleanup: true
   on:
     repo: patlenain/fakemail-server

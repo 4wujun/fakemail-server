@@ -4,17 +4,17 @@ plugins {
 	id 'com.moowork.node' version '1.2.0'
 }
 
-apply plugin: 'base'
-
 node {
 	version = '8.9.1'
 	download = true
 }
 
-clean {
-	delete 'coverage'
-	delete 'TEST*.xml'
-	delete 'ut_report-*.xml'
+task clean(type: Delete) {
+	group = 'build'
+	description = 'Clean-up generated files'
+	delete "${projectDir}/coverage",
+		fileTree(dir: projectDir, 
+			includes: [ "TEST*.xml", "ut_report-*.xml" ])
 }
 
 task buildClientDev(type: NpmTask, dependsOn: 'npmInstall') {
