@@ -5,9 +5,11 @@ plugins {
 }
 
 node {
-	version = '8.9.1'
+	version = '8.9.3'
 	download = true
 }
+
+description = "Angular 4 frontend"
 
 task clean(type: Delete) {
 	group = 'build'
@@ -45,5 +47,16 @@ task testCoverage(type: NpmTask, dependsOn: 'npmInstall') {
 	group = 'verification'
 	description = 'Launch coverage analysis'
 	args = ['run', 'testCoverage']
+}
+
+sonarqube {
+	properties {
+		property 'sonar.sources', 'src'
+		property 'sonar.exclusions', 'src/test.ts,**/*.spec.ts'
+		property 'sonar.tests', 'src'
+		property 'sonar.test.inclusions', 'src/test.ts,**/*.spec.ts'
+		property 'sonar.javascript.lcov.reportPaths', 'coverage/lcov.info'
+		property 'sonar.typescript.lcov.reportPaths', 'coverage/lcov.info'
+	}
 }
 

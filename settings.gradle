@@ -1,3 +1,15 @@
+#!groovy
+
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+		jcenter()
+		mavenCentral()
+	}
+}
+
 rootProject.name = 'FakemailServer'
 
+include 'server'
 include 'frontend'
+
