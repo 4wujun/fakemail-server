@@ -4,6 +4,8 @@ plugins {
 	id 'com.moowork.node' version '1.2.0'
 }
 
+apply plugin: 'eclipse'
+
 node {
 	version = '8.9.3'
 	download = true
@@ -47,6 +49,15 @@ task testCoverage(type: NpmTask, dependsOn: 'npmInstall') {
 	group = 'verification'
 	description = 'Launch coverage analysis'
 	args = ['run', 'testCoverage']
+}
+
+eclipse {
+	project {
+		natures 'org.eclipse.buildship.core.gradleprojectnature'
+		natures 'org.eclipse.wst.common.project.facet.core.nature'
+		buildCommand 'org.eclipse.wst.common.project.facet.core.builder'
+		buildCommand 'org.eclipse.wst.validation.validationbuilder'
+	}
 }
 
 sonarqube {

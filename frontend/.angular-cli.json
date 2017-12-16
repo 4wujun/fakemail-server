@@ -1,12 +1,12 @@
 {
 	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
 	"project": {
-		"name": "fakemail-angular"
+		"name": "FakemailServer"
 	},
 	"apps": [
 		{
 			"root": "src",
-			"outDir": "../src/main/resources/static",
+			"outDir": "../server/src/main/resources/static",
 			"assets": [
 				{
 					"glob": "assets",

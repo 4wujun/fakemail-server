@@ -1,5 +1,6 @@
-# Ignore all
+# Ignore all files
 *
-# Except this file and .keep
-!.gitignore
+
+# Except .keep file
 !.keep
+
