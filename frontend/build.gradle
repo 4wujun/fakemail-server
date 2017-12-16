@@ -24,7 +24,7 @@ task clean(type: Delete) {
 task buildClientDev(type: NpmTask, dependsOn: 'npmInstall') {
 	group = 'build'
 	description = 'Compile client side folder for development'
-	args = ['run','buildDev']
+	args = ['run','buildDevClient']
 }
 
 task buildClientWatch(type: NpmTask, dependsOn: 'npmInstall') {

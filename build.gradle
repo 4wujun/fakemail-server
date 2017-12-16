@@ -37,5 +37,5 @@ sonarqube {
 	}
 }
 
+//tasks.check.dependsOn('frontend:testNpm')
 tasks.sonarqube.dependsOn('frontend:testCoverage')
-
