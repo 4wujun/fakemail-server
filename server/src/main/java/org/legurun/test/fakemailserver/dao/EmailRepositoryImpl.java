@@ -130,7 +130,7 @@ public class EmailRepositoryImpl
 		if (command.getMaxRows() != null) {
 			typedQuery.setMaxResults(command.getMaxRows());
 		}
-		return new PageImpl<EmailSearchReport>(typedQuery.getResultList(),
+		return new PageImpl<>(typedQuery.getResultList(),
 				command.getPageable(), executeCountQuery(query));
 	}
 
