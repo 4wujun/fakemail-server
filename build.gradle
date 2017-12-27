@@ -17,7 +17,7 @@ The main use is for testing software which sends mail, to forbid sending to real
 
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '4.4'
+	gradleVersion = '4.4.1'
 }
 
 eclipse {
