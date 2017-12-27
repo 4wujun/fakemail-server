@@ -14,7 +14,6 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'application'
-apply plugin: 'eclipse'
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
@@ -80,7 +79,12 @@ jpaModelgen {
 compileJava.options.compilerArgs += [ "-proc:none" ]
 
 springBoot {
-	buildInfo()
+	buildInfo {
+		additionalProperties = [
+			name: 'fakemailserver',
+			artifact: 'fakemailserver'
+		]
+	}
 }
 
 bootRun {
@@ -167,6 +171,13 @@ jar {
 		)
 	}
 }
+
+distributions {
+	main {
+		baseName = 'fakemailserver'
+	}
+}
+
 /*
 liquibase {
 	activities {

@@ -12,4 +12,3 @@ rootProject.name = 'FakemailServer'
 
 include 'frontend'
 include 'server'
-
