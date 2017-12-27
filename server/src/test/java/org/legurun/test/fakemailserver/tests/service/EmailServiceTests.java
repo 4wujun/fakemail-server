@@ -98,14 +98,14 @@ public class EmailServiceTests {
 		command.setSentBefore(dateBefore);
 
 		when(
-			emailRepository.search(command, null))
+			emailRepository.search(command))
 			.thenReturn(pagedList);
 
 		final Page<EmailSearchReport> result =
-				emailService.search(command, null);
+				emailService.search(command);
 		assertNotNull("search() must return a result", result);
 		assertEquals(pagedList, result);
-		verify(emailRepository, times(1)).search(eq(command), isNull());
+		verify(emailRepository, times(1)).search(eq(command));
 		verifyNoMoreInteractions(senderService);
 		verifyNoMoreInteractions(emailRepository);
 	}
@@ -121,15 +121,15 @@ public class EmailServiceTests {
 		final EmailSearchCommand command = new EmailSearchCommand();
 
 		when(
-			emailRepository.search(command, null)).
+			emailRepository.search(command)).
 			thenReturn(pagedList);
 
 		final Page<EmailSearchReport> result =
-				emailService.search(command, null);
+				emailService.search(command);
 		assertNotNull("search() must return a result", result);
 		assertEquals(pagedList, result);
 		verify(senderService, times(0)).get(1L);
-		verify(emailRepository, times(1)).search(eq(command), isNull());
+		verify(emailRepository, times(1)).search(eq(command));
 		verifyNoMoreInteractions(senderService);
 		verifyNoMoreInteractions(emailRepository);
 	}

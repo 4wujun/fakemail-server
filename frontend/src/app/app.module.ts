@@ -18,7 +18,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SharedModule } from 'primeng/primeng';
@@ -29,10 +29,6 @@ import { CalendarModule, DataTableModule } from 'primeng/primeng';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './searchForm/searchForm.component';
 import { SearchResultsComponent } from './searchResults/searchResults.component';
-import { requestOptionsProvider } from './common/default-http-options.service';
-
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { SenderData } from './data/sender-data';
 
 import { environment } from '../environments/environment';
 
@@ -45,10 +41,9 @@ import { environment } from '../environments/environment';
     imports: [
         BrowserModule,
         FormsModule,
-        HttpModule,
+        HttpClientModule,
         BrowserAnimationsModule,
-        ( !environment.production && !environment.proxyApi ) ? InMemoryWebApiModule.forRoot( SenderData ) : [],
-	SharedModule,
+        SharedModule,
         PanelModule,
         ButtonModule,
         InputTextModule,
@@ -57,7 +52,6 @@ import { environment } from '../environments/environment';
         CalendarModule,
         DataTableModule
     ],
-    providers: [requestOptionsProvider],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -36,7 +36,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,10 +74,9 @@ public class EmailService implements IEmailService {
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public Page<EmailSearchReport> search(
-			final EmailSearchCommand searchCommand,
-			final Pageable pageable) {
+			final EmailSearchCommand searchCommand) {
 		LOG.debug("Getting list of emails");
-		return emailRepository.search(searchCommand, pageable);
+		return emailRepository.search(searchCommand);
 	}
 
 	/**

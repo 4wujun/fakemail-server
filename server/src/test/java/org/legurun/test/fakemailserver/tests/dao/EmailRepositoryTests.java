@@ -35,8 +35,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,7 +65,7 @@ public class EmailRepositoryTests {
 	public void testSearchAll() {
 		final EmailSearchCommand command = new EmailSearchCommand();
 		final Page<EmailSearchReport> list =
-				emailRepository.search(command, null);
+				emailRepository.search(command);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotalElements());
 		assertEquals(4, list.getNumberOfElements());
@@ -79,7 +77,7 @@ public class EmailRepositoryTests {
 		final EmailSearchCommand command = new EmailSearchCommand();
 		command.setSenderId(sender1.getId());
 		final Page<EmailSearchReport> list =
-				emailRepository.search(command, null);
+				emailRepository.search(command);
 		assertNotNull(list);
 		assertEquals(3L, list.getTotalElements());
 		assertEquals(3, list.getNumberOfElements());
@@ -91,7 +89,7 @@ public class EmailRepositoryTests {
 		final EmailSearchCommand command = new EmailSearchCommand();
 		command.setRecipient("test2");
 		final Page<EmailSearchReport> list =
-				emailRepository.search(command, null);
+				emailRepository.search(command);
 		assertNotNull(list);
 		assertEquals(1L, list.getTotalElements());
 		assertEquals(1, list.getNumberOfElements());
@@ -106,7 +104,7 @@ public class EmailRepositoryTests {
 		final Date sentSince = DateUtils.addDays(new Date(), -3);
 		command.setSentSince(sentSince);
 		final Page<EmailSearchReport> list =
-				emailRepository.search(command, null);
+				emailRepository.search(command);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotalElements());
 		assertEquals(4, list.getNumberOfElements());
@@ -119,7 +117,7 @@ public class EmailRepositoryTests {
 		final Date sentBefore = DateUtils.addDays(new Date(), -1);
 		command.setSentBefore(sentBefore);
 		final Page<EmailSearchReport> list =
-				emailRepository.search(command, null);
+				emailRepository.search(command);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotalElements());
 		assertEquals(4, list.getNumberOfElements());
@@ -129,9 +127,10 @@ public class EmailRepositoryTests {
 	@Transactional
 	public void testSearchAllWithOffsetAndLimit() {
 		final EmailSearchCommand command = new EmailSearchCommand();
-		final Pageable pageable = new PageRequest(1, 2);
+		command.setFirstRow(1);
+		command.setMaxRows(2);
 		final Page<EmailSearchReport> list =
-				emailRepository.search(command, pageable);
+				emailRepository.search(command);
 		assertNotNull(list);
 		assertEquals(4L, list.getTotalElements());
 		assertEquals(2, list.getSize());
@@ -144,7 +143,7 @@ public class EmailRepositoryTests {
 		command.setSenderId(sender1.getId());
 		command.setRecipient("test3");
 		final Page<EmailSearchReport> list =
-				emailRepository.search(command, null);
+				emailRepository.search(command);
 		assertNotNull(list);
 		assertEquals(1L, list.getTotalElements());
 		assertEquals(1, list.getNumberOfElements());

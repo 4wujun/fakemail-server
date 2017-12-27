@@ -20,7 +20,6 @@ package org.legurun.test.fakemailserver.dao;
 import org.legurun.test.fakemailserver.dto.EmailSearchCommand;
 import org.legurun.test.fakemailserver.dto.EmailSearchReport;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 /**
  * Email repository custom interface.
@@ -34,9 +33,8 @@ public interface EmailRepositoryCustom {
 	 * Search emails.
 	 *
 	 * @param command Search params
-	 * @param pageable Pagination
 	 * @return List of Emails or empty list
 	 */
 	Page<EmailSearchReport> search(
-			EmailSearchCommand command, Pageable pageable);
+			EmailSearchCommand command);
 }

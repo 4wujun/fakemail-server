@@ -16,14 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/finally';
 
-import { Mail } from './mail';
+import { MailSearchResult, Mail } from './mail';
 import { MailCriteria } from './mailCriteria';
 
 const mailUrl = 'api/mail';
@@ -31,34 +30,27 @@ const mailUrl = 'api/mail';
 @Injectable()
 export class MailService {
 
-    constructor( private http: Http ) { }
+    constructor( private httpClient: HttpClient ) { }
 
-    search( criteria: MailCriteria ): Observable<Mail[]> {
-        return this.http.post( mailUrl, criteria )
-            .map( this.extract )
-            .catch( this.handleError )
-            .finally( this.finally );
+    search( criteria: MailCriteria ): Observable<MailSearchResult> {
+        return this.httpClient.post<MailSearchResult>( mailUrl, criteria );
     }
 
-    private extract( res: Response ) {
-        const json = res.json();
-//        console.log( json );
-        return json.data || json;
-    }
-
-    private handleError( error: Response | any ) {
+    private handleError( error: HttpResponse<any> | any ) {
+        console.log(error);
         let errMsg: string;
-        if ( error instanceof Response ) {
-            const body = error.json() || '';
+        if ( error instanceof HttpResponse ) {
+            const body = error.body.json() || '';
             const err = body.error || JSON.stringify( body );
             errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
+        console.error( error );
         console.error( errMsg );
         return Observable.throw( errMsg );
     }
 
-    private finally() {
+    private finalize() {
     }
 }

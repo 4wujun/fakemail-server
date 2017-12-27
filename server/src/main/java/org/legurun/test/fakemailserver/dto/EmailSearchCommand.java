@@ -22,6 +22,8 @@ import java.util.Date;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
@@ -48,6 +50,14 @@ public class EmailSearchCommand implements Serializable {
 	 * Date before the mails was sent.
 	 */
 	private Date sentBefore;
+	/**
+	 * First row number.
+	 */
+	private Integer firstRow;
+	/**
+	 * Max number of rows to fetch.
+	 */
+	private Integer maxRows;
 
 	/**
 	 * Get the sender id.
@@ -118,13 +128,47 @@ public class EmailSearchCommand implements Serializable {
 	}
 
 	/**
+	 * Get the first row number.
+	 * @return Number
+	 */
+	public Integer getFirstRow() {
+		return firstRow;
+	}
+
+	/**
+	 * Set the first row number.
+	 * @param firstRow Number
+	 */
+	public void setFirstRow(final Integer firstRow) {
+		this.firstRow = firstRow;
+	}
+
+	/**
+	 * Get the maximum number of rows to fetch.
+	 * @return Maximum number
+	 */
+	public Integer getMaxRows() {
+		return maxRows;
+	}
+
+	/**
+	 * Set the maximum number of rows to fetch.
+	 * @param maxRows Maximum number
+	 */
+	public void setMaxRows(final Integer maxRows) {
+		this.maxRows = maxRows;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
 		return "EmailSearchCommand [senderId=" + senderId
 				+ ", recipient=" + recipient + ", sentSince=" + sentSince
-				+ ", sentBefore=" + sentBefore + "]";
+				+ ", sentBefore=" + sentBefore
+				+ ", firstRow=" + firstRow
+				+ ", maxRows=" + maxRows + "]";
 	}
 
 	/**
@@ -137,6 +181,8 @@ public class EmailSearchCommand implements Serializable {
 		builder.append(recipient);
 		builder.append(sentBefore);
 		builder.append(sentSince);
+		builder.append(firstRow);
+		builder.append(maxRows);
 		return builder.hashCode();
 	}
 
@@ -160,6 +206,24 @@ public class EmailSearchCommand implements Serializable {
 		builder.append(recipient, other.recipient);
 		builder.append(sentBefore, other.sentBefore);
 		builder.append(sentSince, other.sentSince);
+		builder.append(firstRow, other.firstRow);
+		builder.append(maxRows, other.maxRows);
 		return builder.isEquals();
+	}
+
+	/**
+	 * Return a pageable instance matching the request.
+	 * @return Pageable instance
+	 */
+	public Pageable getPageable() {
+		int pageIndex = 0;
+		if (firstRow != null && maxRows != null) {
+			pageIndex = firstRow / maxRows;
+		}
+		int pageSize = Integer.MAX_VALUE;
+		if (maxRows != null) {
+			pageSize = maxRows;
+		}
+		return new PageRequest(pageIndex, pageSize);
 	}
 }

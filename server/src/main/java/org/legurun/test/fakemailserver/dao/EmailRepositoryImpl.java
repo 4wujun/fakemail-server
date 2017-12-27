@@ -38,10 +38,6 @@ import org.legurun.test.fakemailserver.model.Sender;
 import org.legurun.test.fakemailserver.model.Sender_;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.query.QueryUtils;
-import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -72,12 +68,11 @@ public class EmailRepositoryImpl
 	 * Search emails.
 	 *
 	 * @param command Search params
-	 * @param pageable Pagination
 	 * @return List of Emails or empty list
 	 */
 	@Override
-	public Page<EmailSearchReport> search(final EmailSearchCommand command,
-			final Pageable pageable) {
+	public Page<EmailSearchReport> search(
+			final EmailSearchCommand command) {
 		final CriteriaBuilder builder =
 				this.entityManager.getCriteriaBuilder();
 		final CriteriaQuery<EmailSearchReport> query =
@@ -121,21 +116,22 @@ public class EmailRepositoryImpl
 					rootEmail.get(Email_.sentDate), command.getSentBefore()));
 		}
 		query.where(predicates.toArray(new Predicate[] {}));
-		if (pageable != null) {
-			final Sort sort = pageable.getSort();
-			if (sort != null) {
-				query.orderBy(QueryUtils.toOrders(sort, rootEmail, builder));
-			}
-		}
+//		if (pageable != null) {
+//			final Sort sort = pageable.getSort();
+//			if (sort != null) {
+//				query.orderBy(QueryUtils.toOrders(sort, rootEmail, builder));
+//			}
+//		}
 		final TypedQuery<EmailSearchReport> typedQuery =
 				this.entityManager.createQuery(query);
-		if (pageable != null) {
-			typedQuery.setFirstResult(pageable.getOffset());
-			typedQuery.setMaxResults(pageable.getPageSize());
-			return PageableExecutionUtils.getPage(typedQuery.getResultList(),
-					pageable, () -> executeCountQuery(query));
+		if (command.getFirstRow() != null) {
+			typedQuery.setFirstResult(command.getFirstRow());
 		}
-		return new PageImpl<>(typedQuery.getResultList());
+		if (command.getMaxRows() != null) {
+			typedQuery.setMaxResults(command.getMaxRows());
+		}
+		return new PageImpl<EmailSearchReport>(typedQuery.getResultList(),
+				command.getPageable(), executeCountQuery(query));
 	}
 
 	/**

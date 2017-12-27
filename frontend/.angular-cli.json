@@ -34,7 +34,6 @@
 			"environmentSource": "environments/environment.ts",
 			"environments": {
 				"dev": "environments/environment.ts",
-				"proxy": "environments/environment.proxy.ts",
 				"prod": "environments/environment.prod.ts"
 			}
 		}

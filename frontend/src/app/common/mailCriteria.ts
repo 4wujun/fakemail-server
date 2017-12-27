@@ -18,8 +18,14 @@
 import { SelectItem } from 'primeng/primeng';
 
 export class MailCriteria {
+    // Criteria
     senderId: number;
     recipient: string;
     sentSince: Date;
     sentBefore: Date;
+    // Pagination
+    firstRow: number;
+    maxRows: number;
+    // Sort
+    // TODO Add sorting
 }

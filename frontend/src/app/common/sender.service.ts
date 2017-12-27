@@ -16,48 +16,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators/catchError';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { SelectItem } from 'primeng/primeng';
+import { Sender } from '../common/sender';
 
 const senderUrl = 'api/sender';
 
 @Injectable()
 export class SenderService {
 
-    constructor( private http: Http ) { }
+    constructor( private httpClient: HttpClient ) { }
 
-    getSenders(): Observable<SelectItem[]> {
-        return this.http.get( senderUrl )
-            .map( this.extract )
+    getSenders(): Observable<Sender[]> {
+        return this.httpClient.get<Sender>( senderUrl )
             .catch( this.handleError );
     }
 
-    private extract( res: Response ) {
-        const json = res.json();
-        const result: SelectItem[] = [];
-        result.push( { value: null, label: '' });
-        if ( json ) {
-            for ( const item of ( json.data || json ) ) {
-                result.push( { value: item.id, label: item.address });
-            }
-        }
-        return result;
-    }
-
-    private handleError( error: Response | any ) {
+    private handleError( error: HttpResponse<any>) {
         let errMsg: string;
-        if ( error instanceof Response ) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify( body );
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
+        const body = error.body.json() || '';
+        const err = JSON.stringify( body );
+        errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
         console.error( errMsg );
         return Observable.throw( errMsg );
     }

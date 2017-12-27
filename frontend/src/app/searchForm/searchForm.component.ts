@@ -17,10 +17,9 @@
  */
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { SelectItem } from 'primeng/primeng';
-
 import { MailService } from '../common/mail.service';
 import { MailCriteria } from '../common/mailCriteria';
+import { Sender } from '../common/sender';
 import { SenderService } from '../common/sender.service';
 
 @Component( {
@@ -29,11 +28,11 @@ import { SenderService } from '../common/sender.service';
     providers: [MailService, SenderService]
 })
 export class SearchFormComponent implements OnInit {
-    senderId: number;
+    sender: Sender;
     recipient: string;
     sentSince: Date;
     sentBefore: Date;
-    senders: SelectItem[];
+    senders: Sender[];
     errorMessage: string;
     @Output() onSearch = new EventEmitter<MailCriteria>();
     @Output() onReset = new EventEmitter<void>();
@@ -52,7 +51,7 @@ export class SearchFormComponent implements OnInit {
 
     fireSearch() {
         const criteria = new MailCriteria();
-        criteria.senderId = this.senderId;
+        criteria.senderId = (this.sender != null ? this.sender.id : undefined);
         criteria.recipient = this.recipient;
         criteria.sentSince = this.sentSince;
         criteria.sentBefore = this.sentBefore;
@@ -60,7 +59,7 @@ export class SearchFormComponent implements OnInit {
     }
 
     fireReset() {
-        this.senderId = null;
+        this.sender = null;
         this.recipient = null;
         this.sentSince = null;
         this.sentBefore = null;

@@ -18,7 +18,6 @@
 package org.legurun.test.fakemailserver.tests.controller;
 
 import static org.hamcrest.Matchers.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -39,7 +38,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableArgumentResolver;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
@@ -106,8 +104,7 @@ public class MailControllerTests {
 						Arrays.asList(report), null, 5);
 
 		when(
-			emailService.search(
-				eq(command), any(Pageable.class))).
+			emailService.search(eq(command))).
 			thenReturn(list);
 
 		final MockHttpServletRequestBuilder postBuilder =
@@ -127,8 +124,7 @@ public class MailControllerTests {
 					is(report.getSentDate().getTime())))
 			.andExpect(jsonPath("content[0].subject", is(report.getSubject())))
 			;
-		verify(emailService, times(1)).search(
-				eq(command), any(Pageable.class));
+		verify(emailService, times(1)).search(eq(command));
 		verifyNoMoreInteractions(emailService);
 	}
 }

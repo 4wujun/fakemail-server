@@ -1,15 +1,18 @@
 <div class="ui-g">
 	<p-dataTable [value]="mails" sortField="sentDate" [sortOrder]="-1"
 			[resizableColumns]="true" [reorderableColumns]="true"
-			[paginator]="true" paginatorPosition="both" [rows]="10"
-			[loading]="loading" dataKey="id">
+			[paginator]="true" paginatorPosition="both" [rows]="maxRows"
+			[first]="firstRowDisplayed" [totalRecords]="totalRecords"
+			[lazy]="true"
+			[loading]="loading" loadingIcon="fa-spinner" dataKey="id"
+			(onLazyLoad)="onLazyLoad($event)">
 		<p-header>Mails</p-header>
 		<p-column selectionMode="multiple"></p-column>
 		<p-column field="sender" header="Sender" [sortable]="true"></p-column>
 		<p-column field="recipient" header="Recipient" [sortable]="true"></p-column>
 		<p-column field="sentDate" header="Sent date" [sortable]="true">
 			<ng-template let-data="rowData" pTemplate="body">
-				{{data.sentDate | date: 'medium' }}
+				{{ data.sentDate | date: 'medium' }}
 			</ng-template>
 		</p-column>
 		<p-column field="subject" header="Subject" [sortable]="true"></p-column>
