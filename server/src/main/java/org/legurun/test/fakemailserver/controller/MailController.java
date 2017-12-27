@@ -53,7 +53,6 @@ public class MailController {
 	/**
 	 * Search the emails.
 	 * @param searchCommand Search criteria
-	 * @param pageable Pagination information
 	 * @return Search result
 	 */
 	@PostMapping
