@@ -31,7 +31,7 @@ import { MailService } from '../common/mail.service';
 } )
 export class SearchResultsComponent implements OnInit {
     loading: boolean;
-    maxRows: number = 10;
+    readonly maxRows = 10;
     mails: Mail[];
     firstRowDisplayed: number;
     totalRecords: number;
@@ -41,7 +41,7 @@ export class SearchResultsComponent implements OnInit {
     constructor( private mailService: MailService ) { }
 
     ngOnInit() {
-        var criteria = new MailCriteria();
+        const criteria = new MailCriteria();
         criteria.firstRow = 0;
         criteria.maxRows = this.maxRows;
         this.onSearch( criteria );

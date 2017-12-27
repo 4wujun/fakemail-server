@@ -34,8 +34,8 @@ export class SearchFormComponent implements OnInit {
     sentBefore: Date;
     senders: Sender[];
     errorMessage: string;
-    @Output() onSearch = new EventEmitter<MailCriteria>();
-    @Output() onReset = new EventEmitter<void>();
+    @Output() search = new EventEmitter<MailCriteria>();
+    @Output() reset = new EventEmitter<void>();
 
     constructor( private mailService: MailService, private senderService: SenderService ) { }
 
@@ -55,7 +55,7 @@ export class SearchFormComponent implements OnInit {
         criteria.recipient = this.recipient;
         criteria.sentSince = this.sentSince;
         criteria.sentBefore = this.sentBefore;
-        this.onSearch.emit(criteria);
+        this.search.emit(criteria);
     }
 
     fireReset() {
@@ -63,6 +63,6 @@ export class SearchFormComponent implements OnInit {
         this.recipient = null;
         this.sentSince = null;
         this.sentBefore = null;
-        this.onReset.emit();
+        this.reset.emit();
     }
 }
