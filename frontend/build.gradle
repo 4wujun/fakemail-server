@@ -7,11 +7,11 @@ plugins {
 apply plugin: 'eclipse'
 
 node {
-	version = '8.9.3'
+	version = '8.9.4'
 	download = true
 }
 
-description = "Angular 4 frontend"
+description = "Angular 5 frontend"
 
 task clean(type: Delete) {
 	group = 'build'
@@ -21,19 +21,26 @@ task clean(type: Delete) {
 			includes: [ "TEST*.xml", "ut_report-*.xml" ])
 }
 
-task buildClientDev(type: NpmTask, dependsOn: 'npmInstall') {
+task prepareBuild(type: Delete) {
+	group = 'build'
+	description = 'Prepare distribution directory for building'
+	delete fileTree(dir: "${rootDir}/server/src/main/resources/static/",
+		 excludes: [ '.gitignore', '.keep' ])
+}
+
+task buildClientDev(type: NpmTask, dependsOn: ['npmInstall','prepareBuild']) {
 	group = 'build'
 	description = 'Compile client side folder for development'
 	args = ['run','buildDevClient']
 }
 
-task buildClientWatch(type: NpmTask, dependsOn: 'npmInstall') {
+task buildClientWatch(type: NpmTask, dependsOn: ['npmInstall','prepareBuild']) {
 	group = 'application'
 	description = 'Build and watches the client side assets for rebuilding'
 	args = ['run','buildWatch']
 }
 
-task buildClient(type: NpmTask, dependsOn: 'npmInstall') {
+task buildClient(type: NpmTask, dependsOn: ['npmInstall','prepareBuild']) {
 	group = 'build'
 	description = 'Compile client side folder for production'
 	args = ['run','build']
