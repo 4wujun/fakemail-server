@@ -43,9 +43,9 @@ sonarqube {
 tasks.sonarqube.dependsOn('frontend:testCoverage')
 
 task check {
-	dependsOn 'server:test', 'frontend:testNpm'
+	dependsOn 'fakemailserver:test', 'frontend:testNpm'
 }
 
 task assemble {
-	dependsOn 'frontend:buildClient', 'server:assemble'
+	dependsOn 'frontend:buildClient', 'fakemailserver:assemble'
 }
