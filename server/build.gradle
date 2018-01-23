@@ -79,12 +79,8 @@ jpaModelgen {
 compileJava.options.compilerArgs += [ "-proc:none" ]
 
 springBoot {
-	buildInfo {
-		additionalProperties = [
-			name: 'fakemailserver',
-			artifact: 'fakemailserver'
-		]
-	}
+	buildInfo()
+	executable = true
 }
 
 bootRun {
@@ -159,9 +155,8 @@ jacocoTestReport {
 check.dependsOn jacocoTestReport
 
 jar {
-	baseName = 'fakemailserver'
 	manifest {
-		attributes('Implementation-Title': rootProject.name,
+		attributes('Implementation-Title': project.name,
 				'Implementation-Version': rootProject.version,
 				'Built-By': System.getProperty('user.name'),
 				'Built-Date': new Date(),
@@ -169,12 +164,6 @@ jar {
 				'Built-Gradle': gradle.gradleVersion,
 				'Class-Path': configurations.runtime.files.collect { it.name }.join(' ')
 		)
-	}
-}
-
-distributions {
-	main {
-		baseName = 'fakemailserver'
 	}
 }
 

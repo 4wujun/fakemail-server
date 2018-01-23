@@ -12,3 +12,5 @@ rootProject.name = 'FakemailServer'
 
 include 'frontend'
 include 'server'
+
+project(':server').name = 'fakemailserver'
