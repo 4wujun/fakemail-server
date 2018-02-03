@@ -8,7 +8,7 @@ buildscript {
 
 plugins {
 //	id 'org.liquibase.gradle' version '1.2.4'
-	id 'org.springframework.boot' version '1.5.9.RELEASE'
+	id 'org.springframework.boot' version '1.5.10.RELEASE'
 	id 'at.comm_unity.gradle.plugins.jpamodelgen' version '1.1.4'
 }
 
@@ -25,7 +25,6 @@ description = "Backend server"
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-ext['hibernate.version'] = '5.2.12.Final'
 ext['mockito.version'] = '2.11.0'
 ext['ehcache3.version'] = '3.4.0'
 ext['mariadb.version'] = '2.2.1'
@@ -58,7 +57,7 @@ dependencies {
 	compile "org.subethamail:subethasmtp:3.1.7"
 	compile "javax.cache:cache-api"
 	compile "org.ehcache:ehcache"
-	compile "org.hibernate:hibernate-jcache:+"
+	compile "org.hibernate:hibernate-jcache:5.2.12.Final"
 	compile "org.hibernate:hibernate-jpamodelgen"
 	compile "org.apache.commons:commons-dbcp2"
 	compile "javax.servlet:jstl"
