@@ -47,5 +47,6 @@ task check {
 }
 
 task assemble {
-	dependsOn 'frontend:buildClient', 'fakemailserver:assemble'
+	dependsOn 'fakemailserver:assemble'
 }
+
