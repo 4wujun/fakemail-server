@@ -11,14 +11,12 @@ node {
 	download = true
 }
 
-description = "Angular 5 frontend"
+description = "Angular 6 frontend"
 
 task clean(type: Delete) {
 	group = 'build'
 	description = 'Clean-up generated files'
-	delete "${projectDir}/coverage",
-		fileTree(dir: projectDir, 
-			includes: [ "TEST*.xml", "ut_report-*.xml" ])
+	delete "${projectDir}/tests"
 }
 
 task prepareBuild(type: Delete) {
@@ -73,8 +71,8 @@ sonarqube {
 		property 'sonar.exclusions', 'src/test.ts,**/*.spec.ts'
 		property 'sonar.tests', 'src'
 		property 'sonar.test.inclusions', 'src/test.ts,**/*.spec.ts'
-		property 'sonar.javascript.lcov.reportPaths', 'coverage/lcov.info'
-		property 'sonar.typescript.lcov.reportPaths', 'coverage/lcov.info'
+		property 'sonar.javascript.lcov.reportPaths', 'reports/lcov.info'
+		property 'sonar.typescript.lcov.reportPaths', 'reports/lcov.info'
 	}
 }
 

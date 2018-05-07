@@ -14,12 +14,19 @@ module.exports = function (config) {
       require('karma-sonarqube-unit-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
-    client:{
+    client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
+    junitReporter: {
+      outputDir: require('path').join(__dirname, '../reports')
+    },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../coverage'), reports: [ 'html', 'lcovonly' ],
+      dir: require('path').join(__dirname, '../reports'),
+      reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true
+    },
+    sonarQubeUnitReporter: {
+      outputDir: require('path').join(__dirname, '../reports')
     },
     reporters: ['progress', 'kjhtml', 'junit', 'sonarqubeUnit', 'coverage-istanbul'],
     port: 9876,

@@ -43,8 +43,7 @@ Thumbs.db
 
 # Tests
 /checkstyle-result.xml
-/TESTS*.xml
-/ut_report*.xml
+/reports/
 
 # Gradle
 .gradle
