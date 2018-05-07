@@ -18,6 +18,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
+import { throwError } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
@@ -48,7 +49,7 @@ export class MailService {
         }
         console.error( error );
         console.error( errMsg );
-        return Observable.throw( errMsg );
+        return throwError( errMsg );
     }
 
     private finalize() {

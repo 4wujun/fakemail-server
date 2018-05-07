@@ -18,6 +18,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
+import { throwError } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators/catchError';
 import 'rxjs/add/operator/catch';
@@ -33,7 +34,7 @@ export class SenderService {
     constructor( private httpClient: HttpClient ) { }
 
     getSenders(): Observable<Sender[]> {
-        return this.httpClient.get<Sender>( senderUrl )
+        return this.httpClient.get<Sender[]>( senderUrl )
             .catch( this.handleError );
     }
 
@@ -43,6 +44,6 @@ export class SenderService {
         const err = JSON.stringify( body );
         errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
         console.error( errMsg );
-        return Observable.throw( errMsg );
+        return throwError( errMsg );
     }
 }
