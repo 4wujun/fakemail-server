@@ -46,7 +46,7 @@ export class SearchFormComponent implements OnInit {
     loadSenders() {
         this.senderService.getSenders().subscribe(
             senders => this.senders = senders,
-            error => this.errorMessage = <any>error );
+            error => this.errorMessage = error );
     }
 
     fireSearch() {
