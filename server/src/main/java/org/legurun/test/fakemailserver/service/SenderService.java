@@ -18,6 +18,7 @@
 package org.legurun.test.fakemailserver.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.legurun.test.fakemailserver.dao.SenderRepository;
 import org.legurun.test.fakemailserver.model.Sender;
@@ -63,11 +64,12 @@ public class SenderService implements ISenderService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(propagation = Propagation.SUPPORTS)
+	@Transactional(propagation = Propagation.SUPPORTS,
+		noRollbackFor = NoSuchElementException.class)
 	@SuppressWarnings("PMD.ShortVariable")
 	public Sender get(final Long id) {
 		LOG.debug("Getting sender id = {}", id);
-		return senderRepository.findOne(id);
+		return senderRepository.findById(id).get();
 	}
 
 	/**

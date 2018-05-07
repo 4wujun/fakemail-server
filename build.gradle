@@ -2,9 +2,8 @@
 
 plugins {
 	id 'com.github.ben-manes.versions' version '0.17.0'
-	id 'org.sonarqube' version '2.6.1'
+	id 'org.sonarqube' version '2.6.2'
 }
-apply plugin: 'eclipse'
 
 allprojects {
 	group = 'org.legurun'
@@ -13,11 +12,12 @@ allprojects {
 Each mail send to Fakemail is stored into database and never forwarded to legitimate recipients.
 Those mails can be displayed on a web interface.
 The main use is for testing software which sends mail, to forbid sending to real users."""
+	apply plugin: 'eclipse'
 }
 
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '4.5'
+	gradleVersion = '4.7'
 }
 
 eclipse {

@@ -17,13 +17,14 @@
 
 package org.legurun.test.fakemailserver.tests.service;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
-
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,8 +39,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.mockito.Mockito.*;
+
 /**
  * Sender service tests.
+ * 
  * @author patlenain
  * @since 2017
  */
@@ -64,26 +68,29 @@ public class SenderServiceTests {
 		when(senderRepository.list()).thenReturn(senders);
 
 		final List<Sender> result = senderService.list();
-		assertEquals("Result list must contains only one result",
-				senders, result);
+		assertEquals("Result list must contains only one result", senders, result);
 		verify(senderRepository, times(1)).list();
 		verifyNoMoreInteractions(senderRepository);
 	}
 
+	@Test
+	public void testGetNotFound() {
+		when(senderRepository.findById(1L)).thenReturn(Optional.<Sender>empty());
+
+		assertThatThrownBy(() -> senderService.get(1L)).isInstanceOf(NoSuchElementException.class);
+
+		verify(senderRepository, times(1)).findById(eq(1L));
+		verifyNoMoreInteractions(senderRepository);
+	}
 
 	@Test
 	public void testGet() {
 		final Sender sender = new Sender();
-		when(senderRepository.findOne(1L)).thenReturn(null);
-		when(senderRepository.findOne(2L)).thenReturn(sender);
+		when(senderRepository.findById(1L)).thenReturn(Optional.<Sender>of(sender));
 
-		final Sender resultNull = senderService.get(1L);
-		assertNull("Result must be null", resultNull);
-
-		final Sender resultNotNull = senderService.get(2L);
-		assertNotNull("Result must be not null", resultNotNull);
-		verify(senderRepository, times(1)).findOne(eq(1L));
-		verify(senderRepository, times(1)).findOne(eq(2L));
+		final Sender result = senderService.get(1L);
+		assertNotNull("Result must be not null", result);
+		verify(senderRepository, times(1)).findById(eq(1L));
 		verifyNoMoreInteractions(senderRepository);
 	}
 
@@ -101,15 +108,12 @@ public class SenderServiceTests {
 
 	@Test
 	public void testGetOrCreateSenderUnknown() {
-		when(senderRepository.findByAddress("foo@bar.com")).
-			thenReturn(null);
-		when(senderRepository.save(any(Sender.class))).
-			thenReturn(new Sender());
+		when(senderRepository.findByAddress("foo@bar.com")).thenReturn(null);
+		when(senderRepository.save(any(Sender.class))).thenReturn(new Sender());
 
 		final Sender result = senderService.getOrCreateSender("foo@bar.com");
 		assertNotNull("Result must not be null", result);
-		assertEquals("Result is different",
-				"foo@bar.com", result.getAddress());
+		assertEquals("Result is different", "foo@bar.com", result.getAddress());
 		verify(senderRepository, times(1)).findByAddress(eq("foo@bar.com"));
 		verify(senderRepository, times(1)).save(eq(new Sender()));
 		verifyNoMoreInteractions(senderRepository);

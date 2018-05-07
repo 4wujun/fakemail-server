@@ -38,6 +38,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableArgumentResolver;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
@@ -101,7 +102,7 @@ public class MailControllerTests {
 		report.setSubject("Test mail controller");
 		final Page<EmailSearchReport> list =
 				new PageImpl<EmailSearchReport>(
-						Arrays.asList(report), null, 5);
+						Arrays.asList(report), PageRequest.of(0, 50), 1);
 
 		when(
 			emailService.search(eq(command))).
@@ -115,7 +116,7 @@ public class MailControllerTests {
 		mockMvc.perform(postBuilder)
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-			.andExpect(jsonPath("totalElements", is(5)))
+			.andExpect(jsonPath("totalElements", is(1)))
 			.andExpect(jsonPath("content", hasSize(1)))
 			.andExpect(jsonPath("content[0].id", is(report.getId().intValue())))
 			.andExpect(jsonPath("content[0].recipient",

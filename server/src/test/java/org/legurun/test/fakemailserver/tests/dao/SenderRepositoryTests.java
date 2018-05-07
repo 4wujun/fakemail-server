@@ -90,7 +90,7 @@ public class SenderRepositoryTests {
 	@Test
 	@Transactional
 	public void testGet() {
-		final Sender sender = senderRepository.findOne(sender1.getId());
+		final Sender sender = senderRepository.findById(sender1.getId()).get();
 		assertNotNull(sender);
 		assertEquals(sender1, sender);
 	}

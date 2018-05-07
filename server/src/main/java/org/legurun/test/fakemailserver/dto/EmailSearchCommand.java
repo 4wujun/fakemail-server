@@ -32,7 +32,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * @author patlenain
  * @since 2017
  */
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "PMD.DataClass" })
 public class EmailSearchCommand implements Serializable {
 	/**
 	 * Sender id.
@@ -190,6 +190,7 @@ public class EmailSearchCommand implements Serializable {
 	 * {@inheritDoc}
 	 */
 	@Override
+	@SuppressWarnings("PMD.NcssCount")
 	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
@@ -224,6 +225,6 @@ public class EmailSearchCommand implements Serializable {
 		if (maxRows != null) {
 			pageSize = maxRows;
 		}
-		return new PageRequest(pageIndex, pageSize);
+		return PageRequest.of(pageIndex, pageSize);
 	}
 }
