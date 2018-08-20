@@ -28,6 +28,7 @@ import { SenderService } from '../common/sender.service';
     providers: [MailService, SenderService]
 })
 export class SearchFormComponent implements OnInit {
+    readonly emptySender = { id: null, address: '' };
     sender: Sender;
     recipient: string;
     sentSince: Date;
@@ -45,7 +46,10 @@ export class SearchFormComponent implements OnInit {
 
     loadSenders() {
         this.senderService.getSenders().subscribe(
-            senders => this.senders = senders,
+            senders => {
+                this.senders = [ this.emptySender ];
+                this.senders.push(...senders);
+            },
             error => this.errorMessage = error );
     }
 
