@@ -1,11 +1,5 @@
 #!groovy
 
-buildscript {
-	ext {
-		springBootVersion = '2.0.4.RELEASE'
-	}
-}
-
 plugins {
 //	id 'org.liquibase.gradle' version '1.2.4'
 	id 'io.spring.dependency-management' version '1.0.6.RELEASE'
@@ -66,7 +60,7 @@ dependencies {
 }
 
 jpaModelgen {
-	library "org.hibernate:hibernate-jpamodelgen:5.3.5.Final"
+	library "org.hibernate:hibernate-jpamodelgen:5.2.17.Final"
 }
 compileJava.options.compilerArgs += [ "-proc:none" ]
 compileTestJava.options.compilerArgs += [ "-proc:none" ]
@@ -192,6 +186,9 @@ eclipse {
 	classpath {
 		downloadJavadoc = true
 		downloadSources = true
+		file.beforeMerged { cp ->
+			cp.entries.add(new org.gradle.plugins.ide.eclipse.model.SourceFolder('src/jpaModelgen/java', null))
+		}
 	}
 }
 
