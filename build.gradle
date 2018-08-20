@@ -1,7 +1,7 @@
 #!groovy
 
 plugins {
-	id 'com.github.ben-manes.versions' version '0.17.0'
+	id 'com.github.ben-manes.versions' version '0.20.0'
 	id 'org.sonarqube' version '2.6.2'
 }
 
@@ -16,8 +16,8 @@ The main use is for testing software which sends mail, to forbid sending to real
 }
 
 
-task wrapper(type: Wrapper) {
-	gradleVersion = '4.7'
+wrapper {
+	gradleVersion = '4.9'
 }
 
 eclipse {

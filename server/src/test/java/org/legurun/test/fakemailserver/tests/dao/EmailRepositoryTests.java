@@ -33,14 +33,14 @@ import org.legurun.test.fakemailserver.model.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@ComponentScan("org.legurun.test.fakemailserver.dao")
+@EnableJpaAuditing
 @SuppressWarnings("checkstyle:MultipleStringLiterals")
 public class EmailRepositoryTests {
 

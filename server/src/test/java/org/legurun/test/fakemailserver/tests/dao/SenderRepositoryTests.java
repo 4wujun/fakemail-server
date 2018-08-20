@@ -31,11 +31,13 @@ import org.legurun.test.fakemailserver.dao.SenderRepository;
 import org.legurun.test.fakemailserver.model.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@EnableJpaAuditing
 @SuppressWarnings("checkstyle:MultipleStringLiterals")
 public class SenderRepositoryTests {
 

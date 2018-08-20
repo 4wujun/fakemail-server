@@ -41,7 +41,8 @@ public class SenderService implements ISenderService {
 	/**
 	 * Logger.
 	 */
-	private static final Logger LOG = LoggerFactory.getLogger(SenderService.class);
+	private static final Logger LOG =
+			LoggerFactory.getLogger(SenderService.class);
 
 	/**
 	 * Sender repository.
@@ -63,7 +64,8 @@ public class SenderService implements ISenderService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, noRollbackFor = NoSuchElementException.class)
+	@Transactional(propagation = Propagation.SUPPORTS,
+		noRollbackFor = NoSuchElementException.class)
 	@SuppressWarnings({ "PMD.ShortVariable", "squid:S3655" })
 	public Sender get(final Long id) {
 		LOG.debug("Getting sender id = {}", id);
